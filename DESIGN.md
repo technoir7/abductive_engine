@@ -167,6 +167,19 @@ Each scheme is a dynamic Bayesian network:
   each with two or three states, so the joint hidden space has at most 27
   states and is cheap.
 
+Agreed 2026-10-24:
+- **Credit only for novel predictions.** A new concept is scored only on
+  observations that arrive after it was proposed. It was proposed because it
+  would have explained recent surprises, so scoring it on those would reward
+  hindsight. It may learn its parameters from the past, as every scheme
+  does. This is Lakatos's test of a progressive programme: it predicts facts
+  it was not built to fit.
+- **A fair yardstick** (section 8): the baselines already allow for calm and
+  wild stretches, so a scheme cannot win merely by noticing that volatility
+  comes and goes.
+- **Refutation unchanged from POE** (below). It is kept until a replay shows
+  it fails; if it does, it is revisited.
+
 Lessons carried over from POE's replays:
 - **No BIC.** A prequential score already charges a scheme for the
   parameters it has to learn. Replay 10 found BIC charged them twice and
@@ -206,7 +219,10 @@ Every scheme is scored on the same observations as these four:
 
 1. **Independence:** each series' change is Gaussian, ignoring the past.
 2. **Persistence:** each series' change depends on its own last change. This
-   is the baseline POE could not beat.
+   is the baseline POE could not beat. Its spread tracks recent volatility
+   (an exponentially weighted variance), so calm and wild stretches are
+   already allowed for. An invented concept has to explain something beyond
+   that to beat it.
 3. **POE's vocabulary:** POE's eight signals as a fixed set of defined
    concepts, with structure learned as here. This is the direct yardstick:
    does inventing concepts beat the hand-written ones on the same evidence?
