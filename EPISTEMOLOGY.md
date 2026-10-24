@@ -405,6 +405,23 @@ between them is true by definition and says nothing about the world (POE's
 open problem 6). Two concepts that agree because they are the same
 observation are exactly what homogeneity merges.
 
+### The opposite side from POE
+
+POE takes Popper's side of the old dispute over whether discovery has a
+logic. For POE, hypotheses are conjectures stated in advance or varied
+blindly, and the data only judges them. It deliberately deleted a service
+that would have proposed relations from the data (POE's EPISTEMOLOGY.md §2;
+REFACTOR_SPEC D3).
+
+This engine takes Peirce's side: new concepts are reasoned toward from
+anomalies. The risk Popper saw is real. Evidence that suggests a hypothesis
+must not also be counted as confirming it. That is why a new concept here
+earns credit only for observations after it was proposed (section 8).
+
+With that rule, the two engines differ in one respect only: where
+hypotheses come from. Run on the same observations, they test the
+dispute itself (question 5 of DESIGN.md §9).
+
 ### What the engine does not do
 
 - **It does not guess at random.** POE varies its structures by random
