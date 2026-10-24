@@ -11,10 +11,12 @@ disagree, EPISTEMOLOGY.md states the intent.
 
 The Probabilistic Ontology Engine (POE) is given its variables. For macro
 they are eight yes/no signals written by hand ("inflation shock", "credit
-spread stress", ...), and it learns only how they connect. Replayed over
-2003–2026, no worldview built from them explained the weeks better than
-persistence (each signal following its own last week). POE's open problem 1
-asks whether that is a verdict on the worldviews or on the vocabulary.
+spread stress", ...). Since its D24 it is given no hypotheses about how
+they connect, and forms its own from the evidence. Replayed over 2003–2026
+with hand-written worldviews, none built from these signals explained the
+weeks better than persistence (each signal following its own last week).
+POE's open problem 1 asks whether that is a verdict on the worldviews or on
+the vocabulary.
 
 This engine is given only observations. It forms the concepts it reasons
 with, under a fixed table of forms modelled on Kant's categories. It keeps

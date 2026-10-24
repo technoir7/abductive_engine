@@ -207,10 +207,11 @@ These are the heart of the matter, and section 6 treats causality at length.
 | Cause and effect (Second Analogy, A189/B232) | succession according to a rule | a directed conditional: one concept's state depends on another's, in the same week or from an earlier week |
 | Community (Third Analogy, A211/B256) | coexistence of substances in reciprocal determination | an association between concepts with no direction claimed, or a hidden state that several series share |
 
-A remark on POE's main finding. Replayed over 2003–2026, no worldview
-explained the weeks better than persistence: each signal following its own
-last week. In these terms, POE's experience is organized under the First
-Analogy and has not yet earned the Second.
+A remark on POE's main finding. Replayed over 2003–2026, no hand-written
+worldview explained the weeks better than persistence: each signal
+following its own last week. In these terms, POE's experience was organized
+under the First Analogy and had not yet earned the Second. POE now forms
+its own hypotheses (its D24), and has not yet been replayed.
 
 ### Modality (Postulates of Empirical Thought, A218/B265)
 
@@ -405,30 +406,40 @@ between them is true by definition and says nothing about the world (POE's
 open problem 6). Two concepts that agree because they are the same
 observation are exactly what homogeneity merges.
 
-### The opposite side from POE
+### Where this engine and POE differ
 
-POE takes Popper's side of the old dispute over whether discovery has a
-logic. For POE, hypotheses are conjectures stated in advance or varied
-blindly, and the data only judges them. It deliberately deleted a service
-that would have proposed relations from the data (POE's EPISTEMOLOGY.md §2;
-REFACTOR_SPEC D3).
+POE first took Popper's side of the old dispute over whether discovery has
+a logic: its hypotheses were worldviews written in advance or varied
+blindly, and the data only judged them (POE's REFACTOR_SPEC D3). It has
+since changed sides (its D24). The worldviews had been written with
+knowledge of the history they were tested on, so POE now begins with no
+hypotheses and forms its own: for each programme's best explanation, the
+connection the remembered evidence most supports, judged only on evidence
+that comes after (POE's EPISTEMOLOGY.md §2).
 
-This engine takes Peirce's side: new concepts are reasoned toward from
-anomalies. The risk Popper saw is real. Evidence that suggests a hypothesis
-must not also be counted as confirming it. That is why a new concept here
-earns credit only for observations after it was proposed (section 8).
+So both engines now reason toward hypotheses from the evidence, and both
+meet the risk Popper saw the same way: evidence that suggests a hypothesis
+is not counted as confirming it, because a hypothesis earns credit only
+for observations after it was proposed (section 8 here).
 
-The deepest difference between the two engines is where hypotheses come
-from. Run on the same observations, they put the dispute to a test, in two
-ways (DESIGN.md §9):
-- question 2 compares formed concepts with POE's given ones;
+What remains different is the level at which they form:
+- **POE forms judgments from given concepts.** Its concepts are a domain's
+  hand-written signals; it forms the connections between them.
+- **This engine forms the concepts as well.** It is given only
+  observations, and forms the concepts it then connects.
+
+Run on the same observations, they put a sharper question to the test than
+the old one (DESIGN.md §9):
+- question 2 compares formed concepts with POE's given ones, now with
+  hypotheses formed from the evidence on both sides, so the comparison is
+  of concepts alone;
 - question 5 compares formation from anomalies with blind variation inside
   this engine.
 
 ### What the engine does not do
 
-- **It does not guess at random.** POE varies its structures by random
-  change. This engine does not; every proposal has an anomaly or a
+- **It does not guess at random.** POE still revises the hypotheses it
+  forms by random change. This engine does not; every proposal has an anomaly or a
   regulative principle as its occasion. A separate experiment runs a copy
   with random proposals instead. Its only purpose is to test whether
   disciplined concept formation does better than blind variation. That copy
