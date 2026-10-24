@@ -24,7 +24,63 @@ evidence refutes it. It asks:
 Like POE, it demonstrates epistemology and does not aim to forecast.
 Predictive fit is how its beliefs are judged, not what it is optimised for.
 
-## 2. Abduction
+## 2. Two engines, one source of data
+
+*Agreed 2026-10-24.*
+
+```
+FRED, ... ──> POE ──observations──> abductive engine
+               │                          │
+               └──> dashboard <───────────┘
+```
+
+- **POE owns the data.** It fetches, as it does now, and also keeps the raw
+  numbers it fetches. Today it keeps only its yes/no signals. This engine
+  fetches nothing itself.
+- **Data flows one way.** POE serves observations; nothing this engine
+  learns goes back into POE. If POE took in invented concepts, the two
+  engines would blur together, and the comparison between hand-written and
+  invented concepts (question 2 in section 9) would be lost. POE never
+  needs to know this engine exists.
+- **Results go to the dashboard,** which reads each engine through its own
+  API and can show them side by side.
+- **No separate data service yet.** Moving fetching out of POE into a third
+  repo would be tidier, but it adds a moving part. It becomes worth it if a
+  third consumer of the data appears.
+
+### The observation protocol
+
+Each observation is four fields:
+
+| Field | Example |
+|---|---|
+| `series` | `CPIAUCSL` |
+| `measured` (the date the value describes) | 2008-09-01 |
+| `value` | 218.8 |
+| `public` (the date it became known) | 2008-10-16 |
+
+The one query is **everything public as of date D**, for a domain's series.
+A revised series has one row per published version, with the same
+`measured` and different `public` dates. As of D, the newest version public
+by D is the one that counts, which is ALFRED's model. The `public` field is
+what keeps a replay honest: no week sees a number before it was published,
+or a revision before it was made.
+
+- **Live rows:** `public` is the date POE fetched the value. That is an
+  upper bound on when it became known.
+- **History:** POE's replay files fill the store with the publication dates
+  its replays already use, as first published for CPI and unemployment.
+
+The same rows can be exported to a file, so a 23-year replay runs without
+POE's server.
+
+**What changes in POE.** Every change only adds; none alters how POE learns.
+- A table of raw observations, filled as it fetches.
+- A read-only "as of D" route.
+- A file export.
+- A backfill of macro's history from `evals/data`.
+
+## 3. Abduction
 
 Peirce's schema: *the surprising fact C is observed; but if A were true, C
 would be a matter of course; hence there is reason to suspect A.* Abduction
@@ -39,9 +95,9 @@ is how hypotheses are formed, not how they are confirmed. Here:
 
 Blind variation, as POE mutates its candidates, is kept as a control. Each
 concept records how it was proposed, so the replay can test whether
-abduction beats chance (question Q5).
+abduction beats chance (question 5 in section 9).
 
-## 3. What is given and what is invented
+## 4. What is given and what is invented
 
 **Given (level 0, observations).** For macro: the eight FRED series POE uses,
 as first published, each week seeing only what had been published by that
@@ -55,7 +111,7 @@ This is a deliberate choice, and not a neutral one. Which series to watch,
 and that "change since last value" is the thing observed, are decided here,
 not by the engine. Observation is theory-laden. The engine's concepts are its
 own, but its observation language is ours, and it is fixed so that rival
-schemes have common ground (section 5).
+schemes have common ground (section 6).
 
 **Invented (level 4, concepts).** Two kinds:
 
@@ -71,7 +127,7 @@ schemes have common ground (section 5).
    persists from week to week. Positing unobservables to explain
    observables is abduction in its strongest sense.
 
-## 4. Levels of belief
+## 5. Levels of belief
 
 POE's three levels, with one added above them:
 
@@ -92,13 +148,13 @@ from it.
 - **Structural shift:** the leading scheme changes within one programme.
   This is POE's "revision" and corresponds to normal science.
 
-## 5. Scoring rival schemes (incommensurability)
+## 6. Scoring rival schemes (incommensurability)
 
 Two schemes with different concepts cannot be compared concept by concept,
 because they do not describe the world in the same terms. Kuhn called this
 incommensurability. They can be compared on what each predicts will be
 **observed**. Every scheme gives a probability distribution for each week's
-observations (section 3) before seeing them, and is scored by the
+observations (section 4) before seeing them, and is scored by the
 log-probability it gave them. The score is prequential, meaning it is earned
 week by week, out of sample, and windowed with a half-life as in POE.
 
@@ -123,7 +179,7 @@ Lessons carried over from POE's replays:
 - **Nothing is scored as certain for free.** A link whose parent is unknown
   this week is averaged over that parent's distribution.
 
-## 6. Proposing concepts
+## 7. Proposing concepts
 
 After each week, the leader's surprise per series is compared with its usual
 surprise. A run of surprise well above usual is an anomaly, and it triggers
@@ -144,7 +200,7 @@ Each proposal starts a new scheme as a variant of the leader. A changed
 vocabulary starts a new programme. Proposals by random change of a
 leader's concepts run beside these as the control.
 
-## 7. Baselines
+## 8. Baselines
 
 Every scheme is scored on the same observations as these four:
 
@@ -158,7 +214,7 @@ Every scheme is scored on the same observations as these four:
    yes/no signals (sampled from its predictive distribution), against POE
    replay 10's −3.35 nats a week.
 
-## 8. The first replay
+## 9. The first replay
 
 Fixed before it runs:
 - **Data:** the same weeks as POE replay 10 (2003-04-04 to 2026-10-16), as
@@ -180,13 +236,16 @@ A negative answer is a result. Like POE's replays, the engine is not tuned
 until the questions come out well. A change suggested by one replay is
 measured on the next.
 
-## 9. Build order
+## 10. Build order
 
 Each step has passing tests before the next starts, test first.
 
-1. **Data.** Weekly observations for macro, as first published, with tests
-   that a week never sees an unpublished value. These are copied once from
-   POE's `evals/data`, with their provenance; there are no imports from POE.
+0. **In POE.** The additions in section 2 (raw observation table, "as of
+   D" route, file export, macro backfill), with POE's own tests. These
+   include that "as of D" never returns a value or revision public after D.
+1. **Reading observations.** A client for the protocol, over HTTP and from
+   an exported file, and the weekly observations of section 4 built from
+   it. There are no imports from POE; the protocol is the only contact.
 2. **Scoring and baselines.** Prequential scoring, plus independence,
    persistence and POE's vocabulary as fixed schemes.
 3. **Defined concepts.** The concept grammar, schemes built from it,
@@ -195,7 +254,7 @@ Each step has passing tests before the next starts, test first.
    structural shifts.
 5. **Hidden concepts.** Exact filtering, and parameter learning with a
    half-life.
-6. **Abduction.** Anomaly detection and the proposals in section 6.
+6. **Abduction.** Anomaly detection and the proposals in section 7.
 7. **Replay.** Run it, write up the results with charts.
 
 Not in scope until the replay is written up:
@@ -205,7 +264,7 @@ Not in scope until the replay is written up:
   validation and evidence decide. That is a different proposal mechanism on
   the same scoring.
 
-## 10. Stack
+## 11. Stack
 
 Python 3.12, uv, numpy, pytest. Possibly scipy.
 
@@ -217,9 +276,9 @@ inference readable.
 Like POE, everything is seeded and replayable: same data and seed, same
 result.
 
-## 11. Open
+## 12. Open
 
-- **Observation choice** (section 3). Weekly change in each series is the
+- **Observation choice** (section 4). Weekly change in each series is the
   default. The alternative, raw levels, would let concepts be about levels
   too, but levels drift over 23 years in ways that are hard to model
   honestly.
