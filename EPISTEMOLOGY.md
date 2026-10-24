@@ -418,9 +418,12 @@ anomalies. The risk Popper saw is real. Evidence that suggests a hypothesis
 must not also be counted as confirming it. That is why a new concept here
 earns credit only for observations after it was proposed (section 8).
 
-With that rule, the two engines differ in one respect only: where
-hypotheses come from. Run on the same observations, they test the
-dispute itself (question 5 of DESIGN.md §9).
+The deepest difference between the two engines is where hypotheses come
+from. Run on the same observations, they put the dispute to a test, in two
+ways (DESIGN.md §9):
+- question 2 compares formed concepts with POE's given ones;
+- question 5 compares formation from anomalies with blind variation inside
+  this engine.
 
 ### What the engine does not do
 
