@@ -111,6 +111,22 @@ read.
   again is needed only if the reading instructions change, so they are
   settled on a pilot first.
 
+### The pilot month (March 2015, read 2026-10-26)
+
+363 articles (131 Guardian full texts, 232 NYT paragraphs), Haiku through
+Claude Code, five Guardian or ten NYT articles a call, two calls at once:
+19 minutes; 2,655 assertions (Guardian 14.5 an article, NYT 3.3); no
+article failed; $0.31 at the price Claude Code reports ($0.0016 a Guardian
+article, $0.0004 an NYT one). Of 63 assertions checked by hand against
+their articles, all were in the text; two faults found in the first trials
+were fixed before the month was read (a writer named from the model's own
+knowledge, now given the byline; a rhetorical question reported as a
+statement, now forbidden). Low effort was cheaper but merged separate
+assertions into one, so normal effort is kept.
+
+Whole corpus, extrapolated: about $70 at that price; about 25 hours with
+four calls at once.
+
 ## 7. Build order
 
 Each step test first.
