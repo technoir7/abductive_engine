@@ -3,7 +3,9 @@ name = "abductive-engine"
 version = "0.1.0"
 description = "An engine that forms its own concepts from observations, under a fixed table of forms"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "numpy>=2.5.4",
+]
 
 [dependency-groups]
 dev = ["pytest>=8"]
