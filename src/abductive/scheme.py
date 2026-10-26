@@ -20,10 +20,18 @@ evidence for it: how much better its series was predicted with it than by a
 shadow of the same model without it, week by week out of sample, recent
 weeks counting more (DESIGN §5: prequential, not BIC). Even odds before any
 evidence.
+
+A scheme proposes the link the evidence most supports (DESIGN §7): among
+links from its concepts it lacks, the one whose states last week would best
+have explained its recent surprises in a series, if that explains more than
+the link's extra parameters could by chance. The past suggests; only what
+follows confirms, since a variant is scored only from its birth. It learns
+its parameters from the past, as every scheme does.
 """
 from __future__ import annotations
 
 import math
+from collections import deque
 from dataclasses import dataclass
 from itertools import product
 from typing import Iterable, Mapping, Optional, Sequence
@@ -36,17 +44,25 @@ from .weeks import Change, Week
 Link = tuple[Concept, str]   # a concept bears on a series
 SHRINK = 10.0                # pseudo-observations of "no shift" for each combination of states
 HALF_LIFE_WEEKS = 52         # how fast old evidence for a link fades
+RECENT = 104                 # weeks of surprises a proposal is drawn from
+MIN_CASES = 30
 _DECAY = 0.5 ** (1 / HALF_LIFE_WEEKS)
 
 
 @dataclass
 class _Shift:
+    """The base's errors under one combination of parent states, in units of
+    the base's own spread: their mean and variance, shrunk towards 0 and 1."""
     n: float = 0.0
-    residuals: float = 0.0
-    ratios: float = 0.0   # squared residual over the base's variance
+    total: float = 0.0
+    squares: float = 0.0
+
+    def add(self, z: float) -> None:
+        self.n, self.total, self.squares = self.n + 1, self.total + z, self.squares + z * z
 
     def mean_and_scale(self) -> tuple[float, float]:
-        return self.residuals / (self.n + SHRINK), (self.ratios + SHRINK) / (self.n + SHRINK)
+        mean = self.total / (self.n + SHRINK)
+        return mean, max((self.squares + SHRINK) / (self.n + SHRINK) - mean * mean, 1e-6)
 
 
 class _SeriesModel:
@@ -68,10 +84,16 @@ class _SeriesModel:
         weights = [self.shifts.get(c, _Shift()).n + 1.0 for c in combos]
         total = sum(weights)
         out = []
+        sd = math.sqrt(var)
         for c, w in zip(combos, weights):
             shift, scale = self.shifts.get(c, _Shift()).mean_and_scale()
-            out.append((w / total, mean + shift, var * scale))
+            out.append((w / total, mean + shift * sd, var * scale))
         return out
+
+    def moments(self, config: tuple[Optional[int], ...]) -> tuple[float, float]:
+        parts = self._components(config)
+        mean = sum(w * m for w, m, _ in parts)
+        return mean, sum(w * (v + m * m) for w, m, v in parts) - mean * mean
 
     def log_density(self, y: float, config: tuple[Optional[int], ...]) -> float:
         terms = [math.log(w) + gaussian_log_density(y, m, v) for w, m, v in self._components(config)]
@@ -82,9 +104,7 @@ class _SeriesModel:
         base = self.base.predict()
         if base is not None and self.parents and None not in config:
             mean, var = base
-            r = y - mean
-            s = self.shifts.setdefault(config, _Shift())   # type: ignore[arg-type]
-            s.n, s.residuals, s.ratios = s.n + 1, s.residuals + r, s.ratios + r * r / var
+            self.shifts.setdefault(config, _Shift()).add((y - mean) / math.sqrt(var))   # type: ignore[arg-type]
         self.base.add(y)
 
 
@@ -101,6 +121,8 @@ class Scheme:
         self._last: dict[Concept, Optional[int]] = {c: None for c in self.vocabulary}
         self._without: dict[Link, _SeriesModel] = {}   # each link's shadow: its series' model less it
         self._evidence: dict[Link, float] = {link: 0.0 for link in self.links}
+        self._states: dict[Concept, list[Optional[int]]] = {c: [] for c in self.vocabulary}
+        self._surprises: dict[str, deque[tuple[int, float]]] = {}   # (week index, standardized error)
 
     def parents(self, series: str) -> tuple[Concept, ...]:
         return tuple(sorted((c for c, s in self.links if s == series), key=self.vocabulary.index))
@@ -127,6 +149,8 @@ class Scheme:
             model = self._model(s)
             config = tuple(self._last[c] for c in model.parents)
             scores[s] = model.log_density(y, config)
+            mean, var = model.moments(config)
+            self._surprises.setdefault(s, deque(maxlen=RECENT)).append((len(self._weeks), (y - mean) / math.sqrt(var)))
             for c in model.parents:
                 shadow = self._shadow((c, s), model)
                 shadow_config = tuple(self._last[p] for p in shadow.parents)
@@ -137,4 +161,51 @@ class Scheme:
         self._weeks.append(week)
         i = len(self._weeks) - 1
         self._last = {c: state_at(c, self._weeks, i, self.kinds) for c in self.vocabulary}
+        for c, state in self._last.items():
+            self._states[c].append(state)
         return scores
+
+    def proposal(self) -> Optional[Link]:
+        """The link this scheme lacks that its recent surprises most support
+        beyond chance, or None."""
+        best, best_gain = None, 0.0
+        for s, recent in sorted(self._surprises.items()):
+            for c in self.vocabulary:
+                if (c, s) in self.links:
+                    continue
+                cases = [(self._states[c][i - 1], z) for i, z in recent if i >= 1 and self._states[c][i - 1] is not None]
+                gain = _explained(cases, degrees(c))
+                if gain is not None and gain > best_gain:
+                    best, best_gain = (c, s), gain
+        return best
+
+    def variant(self, add: Optional[Link] = None, remove: Optional[Link] = None) -> "Scheme":
+        """This scheme with one link added or removed, its parameters learned
+        from every week this one has seen."""
+        links = (self.links | {add} if add else self.links) - ({remove} if remove else set())
+        out = Scheme(self.vocabulary, frozenset(links), self.kinds)
+        for week in self._weeks:
+            out.score_and_learn(week)
+        return out
+
+
+def _explained(cases: list[tuple[int, float]], k: int) -> Optional[float]:
+    """Log-likelihood gained by giving each state its own mean and spread for
+    the surprises, less the chance penalty (½ ln n for each of the 2(k-1)
+    extra parameters); None with too few cases to judge."""
+    n = len(cases)
+    if n < MIN_CASES:
+        return None
+    groups: dict[int, list[float]] = {}
+    for state, z in cases:
+        groups.setdefault(state, []).append(z)
+    if len(groups) < 2 or any(len(g) < 3 for g in groups.values()):
+        return None
+
+    def fit(zs: list[float]) -> float:
+        m = sum(zs) / len(zs)
+        v = max(sum((z - m) ** 2 for z in zs) / len(zs), 1e-9)
+        return -0.5 * len(zs) * (math.log(2 * math.pi * v) + 1)
+
+    gain = sum(fit(g) for g in groups.values()) - fit([z for _, z in cases])
+    return gain - (len(groups) - 1) * math.log(n)

@@ -107,3 +107,33 @@ def test_a_link_that_stops_bearing_loses_belief():
     for w in weeks[300:]:
         linked.score_and_learn(w)
     assert linked.existence((X_UP, "Y")) < 0.5
+
+
+def test_the_evidence_prompts_the_link_it_supports():
+    bare = Scheme((X_UP,), frozenset(), KINDS)
+    for w in driven(200):
+        bare.score_and_learn(w)
+    assert bare.proposal() == (X_UP, "Y")
+
+
+def test_no_link_is_prompted_beyond_what_chance_explains():
+    bare = Scheme((X_UP,), frozenset(), KINDS)
+    for w in driven(200, effect=0.0):
+        bare.score_and_learn(w)
+    assert bare.proposal() is None
+
+
+def test_a_variant_learns_its_parameters_from_the_past():
+    weeks = driven(200)
+    bare = Scheme((X_UP,), frozenset(), KINDS)
+    for w in weeks[:199]:
+        bare.score_and_learn(w)
+    variant = bare.variant(add=(X_UP, "Y"))
+    assert variant.links == {(X_UP, "Y")} and variant.vocabulary == bare.vocabulary
+    fresh = Scheme((X_UP,), frozenset({(X_UP, "Y")}), KINDS)
+    assert variant.score_and_learn(weeks[199])["Y"] > fresh.score_and_learn(weeks[199])["Y"] + 1
+
+
+def test_a_variant_can_drop_a_link():
+    linked = Scheme((X_UP,), frozenset({(X_UP, "Y")}), KINDS)
+    assert linked.variant(remove=(X_UP, "Y")).links == frozenset()
