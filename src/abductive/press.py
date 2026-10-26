@@ -31,6 +31,8 @@ from datetime import date
 from pathlib import Path
 from typing import Optional
 
+from .disk import ensure_room
+
 FIRST, LAST = (2000, 1), (2026, 9)
 _TAG = re.compile(r"<[^>]+>")
 
@@ -151,6 +153,7 @@ def main() -> None:
         for y, m in months(FIRST, LAST):
             if read_month(args.out, paper, y, m) is not None:
                 continue
+            ensure_room(args.out)
             texts = _FETCH[paper](y, m)
             write_month(args.out, paper, y, m, texts)
             print(f"{paper} {y}-{m:02d} {len(texts)}", flush=True)

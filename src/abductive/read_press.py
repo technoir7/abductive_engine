@@ -22,6 +22,7 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict
 from pathlib import Path
 
+from .disk import ensure_room
 from .press import FIRST, LAST, ArtText, months, read_month
 from .reading import Assertion, ReadingError, Runner, claude_runner, read_batch
 
@@ -62,6 +63,7 @@ def read_month_texts(root: Path, paper: str, year: int, month: int, run: Runner,
     texts = read_month(root, paper, year, month)
     if out.exists() or texts is None:
         return 0
+    ensure_room(root)
     label = f"{paper} {year}-{month:02d}"
     got: dict[str, list[Assertion]] = {}
     for i in range(0, len(texts), batch):
