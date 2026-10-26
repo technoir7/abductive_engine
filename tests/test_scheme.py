@@ -82,3 +82,28 @@ def test_an_unknown_parent_is_averaged_over_not_assumed():
 def test_a_link_must_come_from_the_schemes_own_vocabulary():
     with pytest.raises(ValueError):
         Scheme((), frozenset({(X_UP, "Y")}), KINDS)
+
+
+def test_a_link_that_bears_comes_to_be_believed():
+    linked = Scheme((X_UP,), frozenset({(X_UP, "Y")}), KINDS)
+    for w in driven(300):
+        linked.score_and_learn(w)
+    assert linked.existence((X_UP, "Y")) > 0.99
+
+
+def test_a_link_that_does_not_bear_is_doubted():
+    linked = Scheme((X_UP,), frozenset({(X_UP, "Y")}), KINDS)
+    for w in driven(300, effect=0.0):
+        linked.score_and_learn(w)
+    assert linked.existence((X_UP, "Y")) < 0.5
+
+
+def test_a_link_that_stops_bearing_loses_belief():
+    linked = Scheme((X_UP,), frozenset({(X_UP, "Y")}), KINDS)
+    weeks = driven(300) + driven(300, seed=1, effect=0.0)
+    for w in weeks[:300]:
+        linked.score_and_learn(w)
+    assert linked.existence((X_UP, "Y")) > 0.99
+    for w in weeks[300:]:
+        linked.score_and_learn(w)
+    assert linked.existence((X_UP, "Y")) < 0.5
