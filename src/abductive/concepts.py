@@ -91,18 +91,23 @@ class Concept:
 
 
 def states(concept: Concept, weeks: Sequence[Week], kinds: Mapping[str, Change]) -> list[Optional[int]]:
-    """The concept's state in each week: the number of cut points its value
-    exceeds, or None where the value cannot be determined."""
+    """The concept's state in each week."""
+    return [state_at(concept, weeks, i, kinds) for i in range(len(weeks))]
+
+
+def state_at(concept: Concept, weeks: Sequence[Week], i: int, kinds: Mapping[str, Change]) -> Optional[int]:
+    """The concept's state in week I, from weeks up to and including it: the
+    number of cut points its value exceeds, or None if it cannot be determined."""
     form = concept.form
-    out: list[Optional[int]] = []
-    for i in range(len(weeks)):
-        values = [_reproduced(form, s, weeks, i, kinds[s]) for s in form.series]
-        if any(v is None for v in values):
-            out.append(None)
-            continue
-        value = sum(values) / len(values)
-        out.append(sum(value > c for c in form.cuts))
-    return out
+    values = [_reproduced(form, s, weeks, i, kinds[s]) for s in form.series]
+    if any(v is None for v in values):
+        return None
+    value = sum(values) / len(values)
+    return sum(value > c for c in form.cuts)
+
+
+def degrees(concept: Concept) -> int:
+    return len(concept.form.cuts) + 1
 
 
 def _reproduced(form: Form, series: str, weeks: Sequence[Week], i: int, kind: Change) -> Optional[float]:

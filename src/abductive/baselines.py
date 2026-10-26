@@ -58,8 +58,10 @@ class Independence:
 
 
 @dataclass
-class _Regression:
-    """y on its predecessor x, with an intercept, by least squares on all past pairs."""
+class SeriesPersistence:
+    """One series' persistence: its change on its last change, with an intercept,
+    by least squares on all past pairs, and an exponentially weighted variance
+    of its errors. Shared by every scheme as the base it must add to."""
     n: int = 0
     sx: float = 0.0
     sy: float = 0.0
@@ -95,20 +97,22 @@ class _Regression:
             self.sx, self.sy, self.sxx, self.sxy = self.sx + x, self.sy + y, self.sxx + x * x, self.sxy + x * y
         self.last = y
 
+    def predict(self) -> tuple[float, float] | None:
+        """Mean and variance of the next change, or None before the error variance is known."""
+        return None if self.error_var is None else (self.mean(), max(self.error_var, _FLOOR))
+
 
 class Persistence:
     def __init__(self) -> None:
-        self._r: dict[str, _Regression] = {}
+        self._r: dict[str, SeriesPersistence] = {}
 
     def predict(self, series: str) -> tuple[float, float]:
         r = self._r.get(series)
-        if r is None or r.error_var is None:
-            return VAGUE
-        return r.mean(), max(r.error_var, _FLOOR)
+        return (r.predict() if r is not None else None) or VAGUE
 
     def score_and_learn(self, week: Week) -> dict[str, float]:
         scores = {}
         for s, x in week.changes.items():
             scores[s] = gaussian_log_density(x, *self.predict(s))
-            self._r.setdefault(s, _Regression()).add(x)
+            self._r.setdefault(s, SeriesPersistence()).add(x)
         return scores
