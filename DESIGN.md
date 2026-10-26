@@ -1,7 +1,7 @@
 # Abductive engine: design
 
-*Draft, 2026-10-24. Steps 0–3 of the build order (section 10) are built, save one baseline
-and schemes, which need step 4's links.
+*Draft, 2026-10-24. Steps 0–4 of the build order (section 10) are built, save same-week and
+association links.
 Decisions still open are listed in section 12.*
 
 The philosophy behind this design is in [EPISTEMOLOGY.md](EPISTEMOLOGY.md).
@@ -383,7 +383,24 @@ Each step has passing tests before the next starts, test first.
    unlike units. Schemes need links, so they come with step 4.
 4. **Links and programmes.** Levels 1–3 after POE's specification, with
    association links; variants; refutation by Bayes factor; conceptual and
-   structural shifts.
+   structural shifts. *Done 2026-10-26, except association links and
+   same-week links* (`scheme.py`, `population.py`). Links run from a
+   concept's state last week to a series' change, on top of persistence, so
+   a scheme with no links is the persistence baseline. Same-week links need
+   the week's observations ordered so that no concept predicts what it is
+   read from, and association links need same-week links; both come next.
+
+   *First measurement (POE's vocabulary, baseline 3, not the replay of
+   section 9):* seeded with persistence and with POE's eight signals as
+   concepts (`macro.poe_vocabulary`, three of them approximations), the
+   engine earned 12.44 nats a week to persistence's 12.01, out of sample,
+   2003-04-04 to 2026-10-16. Four fifths of the gain is 2020 (8.1 a week):
+   links from credit and volatility states to unemployment and the Fed's
+   balance sheet foretold how wild their changes would be. Other years
+   gained about 0.08 a week. The last conceptual shift was in 2007; after
+   it POE's vocabulary led. The leader changed 457 times, mostly between
+   near-identical variants, since any lead however small takes over; that
+   is a question for the replay plan, not a tuning to make now.
 5. **Hidden concepts.** Exact filtering, and parameter learning with a
    half-life.
 6. **Concept formation.** Anomaly detection, the occasioned proposals,
