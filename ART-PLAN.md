@@ -148,6 +148,35 @@ In the first 17,000 judgements, 15% linked to 482 artists. Replay 17 asks
 of these, as of the papers' tags, whether critics' approval comes before
 acquisitions; it runs when the reading is done.
 
+### Grouping by meaning (designed 2026-10-26, for review)
+
+Embedding works: claims near each other in nomic-embed-text's space
+(official Ollama library, 270 MB, local) share a meaning across articles
+and writers. In 2003's Guardian, a claim about Niemeyer's Brasília had as
+neighbours three other claims about Niemeyer as a sculptural architect;
+one about Letchworth losing its character had claims about the decline of
+public design in British towns. Vectors are kept cut to 256 numbers at
+half precision, about 400 MB for the corpus.
+
+The design, for review before it is built:
+- **Synthesis in time order.** Claims are taken up month by month, as
+  published. Each joins the concept whose members it is nearest, if near
+  enough (cosine at least θ), or founds a new concept. Nothing later can
+  shape an earlier concept (Kant's synthesis of apprehension,
+  reproduction and recognition; DESIGN §4).
+- **θ fixed before the replay**, on the pilot month only (March 2015, then
+  never scored): the value that gives the most concepts asserted in two or
+  more articles by different writers. A concept that one article alone
+  holds is a paraphrase, not a shared view.
+- **Degrees,** per concept per quarter: how many different writers assert
+  it (quantity); approval minus disapproval among its judgements
+  (quality); each against its own past, as POE reads talk.
+- **Then the engine's own work:** concepts become the series the abductive
+  engine already handles (schemes, links, rival programmes, refutation;
+  DESIGN §§5–7), scored prequentially against each concept's persistence.
+- **Random control:** the same claims grouped at random into concepts of
+  the same sizes. If those do as well, grouping by meaning added nothing.
+
 ## 7. Build order
 
 Each step test first.
