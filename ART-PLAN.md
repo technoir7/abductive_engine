@@ -127,6 +127,27 @@ assertions into one, so normal effort is kept.
 Whole corpus, extrapolated: about $70 at that price; about 25 hours with
 four calls at once.
 
+### Checked against the text (added 2026-10-26)
+
+A second hand check, of a 2001 review, found two of twenty assertions
+adding what the article did not say: a place the model knew ("at
+Wapping") and a star rating. Rather than change the instructions partway
+through the reading, every assertion is checked mechanically
+(`reading.grounded`): each name, number and number-word it uses must be in
+its article or byline. About 2% fail (Guardian 2.3%, NYT 1.7% of the first
+44,000); a sample of those failing were mostly real additions (a first
+name the article never gives, a critic named when the byline names
+another, ratings). The raw assertions are kept; analysis reads the checked
+copy under `grounded/` (`abductive.ground`).
+
+### Reception by artist (the first concept family, built)
+
+A judgement belongs to an artist when the artist's full name, as Chicago or
+Cleveland gives it, is in what it is about (POE `evals/reception.py`).
+In the first 17,000 judgements, 15% linked to 482 artists. Replay 17 asks
+of these, as of the papers' tags, whether critics' approval comes before
+acquisitions; it runs when the reading is done.
+
 ## 7. Build order
 
 Each step test first.
@@ -136,6 +157,10 @@ Each step test first.
    before going on.
 3. **All years**, at the chosen depth and model.
 4. **Concepts** from assertions (grouping, degrees, trust), with the random
-   control.
+   control. Reception by artist is built (above). Next: institutions by
+   name the same way (museums' and galleries' names as the papers tag
+   them), then what is asserted, grouped by meaning, which needs a local
+   embedding model: a download for the user to approve (vetted sources
+   only).
 5. **Surprises and rival explanations**, scored on what follows.
 6. **Replay**, planned first, 2001–2026.
