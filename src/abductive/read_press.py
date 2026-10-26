@@ -3,7 +3,7 @@ Read the saved art texts (press.py) month by month and keep what each
 article asserts (reading.py), resumably: a month's file is written whole,
 so a run can stop at any point and start again where it left off.
 
-    uv run python -m abductive.read_press --root ~/Documents/art-press-texts [--batch 10] [--workers 4]
+    uv run python -m abductive.read_press --root ~/Documents/art-press-texts [--workers 4] [--only 2015-03]
 
 Writes, under ROOT/assertions/: one JSON-lines file per paper and month,
 usage.jsonl (one line per model call: tokens, cost, time) and failed.jsonl
@@ -25,6 +25,8 @@ from .press import FIRST, LAST, ArtText, months, read_month
 from .reading import Assertion, ReadingError, Runner, claude_runner, read_batch
 
 _LOG_LOCK = threading.Lock()
+# Settled on the pilot (March 2015): about 10,000 tokens out per call either way.
+BATCH = {"guardian": 5, "nyt": 10}
 
 
 class UsageLimit(RuntimeError):
@@ -93,7 +95,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Read the saved art texts, resumably.")
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--paper", choices=["nyt", "guardian", "both"], default="both")
-    parser.add_argument("--batch", type=int, default=10)
+    parser.add_argument("--batch", type=int, default=None,
+                        help="articles per call; default 5 for the Guardian's full texts, 10 for the NYT's paragraphs")
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--model", default="haiku")
     parser.add_argument("--effort", default=None)
@@ -104,7 +107,7 @@ def main() -> None:
     todo = [(p, y, m) for (y, m) in months(FIRST, LAST) for p in papers
             if args.only is None or f"{y}-{m:02d}" == args.only]
     with ThreadPoolExecutor(args.workers) as pool:
-        futures = [pool.submit(read_month_texts, args.root, p, y, m, run, args.batch) for p, y, m in todo]
+        futures = [pool.submit(read_month_texts, args.root, p, y, m, run, args.batch or BATCH[p]) for p, y, m in todo]
         for (p, y, m), f in zip(todo, futures):
             try:
                 n = f.result()
