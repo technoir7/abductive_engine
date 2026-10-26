@@ -11,6 +11,8 @@ Code headless on the user's subscription.
 from __future__ import annotations
 
 import json
+import re
+import unicodedata
 import subprocess
 import tempfile
 from dataclasses import dataclass
@@ -80,6 +82,50 @@ def _assertion(raw: Mapping) -> Assertion:
     if a.force not in FORCES or a.stance not in STANCES or not all(isinstance(v, str) for v in vars(a).values()):
         raise ReadingError(f"assertion outside the form: {raw}")
     return a
+
+
+_NUMBER_WORDS = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+                 "first", "second", "third", "half", "dozen", "hundred", "thousand", "million", "billion"}
+_WORD = re.compile(r"[A-Za-zÀ-ÿ][\w'’-]*|\d[\d,.]*")
+
+
+def _key(word: str) -> str:
+    folded = unicodedata.normalize("NFKD", word).encode("ascii", "ignore").decode()
+    return folded.lower().rstrip(",.").strip("'’").removesuffix("'s").removesuffix("’s")
+
+
+def _words(text: str) -> set[str]:
+    return {_key(w) for w in _WORD.findall(text)}
+
+
+def grounded(a: Assertion, text: str, byline: str) -> bool:
+    """Whether every name, number and number-word the assertion uses is in
+    its article (TEXT, with its BYLINE): a check, not a repair. A claim may
+    paraphrase; it may not add a person, place, date or rating the article
+    does not give. Applied to every assertion alike, so instructions need
+    not change partway through a reading."""
+    known = _words(text) | _words(byline) | {"the", "paper"}
+    for field in (a.who, a.about, a.asserts):
+        if not _field_grounded(field, known):
+            return False
+    return True
+
+
+def _field_grounded(field: str, known: set[str]) -> bool:
+    for i, w in enumerate(_WORD.findall(field)):
+        key = _key(w)
+        # A capital that only starts the phrase ("There is...") is not a name.
+        is_name = w[0].isupper() and not (i == 0 and key in _COMMON) and key not in _COMMON_ALWAYS
+        is_number = w[0].isdigit() or key in _NUMBER_WORDS
+        if (is_name or is_number) and key not in known:
+            return False
+    return True
+
+
+_COMMON_ALWAYS = {"the", "a", "an", "i", "his", "her", "its", "their"}
+_COMMON = _COMMON_ALWAYS | {"there", "this", "that", "these", "those", "it", "he", "she", "they", "we", "you",
+                            "showing", "making", "being", "having", "in", "on", "at", "by", "for", "with", "as",
+                            "is", "was", "are", "were", "and", "but", "not", "no", "all", "some", "one"}
 
 
 def read_batch(texts: list[ArtText], run: Runner) -> tuple[dict[str, list[Assertion]], Mapping]:
