@@ -1,8 +1,9 @@
 """
 The art press's texts (ART-PLAN §3): every art article of the Guardian's
 `artanddesign` section and of the NYT's articles with subject "Art", with
-what each API gives (the Guardian's headline, standfirst and body; the
-NYT's headline, abstract and lead paragraph, which is all its archive has).
+what each API gives (the Guardian's headline, standfirst, body and byline;
+the NYT's headline, abstract, lead paragraph and byline, which is all its
+archive has).
 
 Kept as one JSON-lines file per paper and month, outside git (copyright):
 a month's file marks it done, so a fetch can stop and resume. The NYT
@@ -43,6 +44,7 @@ class ArtText:
     headline: str
     summary: str
     body: str
+    byline: str = ""   # who wrote it, as the paper gives it; "" when it names no one
 
 
 def months(first: tuple[int, int], last: tuple[int, int]) -> list[tuple[int, int]]:
@@ -61,7 +63,7 @@ def nyt_art(docs: list[dict]) -> list[ArtText]:
         if "art" in subjects:
             out.append(ArtText("nyt", d["_id"], date.fromisoformat(d["pub_date"][:10]), d.get("web_url") or "",
                                (d.get("headline") or {}).get("main") or "", d.get("abstract") or "",
-                               d.get("lead_paragraph") or ""))
+                               d.get("lead_paragraph") or "", ((d.get("byline") or {}).get("original") or "")))
     return out
 
 
@@ -70,7 +72,7 @@ def guardian_art(results: list[dict]) -> list[ArtText]:
         return html.unescape(_TAG.sub("", s or "")).strip()
     return [ArtText("guardian", r["id"], date.fromisoformat(r["webPublicationDate"][:10]), r.get("webUrl") or "",
                     plain(r["fields"].get("headline")), plain(r["fields"].get("trailText")),
-                    plain(r["fields"].get("bodyText")))
+                    plain(r["fields"].get("bodyText")), plain(r["fields"].get("byline")))
             for r in results]
 
 
@@ -118,7 +120,7 @@ def fetch_guardian(year: int, month: int) -> list[ArtText]:
     while True:
         q = urllib.parse.urlencode({"section": "artanddesign", "from-date": f"{year}-{month:02d}-01",
                                     "to-date": f"{year}-{month:02d}-{last}", "page-size": 200, "page": page,
-                                    "show-fields": "headline,trailText,bodyText", "api-key": key})
+                                    "show-fields": "headline,trailText,bodyText,byline", "api-key": key})
         r = _get("https://content.guardianapis.com/search?" + q)["response"]
         out += guardian_art(r["results"])
         if page >= r.get("pages", 1):
