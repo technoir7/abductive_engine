@@ -8,7 +8,8 @@ so a run can stop at any point and start again where it left off.
 Writes, under ROOT/assertions/: one JSON-lines file per paper and month,
 usage.jsonl (one line per model call: tokens, cost, time) and failed.jsonl
 (articles the model could not read in the form, recorded, never invented).
-A usage limit stops the run.
+A usage limit is waited out, half an hour at a time for up to six hours;
+then the run stops.
 """
 from __future__ import annotations
 
@@ -91,6 +92,24 @@ def _limited(run: Runner) -> Runner:
     return guarded
 
 
+def patient(run: Runner, wait_s: float = 1800, tries: int = 12, sleep=None) -> Runner:
+    """On a usage limit, wait WAIT_S and try again, up to TRIES times
+    (six hours by default, more than a usage window); then stop."""
+    import time
+    sleep = sleep or time.sleep
+
+    def waiting(system: str, user: str):
+        for attempt in range(tries):
+            try:
+                return run(system, user)
+            except UsageLimit:
+                if attempt == tries - 1:
+                    raise
+                print(f"usage limit; waiting {wait_s / 60:.0f} minutes", flush=True)
+                sleep(wait_s)
+    return waiting
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Read the saved art texts, resumably.")
     parser.add_argument("--root", type=Path, required=True)
@@ -102,7 +121,7 @@ def main() -> None:
     parser.add_argument("--effort", default=None)
     parser.add_argument("--only", default=None, help="one month, YYYY-MM")
     args = parser.parse_args()
-    run = _limited(claude_runner(args.model, args.effort))
+    run = patient(_limited(claude_runner(args.model, args.effort)))
     papers = ["guardian", "nyt"] if args.paper == "both" else [args.paper]
     todo = [(p, y, m) for (y, m) in months(FIRST, LAST) for p in papers
             if args.only is None or f"{y}-{m:02d}" == args.only]

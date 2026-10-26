@@ -67,3 +67,29 @@ def test_a_usage_limit_stops_the_run(tmp_path):
     else:
         raise AssertionError("should stop")
     assert not (tmp_path / "assertions" / "nyt" / "2015-03.jsonl").exists()
+
+
+def test_a_usage_limit_is_waited_out_and_the_call_retried():
+    from abductive.read_press import patient
+    calls, waits = [], []
+
+    def run(system, user):
+        calls.append(1)
+        if len(calls) < 3:
+            raise UsageLimit("limit")
+        return "ok", {}
+    assert patient(run, wait_s=5, tries=4, sleep=waits.append)("s", "u") == ("ok", {})
+    assert waits == [5, 5]
+
+
+def test_a_limit_that_outlasts_the_tries_stops_the_run():
+    from abductive.read_press import patient
+
+    def run(system, user):
+        raise UsageLimit("limit")
+    try:
+        patient(run, wait_s=1, tries=2, sleep=lambda s: None)("s", "u")
+    except UsageLimit:
+        pass
+    else:
+        raise AssertionError("should stop")
