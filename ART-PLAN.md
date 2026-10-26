@@ -241,3 +241,8 @@ Each step test first.
      engine's proposal name? Listed, with the claims, for reading.
 - **Against the design:** links that come and go each quarter; no gain
   over persistence; random concepts doing as well.
+- **Noted before running:** the engine proposes a link only from 30 or
+  more of a series' recent surprises (scheme.MIN_CASES), set for weeks. In
+  quarters that is seven and a half years, so only long-lived concepts can
+  gain links; the rest are scored on persistence alone. Not changed for
+  this replay; if it finds nothing, this is the first suspect.
