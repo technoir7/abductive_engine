@@ -177,6 +177,25 @@ The design, for review before it is built:
 - **Random control:** the same claims grouped at random into concepts of
   the same sizes. If those do as well, grouping by meaning added nothing.
 
+**Built 2026-10-26** (`synthesis.py`, `art_series.py`, `evals/run_art.py`),
+with two choices made in building, for review:
+- **θ = 0.85,** by the rule above, on the Guardian's pilot month alone
+  (the NYT's was not yet downloaded): 54 concepts held by two or more
+  writers, against 42 at 0.80 and 38 at 0.90.
+- **Dormancy:** a concept unasserted for 24 months stops taking claims,
+  matching POE's two-year reading of talk, so that each claim is compared
+  with live concepts only (thousands, not hundreds of thousands).
+
+On the claims read by then (81,571; Guardian 2000–2007, NYT 2000–2002):
+17,307 concepts, 2,105 held by two or more writers. The most widely held
+were recognisable debates of the years: Tate Modern's arrival (267
+writers), Hockney's claim that old masters painted with lenses (263),
+feminism and women artists (211), the New York scene (185). **A weakness:**
+a concept's centre moves as it grows, so a few become catch-alls ("the
+exhibition", "the state of art"); the ten largest hold 11% of the claims.
+A fix (a claim must also be near the concept's founding claim) is for
+review, not made; the random control shows whether it matters.
+
 ## 7. Build order
 
 Each step test first.
