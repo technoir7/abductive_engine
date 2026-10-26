@@ -193,8 +193,11 @@ writers), Hockney's claim that old masters painted with lenses (263),
 feminism and women artists (211), the New York scene (185). **A weakness:**
 a concept's centre moves as it grows, so a few become catch-alls ("the
 exhibition", "the state of art"); the ten largest hold 11% of the claims.
-A fix (a claim must also be near the concept's founding claim) is for
-review, not made; the random control shows whether it matters.
+Fixed the same evening: a claim must also be within 0.80 of the claim
+that founded the concept. Chosen by the same rule as θ (the most concepts
+held by two or more writers), on the claims read so far, never on
+prediction: 3,023 such concepts against 2,105, and the ten largest hold
+5.5% of claims rather than 11%.
 
 ## 7. Build order
 

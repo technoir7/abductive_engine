@@ -54,3 +54,13 @@ def test_concepts_are_formed_over_saved_months_and_written(tmp_path):
     assert len(concepts) == 1 and concepts[0].writers == {"Writer 1", "Writer 2"}
     rows = [json.loads(line) for line in (tmp_path / "concepts" / "concepts.jsonl").read_text().splitlines()]
     assert rows[0]["founded"] == "2004-01" and rows[0]["members"] == [["guardian", "a1", 0], ["guardian", "a2", 0]]
+
+
+def test_a_claim_must_also_be_near_the_claim_that_founded_the_concept():
+    # The centre drifts towards (1, 1) as claims gather; a claim near the centre
+    # but far from the founding claim (1, 0) founds its own concept.
+    s = Synthesis(theta=0.9, dormant_months=24, anchor=0.95)
+    a = s.take(0, unit(1, 0), ("g", "x", 0), "w")
+    s.take(0, unit(1, 0.3), ("g", "y", 0), "w")
+    s.take(0, unit(1, 0.3), ("g", "z", 0), "w")
+    assert s.take(0, unit(1, 0.6), ("g", "q", 0), "w") != a

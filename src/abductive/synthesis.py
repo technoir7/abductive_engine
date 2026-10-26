@@ -2,7 +2,8 @@
 Concepts formed from the press's claims, in the order they were published
 (ART-PLAN §4). Each claim, as a vector of its meaning (embed.py), joins the
 live concept it is nearest, if its cosine with the concept's centre is at
-least THETA, or founds a new concept. Nothing later can shape an earlier
+least THETA and with the claim that founded it at least ANCHOR, or founds a
+new concept. Nothing later can shape an earlier
 concept. A concept nobody has asserted for DORMANT_MONTHS stops taking
 claims, as talk is read against two years (POE art plan §5); it keeps what
 it gathered.
@@ -19,6 +20,12 @@ import numpy as np
 
 THETA = 0.85
 DORMANT_MONTHS = 24
+# A claim must also be this near the claim that founded the concept, or the
+# centre drifts and a few concepts become catch-alls. Chosen on the claims
+# read by 2026-10-26 (2000–2007) by the same rule as THETA, the most
+# concepts held by two or more writers (2,941 against 2,041 without it; the
+# ten largest then hold 5.5% of claims, not 11%), never on prediction.
+ANCHOR = 0.80
 
 
 @dataclass
@@ -52,41 +59,49 @@ class _Rows:
 
 
 class Synthesis:
-    def __init__(self, theta: float = THETA, dormant_months: int = DORMANT_MONTHS) -> None:
-        self.theta, self.dormant = theta, dormant_months
+    def __init__(self, theta: float = THETA, dormant_months: int = DORMANT_MONTHS,
+                 anchor: float | None = ANCHOR) -> None:
+        self.theta, self.dormant, self.anchor = theta, dormant_months, anchor
         self.concepts: list[Concept] = []
         self._sums: _Rows | None = None           # sized by the first claim
         self._month: int | None = None
         self._live: list[int] = []                # concept index of each row of _live_centres
         self._live_centres: _Rows | None = None
+        self._founders: _Rows | None = None       # each concept's founding claim
+        self._live_founders: _Rows | None = None
 
     def _new_month(self, month: int, width: int) -> None:
         """Rebuild the live concepts once a month, not once a claim."""
         self._month = month
         self._live = [j for j, c in enumerate(self.concepts) if month - c.last <= self.dormant]
-        self._live_centres = _Rows(width)
+        self._live_centres, self._live_founders = _Rows(width), _Rows(width)
         for j in self._live:
             row = self._sums.view[j]
             self._live_centres.append(row / np.linalg.norm(row))
+            self._live_founders.append(self._founders.view[j])
 
     def take(self, month: int, vector: Sequence[float], member: Hashable, writer: str) -> int:
         """Place one claim, made in MONTH (an index, never decreasing), and return its concept."""
         v = np.asarray(vector, np.float32)
         if self._sums is None:
-            self._sums = _Rows(v.shape[0])
+            self._sums, self._founders = _Rows(v.shape[0]), _Rows(v.shape[0])
         if month != self._month:
             self._new_month(month, v.shape[0])
         j, row = -1, -1
         if self._live:
             sims = self._live_centres.view @ v
+            if self.anchor is not None:
+                sims = np.where(self._live_founders.view @ v >= self.anchor, sims, -np.inf)
             best = int(sims.argmax())
             if sims[best] >= self.theta:
                 j, row = self._live[best], best
         if j < 0:
             j = self._sums.append(v)
+            self._founders.append(v)
             self.concepts.append(Concept(founded=month, last=month))
             self._live.append(j)
             self._live_centres.append(v)
+            self._live_founders.append(v)
         else:
             self._sums[j] = self._sums.view[j] + v
             total = self._sums.view[j]
