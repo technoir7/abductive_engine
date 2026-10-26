@@ -77,6 +77,36 @@ def read_month_texts(root: Path, paper: str, year: int, month: int, run: Runner,
     return len(got)
 
 
+def retry_failed(root: Path, run: Runner) -> int:
+    """Read again the articles recorded in failed.jsonl (a sleeping Mac or a
+    dropped connection fails calls too), adding them to their months.
+    Returns how many were read; those still failing stay recorded."""
+    failed_path = root / "assertions" / "failed.jsonl"
+    if not failed_path.exists():
+        return 0
+    failed = [json.loads(line) for line in failed_path.read_text().splitlines()]
+    failed_path.write_text("")
+    by_month: dict[str, set[str]] = {}
+    for f in failed:
+        by_month.setdefault(f["month"], set()).add(f["id"])
+    done = 0
+    for label, ids in by_month.items():
+        paper, stem = label.split()
+        y, m = map(int, stem.split("-"))
+        texts = [t for t in read_month(root, paper, y, m) or [] if t.id in ids]
+        got: dict[str, list[Assertion]] = {}
+        for t in texts:
+            got |= _read([t], run, root, label)
+        out = root / "assertions" / paper / f"{stem}.jsonl"
+        with open(out, "a") as f:
+            for t in texts:
+                if t.id in got:
+                    f.write(json.dumps({"id": t.id, "published": t.published.isoformat(),
+                                        "assertions": [asdict(a) for a in got[t.id]]}) + "\n")
+        done += len(got)
+    return done
+
+
 def _limited(run: Runner) -> Runner:
     """Turn the CLI's usage-limit failure into UsageLimit, which stops the run."""
     def guarded(system: str, user: str):
@@ -122,8 +152,12 @@ def main() -> None:
     parser.add_argument("--model", default="haiku")
     parser.add_argument("--effort", default=None)
     parser.add_argument("--only", default=None, help="one month, YYYY-MM")
+    parser.add_argument("--retry-failed", action="store_true", help="only read again the articles that failed")
     args = parser.parse_args()
     run = patient(_limited(claude_runner(args.model, args.effort)))
+    if args.retry_failed:
+        print(f"read again: {retry_failed(args.root, run)}", flush=True)
+        return
     papers = ["guardian", "nyt"] if args.paper == "both" else [args.paper]
     todo = [(p, y, m) for (y, m) in months(FIRST, LAST) for p in papers
             if args.only is None or f"{y}-{m:02d}" == args.only]

@@ -93,3 +93,13 @@ def test_a_limit_that_outlasts_the_tries_stops_the_run():
         pass
     else:
         raise AssertionError("should stop")
+
+
+def test_articles_that_failed_are_read_again_into_their_month(tmp_path):
+    from abductive.read_press import retry_failed
+    write_month(tmp_path, "nyt", 2015, 3, texts(3))
+    read_month_texts(tmp_path, "nyt", 2015, 3, echo(fail_on={"id1"}), batch=3)   # id1 fails, e.g. while asleep
+    assert retry_failed(tmp_path, echo()) == 1
+    rows = [json.loads(line) for line in (tmp_path / "assertions" / "nyt" / "2015-03.jsonl").read_text().splitlines()]
+    assert sorted(r["id"] for r in rows) == ["id0", "id1", "id2"]
+    assert (tmp_path / "assertions" / "failed.jsonl").read_text() == ""
