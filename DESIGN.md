@@ -1,7 +1,7 @@
 # Abductive engine: design
 
-*Draft, 2026-10-24. Nothing is built yet. Decisions still open are listed in
-section 12.*
+*Draft, 2026-10-24. Steps 0–1 of the build order (section 10) are built.
+Decisions still open are listed in section 12.*
 
 The philosophy behind this design is in [EPISTEMOLOGY.md](EPISTEMOLOGY.md).
 This document is the technical plan that follows from it. Where the two
@@ -356,12 +356,19 @@ measured on the next.
 
 Each step has passing tests before the next starts, test first.
 
-0. **In POE.** The additions in section 2 (raw observation table, "as of
-   D" route, file export, macro backfill), with POE's own tests. These
-   include that "as of D" never returns a value or revision public after D.
-1. **Reading observations.** A client for the protocol, over HTTP and from
-   an exported file, and the weekly observations of section 3 built from
-   it. There are no imports from POE; the protocol is the only contact.
+0. **In POE.** *Done 2026-10-26, smaller than first planned.* The replay
+   needs only the file export, so that is all that is built:
+   `evals/observations.py` writes macro's history in the four fields to
+   `data/observations.csv`. CPI and unemployment versions carry their real
+   release dates, from FRED's real-time observations. (POE's own monthly
+   vintages are taken on a fixed day, and 41 CPI months since 2003 reached
+   them a month late.) The raw table filled as POE fetches, and the "as of
+   D" route, wait until this engine goes live, which is out of scope until
+   the replay is written up.
+1. **Reading observations.** *Done 2026-10-26, from the file.* The protocol
+   and its one query (`observations.py`), and the weekly observations of
+   section 3 (`weeks.py`, `macro.py`). There are no imports from POE; the
+   protocol is the only contact. The HTTP client waits with the route.
 2. **Scoring and baselines.** Prequential scoring, plus independence,
    persistence and POE's vocabulary as fixed schemes.
 3. **Defined concepts.** The table of forms, defined concepts with their
