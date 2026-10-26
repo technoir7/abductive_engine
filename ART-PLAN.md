@@ -192,4 +192,30 @@ Each step test first.
    embedding model: a download for the user to approve (vetted sources
    only).
 5. **Surprises and rival explanations**, scored on what follows.
-6. **Replay**, planned first, 2001–2026.
+6. **Replay**, planned first, 2001–2026. The plan:
+
+### The art replay (planned 2026-10-26, before it runs)
+
+- **Series.** Each concept held by at least 5 different writers in at least
+  8 different quarters, a rule fixed here: its writers per quarter (how many
+  writers asserted it), 2000 Q1 to 2026 Q3. Changes are differences.
+- **Periods.** Quarters, as the engine's weeks: one observation each,
+  every series observed every quarter (0 writers is an observation).
+- **Vocabulary.** Each series' z-score over 4 quarters with cuts at ±0.5
+  (high, ordinary, low talk of it), from the engine's fixed table; a
+  scheme's links run from one concept's state last quarter to another's
+  change, learned by the population as for macro (DESIGN §§5–7).
+- **Scored** prequentially from 2003 (three years learned first), in nats
+  a quarter, against independence and each series' persistence.
+- **Random control.** The same, run on concepts dealt at random from the
+  same claims with the same sizes (art_series.shuffled_concepts), five
+  deals.
+- **Questions.**
+  1. Do links between concepts hold, for 4 quarters or more? Which?
+  2. Does the engine predict the quarters better than persistence?
+  3. Do concepts formed by meaning beat concepts dealt at random?
+  4. Surprises: in quarters where a concept's writers jump beyond its
+     past (z above 2), which concepts' states the quarter before does the
+     engine's proposal name? Listed, with the claims, for reading.
+- **Against the design:** links that come and go each quarter; no gain
+  over persistence; random concepts doing as well.
