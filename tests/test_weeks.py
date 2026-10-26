@@ -60,3 +60,11 @@ def test_nothing_published_after_a_friday_is_seen_that_week():
 def test_series_not_asked_for_are_ignored():
     rows = daily("VIXCLS", FRI - timedelta(days=10), list(range(10, 20)))
     assert weeks(rows, [FRI - timedelta(days=7), FRI], {})[1].changes == {}
+
+
+def test_each_week_carries_every_series_latest_known_value():
+    rows = [Row("UNRATE", date(2024, 1, 1), 3.7, date(2024, 2, 2)),
+            Row("UNRATE", date(2024, 1, 1), 3.8, date(2024, 2, 27)),   # revised, nothing new
+            Row("UNRATE", date(2024, 2, 1), 3.9, date(2024, 3, 8))]
+    w = weeks(rows, [date(2024, 2, 23), FRI, FRI + timedelta(days=7)], {"UNRATE": Change.DIFFERENCE})
+    assert [x.levels for x in w] == [{"UNRATE": 3.7}, {"UNRATE": 3.8}, {"UNRATE": 3.9}]

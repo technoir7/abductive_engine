@@ -2,6 +2,9 @@
 The weekly observations each scheme predicts and is scored on (DESIGN §3).
 
 Each Friday the engine apprehends what became public since the last one.
+Each week also carries every series' latest value as known that Friday,
+the level from which concepts are formed (DESIGN §4).
+
 For each series that published a new value, the observation is its change
 since its previous value: the latest value now against the value that was
 latest a week ago, both as known now, so a revision made this week counts
@@ -14,7 +17,7 @@ schemes have common ground to be compared on (EPISTEMOLOGY.md §3).
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date
 from enum import Enum
 from typing import Mapping, Sequence
@@ -34,6 +37,7 @@ class Change(Enum):
 class Week:
     friday: date
     changes: dict[str, float]   # only the series that published something new
+    levels: dict[str, float] = field(default_factory=dict)   # every series' latest value, as known this Friday
 
 
 def weeks(rows: Sequence[Row], fridays: Sequence[date], series: Mapping[str, Change]) -> list[Week]:
@@ -58,5 +62,5 @@ def weeks(rows: Sequence[Row], fridays: Sequence[date], series: Mapping[str, Cha
             if before is not None and latest[s] != before:
                 changes[s] = change.between(known[s][before], known[s][latest[s]])
             latest_before[s] = latest[s]
-        out.append(Week(friday, changes))
+        out.append(Week(friday, changes, {s: known[s][latest[s]] for s in latest}))
     return out

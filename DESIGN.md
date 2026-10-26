@@ -1,6 +1,7 @@
 # Abductive engine: design
 
-*Draft, 2026-10-24. Steps 0–2 of the build order (section 10) are built, save one baseline.
+*Draft, 2026-10-24. Steps 0–3 of the build order (section 10) are built, save one baseline
+and schemes, which need step 4's links.
 Decisions still open are listed in section 12.*
 
 The philosophy behind this design is in [EPISTEMOLOGY.md](EPISTEMOLOGY.md).
@@ -376,7 +377,10 @@ Each step has passing tests before the next starts, test first.
    macro. 12.01 is the bar. POE's vocabulary needs defined concepts and
    links, so it comes with steps 3–4.
 3. **Defined concepts.** The table of forms, defined concepts with their
-   pedigrees, and schemes built from them.
+   pedigrees, and schemes built from them. *Concepts done 2026-10-26*
+   (`concepts.py`): a form outside the table cannot be made, and several
+   series are taken together only as z-scores, since their changes are in
+   unlike units. Schemes need links, so they come with step 4.
 4. **Links and programmes.** Levels 1–3 after POE's specification, with
    association links; variants; refutation by Bayes factor; conceptual and
    structural shifts.
