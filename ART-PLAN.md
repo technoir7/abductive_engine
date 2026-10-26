@@ -87,6 +87,30 @@ both papers (about 3,500 articles), its usage measured, and 50 assertions
 checked by hand against their articles for accuracy, before the rest is
 read.
 
+### Measured 2026-10-26 (one month of texts, one paragraph read)
+
+- **Download.** Guardian: one month of art articles with full text is
+  0.7 MB (131 articles, 800 words each on average); all years about
+  0.2 GB. NYT: the Archive API sends every article of the month, 19 MB, of
+  which 232 were art (84 words each of headline, abstract and lead); all
+  years about 6 GB, once.
+- **Claude (Haiku, through Claude Code).** One NYT paragraph: 5 seconds,
+  7 assertions, all accurate; about 3,300 tokens in (mostly fixed
+  overhead, cached) and 1,150 out (490 of them thinking); Claude Code
+  priced it at $0.0012. All 75,000 articles one at a time: about 4 days in
+  the background, light on the computer, about $90 at that price; less by
+  reading several articles a call.
+- **qwen3.6 27B (local).** With thinking: 7 minutes for the same
+  paragraph, 6 accurate assertions copied word for word, pronouns left
+  unresolved ("about: She"). Without thinking: no assertions at all.
+  Reading everything would take about a year of the computer's full
+  attention. Not usable here.
+- **How often.** Reading is once for the history, then each month's new
+  articles (about 300, about half an hour, about $0.40). The assertions are
+  kept, so the engine can be rerun on them as often as wanted; reading
+  again is needed only if the reading instructions change, so they are
+  settled on a pilot first.
+
 ## 7. Build order
 
 Each step test first.
