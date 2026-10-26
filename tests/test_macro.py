@@ -26,3 +26,9 @@ def test_each_series_is_observed_as_often_as_it_publishes():
         assert seen[daily] >= 0.97 * weeks_n, daily
     for monthly in ("CPIAUCSL", "UNRATE"):
         assert 0.2 * weeks_n <= seen[monthly] <= 0.25 * weeks_n, monthly
+
+
+def test_poes_vocabulary_is_eight_concepts_one_per_series():
+    vocab = macro.poe_vocabulary()
+    assert len(vocab) == 8 and {c.form.series[0] for c in vocab} == set(macro.SERIES)
+    assert all(len(c.form.cuts) == 2 for c in vocab)   # POE's three levels

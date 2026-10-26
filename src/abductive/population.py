@@ -86,8 +86,11 @@ class Population:
         e = self._evidence.get(key, 0.0)
         return e if a.id < b.id else -e
 
-    def step(self, week: Week) -> None:
+    def step(self, week: Week) -> float:
+        """Score and learn one week. Returns the engine's score for it: that of
+        the scheme leading before the week was seen, so it too is out of sample."""
         scores = {m.id: sum(m.scheme.score_and_learn(week).values()) for m in self.members}
+        engine = scores[self.leader.id]
         for i, a in enumerate(self.members):
             for b in self.members[i + 1:]:
                 key = (min(a.id, b.id), max(a.id, b.id))
@@ -98,6 +101,7 @@ class Population:
         self._weeks += 1
         if self._weeks % PROPOSE_EVERY == 0:
             self._propose(week.friday)
+        return engine
 
     def _lead(self, friday: date) -> None:
         challenger = max(self.members, key=lambda m: self.evidence(m, self.leader))

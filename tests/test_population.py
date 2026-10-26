@@ -57,3 +57,10 @@ def test_a_scheme_is_not_credited_or_blamed_for_weeks_before_its_birth():
 def test_a_link_that_stops_bearing_is_dropped_by_a_variant():
     pop = run(Population([("X", bare(X_UP))]), driven(300) + driven(400, seed=1, effect=0.0))
     assert pop.leader.scheme.links == frozenset()
+
+
+def test_the_engine_is_scored_by_the_scheme_leading_before_each_week():
+    from abductive.baselines import Persistence
+    pop, base = Population([("none", bare())]), Persistence()
+    for w in driven(100):
+        assert pop.step(w) == sum(base.score_and_learn(w).values())
