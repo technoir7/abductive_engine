@@ -1,6 +1,6 @@
 # Abductive engine: design
 
-*Draft, 2026-10-24. Steps 0–1 of the build order (section 10) are built.
+*Draft, 2026-10-24. Steps 0–2 of the build order (section 10) are built, save one baseline.
 Decisions still open are listed in section 12.*
 
 The philosophy behind this design is in [EPISTEMOLOGY.md](EPISTEMOLOGY.md).
@@ -370,7 +370,11 @@ Each step has passing tests before the next starts, test first.
    section 3 (`weeks.py`, `macro.py`). There are no imports from POE; the
    protocol is the only contact. The HTTP client waits with the route.
 2. **Scoring and baselines.** Prequential scoring, plus independence,
-   persistence and POE's vocabulary as fixed schemes.
+   persistence and POE's vocabulary as fixed schemes. *Independence and
+   persistence done 2026-10-26* (`scoring.py`, `baselines.py`): learned from
+   2000, scored from 2003-04-04, they earn 10.22 and 12.01 nats a week on
+   macro. 12.01 is the bar. POE's vocabulary needs defined concepts and
+   links, so it comes with steps 3–4.
 3. **Defined concepts.** The table of forms, defined concepts with their
    pedigrees, and schemes built from them.
 4. **Links and programmes.** Levels 1–3 after POE's specification, with
