@@ -259,6 +259,13 @@ and so more pass the 5-writer, 8-quarter rule. To compare like with like:
 - **Reading:** concepts formed by meaning beat the matched deals if their
   gain over persistence (nats a quarter) is above all five.
 
+**Result (2026-10-28).** Matched deals 0–4, engine minus persistence, nats a
+quarter: −0.07, −0.01, −0.21, −0.05, −0.06 (logs `jobs/logs/matched_deal*.log`).
+The real concepts' +0.55 is above all five, so it is not the number of
+series. But the links it rests on read as coincidences (§8), so the gain is
+evidence that meaning-formed concepts change in an orderly way, not that
+these links are the order.
+
 ## 8. A method for art: cases and mechanisms (2026-10-28)
 
 ### What the runs so far show
