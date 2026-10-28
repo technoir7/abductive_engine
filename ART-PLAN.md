@@ -258,3 +258,68 @@ and so more pass the 5-writer, 8-quarter rule. To compare like with like:
   the gain is spread across quarters or comes from a few.
 - **Reading:** concepts formed by meaning beat the matched deals if their
   gain over persistence (nats a quarter) is above all five.
+
+## 8. A method for art: cases and mechanisms (2026-10-28)
+
+### What the runs so far show
+
+1. **Aggregates carry no structure.** A month's or quarter's share of
+   coverage by topic (POE replays 15–16) is mostly how much was printed and
+   chance.
+2. **Links between particular concepts are coincidences.** The art replay's
+   leader beat persistence in 66 of 95 quarters (+0.55 nats a quarter;
+   random concepts −0.02 to −0.68), but its links read as nonsense:
+   Clement Greenberg → Ai Weiwei's detention, Dalí → the looting of Iraq's
+   museums. A rarely asserted concept's state works as a clock, and the
+   child concept's change differs before and after: the engine has found
+   that concepts *fade*, through whatever parent marks the time.
+3. **Cases pooled under one rule do carry structure.** Replay 17 asks one
+   question of 9,665 artists at once and finds a real, ordered relation:
+   the NYT's attention to an artist comes with or before Chicago's
+   acquisitions (lag 1 +288, same year +266, next year +180 nats; no
+   shuffle of 100 as high).
+
+### The method
+
+The humanities reason from particular cases to what holds across them
+(Ginzburg's clues; Bourdieu's consecration is a claim about every
+career; Moretti, *Graphs, Maps, Trees*, 2005, reads the life cycles of
+genres). So:
+- **A case** is something with a history in the discourse: an artist, a
+  concept (a debate), an institution.
+- **Its state each year** is graded from what was asserted about it, by
+  the table of forms (D25): quantity (how many writers), quality
+  (approval, disapproval, both: contested), relation (both papers, or
+  one), modality (asserted as prediction or doubt), and its age.
+- **A mechanism** is a hypothesis about every case at once: "a case in
+  state F this year tends to be in outcome O next year", e.g. *contested
+  concepts last longer*. It is judged prequentially over all cases (each
+  year predicted from earlier years only; log Bayes factor against the
+  case's own past), as replay 17 judges the press.
+- **Controls:** the feature dealt at random among the cases of the same
+  year (keeps how common it is, breaks its tie to the case); for order,
+  next year's feature as a placebo.
+- **Forecasting** is the scored predictions themselves, and, forward, a
+  list of cases with their predicted next state and the mechanism behind
+  it, checked when the year is in.
+- Features are the table's headings applied to every case alike, never
+  chosen for an expected answer.
+
+### Test 1: the life of concepts (planned before it runs)
+
+- **Cases.** Every concept (`concepts.jsonl`, all 114,581), from the year
+  after its founding while alive (not yet two years unasserted, the
+  synthesis rule, which is known at the time). Years 2001–2025; 2026 is
+  partial and left out.
+- **Outcome.** Next year's different writers: none, one, several.
+- **Own past.** This year's writers (none / one / several) and age
+  (founded last year / 2–4 years / older).
+- **Mechanisms, each alone against own past:** contested (none /
+  one-sided / both approval and disapproval this year); both papers this
+  year (no / yes); a prediction or doubt asserted this year (no / yes).
+- **Controls:** 20 deals of each feature among the same year's cases;
+  next-year placebo.
+- **Reading:** a mechanism holds if its gain is above all 20 deals and
+  above its placebo. Then the holding mechanisms together, and the same on
+  artists (test 2: NYT attention, critics' approval, contested, both
+  papers → acquisition).
