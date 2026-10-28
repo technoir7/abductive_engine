@@ -323,3 +323,54 @@ genres). So:
   above its placebo. Then the holding mechanisms together, and the same on
   artists (test 2: NYT attention, critics' approval, contested, both
   papers → acquisition).
+
+### Test 1 results, as planned (2026-10-28)
+
+114,581 concepts, 263,241 concept-years (2000–2024 states, 2001–2025
+outcomes). Every mechanism beat all 20 deals by hundreds of nats:
+contested +663 (deals at most −57), both papers +519 (−22), modality +361
+(−24). Next year several writers: contested 70% against 23% one-sided and
+5% neither; both papers 78% against 8%; prediction or doubt 44% against 10%.
+*Deviation:* the planned next-year placebo was dropped before running: a
+concept's own feature next year implies its writers next year, the outcome.
+
+### Test 1b: size accounted for finely (planned before it runs)
+
+"Several writers" puts 2 and 200 together, and large concepts are more
+often contested and in both papers, so the mechanisms may only measure
+size. Test 1b repeats test 1 with the own past graded finely: this year's
+writers in doubling bins (0, 1, 2, 3–4, 5–8, 9–16, 17+), the writers so far
+in the same bins (standing), and age. A mechanism holds if it still beats
+all 20 deals.
+
+### Test 1b results (2026-10-28)
+
+With size graded finely, most of test 1 was size. Contested **+35 nats**
+(deals −269 to −320): still positive and far above chance; it costs in
+2001–2006 while its finer table is learned and pays in every year from
+2007 to 2024 (18 of 18). Both papers −75 and modality −58: above their
+deals (they carry some information), but they do not pay for the finer
+table they need, so they do not hold as forecasting mechanisms. **So:
+a debate praised and condemned in a year outlives one of the same size
+and age that is not** (Hirschman's voice; controversy as attention's
+engine). The lesson for method: grade a case's own size finely, or any
+feature that grows with size will pass for a mechanism.
+
+### Test 3: a forecast of 2026 (planned before it runs)
+
+2026 has not been used. Every concept alive at the end of 2025 is
+forecast for 2026 from tables learned on 2000–2024 states only (fine own
+past; own past alone, and with contested). Scored on its writers in
+January–September 2026, all that exists, so every forecast expects more
+than nine months bring; the comparison between the two forecasts stays
+fair. Reading: contested holds forward if its 2026 gain is positive and
+above 20 deals. Listed for reading: the 15 concepts given the highest
+chance of several writers in 2026, with what happened.
+
+### Test 2: artists' discourse mechanisms (planned before it runs)
+
+Replay 17's panel (9,665 artists), POE `evals/replay17.py`, target museum
+acquisitions, own past as in replay 17, with a new signal: contested (in a
+year, critics both approve and disapprove of the artist). Read as replay
+17: shuffles of each artist's years, and the next-year placebo (valid
+here: the feature is the press's, the outcome the museums').

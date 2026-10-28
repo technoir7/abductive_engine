@@ -20,6 +20,7 @@ class Claim:
     writer: str
     force: str
     stance: str
+    paper: str = ""
 
 
 def quarter(month: str) -> int:
@@ -114,5 +115,5 @@ def load_claims(root) -> list[Claim]:
             for i, a in enumerate(row["assertions"]):
                 k = concept_of.get((paper, row["id"], i))
                 if k is not None:
-                    out.append(Claim(k, stem, bylines.get(row["id"]) or a["who"], a["force"], a["stance"]))
+                    out.append(Claim(k, stem, bylines.get(row["id"]) or a["who"], a["force"], a["stance"], paper))
     return out
