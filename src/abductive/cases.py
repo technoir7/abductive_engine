@@ -37,6 +37,7 @@ class Record:
     own: tuple
     features: dict
     outcome: int
+    case: object = None
 
 
 @dataclass
@@ -46,13 +47,29 @@ class Judgement:
     by_year: dict = field(default_factory=dict)
 
 
+BACKOFF_WEIGHT = LEVELS   # as much as the uniform prior's, no more
+
+
 def _log_p(counts: list[int], y: int) -> float:
     return math.log((counts[y] + 1) / (sum(counts) + LEVELS))
 
 
-def judge(records: Iterable[Record], feature: str) -> Judgement:
-    """FEATURE added to each case's own past, against the own past alone. The
-    first year is only learned; every later year is scored, then learned."""
+def _log_p_backoff(counts: list[int], y: int, base: list[int]) -> float:
+    """COUNTS' chance of Y with the own-past cell BASE's prediction as prior."""
+    prior = (base[y] + 1) / (sum(base) + LEVELS)
+    return math.log((counts[y] + BACKOFF_WEIGHT * prior) / (sum(counts) + BACKOFF_WEIGHT))
+
+
+def _key(r: Record, feature) -> tuple:
+    names = (feature,) if isinstance(feature, str) else feature
+    return (r.own,) + tuple(r.features[f] for f in names)
+
+
+def judge(records: Iterable[Record], feature, backoff: bool = False) -> Judgement:
+    """FEATURE (a name, or a tuple of names judged together) added to each
+    case's own past, against the own past alone. The first year is only
+    learned; every later year is scored, then learned. BACKOFF starts each
+    split cell from its own-past cell's prediction instead of from nothing."""
     by_year: dict[int, list[Record]] = defaultdict(list)
     for r in records:
         by_year[r.year].append(r)
@@ -62,15 +79,37 @@ def judge(records: Iterable[Record], feature: str) -> Judgement:
     for i, year in enumerate(sorted(by_year)):
         rows = by_year[year]
         if i > 0:
-            gain = sum(_log_p(both[(r.own, r.features[feature])], r.outcome) - _log_p(own[r.own], r.outcome)
-                       for r in rows)
+            gain = 0.0
+            for r in rows:
+                cell, base = both[_key(r, feature)], own[r.own]
+                if backoff:   # the baseline is the same estimator with the feature left out
+                    gain += _log_p_backoff(cell, r.outcome, base) - _log_p_backoff(base, r.outcome, base)
+                else:
+                    gain += _log_p(cell, r.outcome) - _log_p(base, r.outcome)
             out.gain += gain
             out.cases += len(rows)
             out.by_year[year] = gain / len(rows)
         for r in rows:
             own[r.own][r.outcome] += 1
-            both[(r.own, r.features[feature])][r.outcome] += 1
+            both[_key(r, feature)][r.outcome] += 1
     return out
+
+
+def forecast(records: Iterable[Record], feature: str, year: int) -> list[tuple[object, list[float], list[float]]]:
+    """For each case in YEAR: the chance of each outcome from its own past
+    alone and with FEATURE, from tables learned on earlier years only."""
+    own: dict = defaultdict(lambda: [0] * LEVELS)
+    both: dict = defaultdict(lambda: [0] * LEVELS)
+    target = []
+    for r in records:
+        if r.year < year:
+            own[r.own][r.outcome] += 1
+            both[(r.own, r.features[feature])][r.outcome] += 1
+        elif r.year == year:
+            target.append(r)
+    def probs(counts):
+        return [(c + 1) / (sum(counts) + LEVELS) for c in counts]
+    return [(r.case, probs(own[r.own]), probs(both[(r.own, r.features[feature])])) for r in target]
 
 
 def dealt(records: list[Record], feature: str, rng: random.Random) -> list[Record]:
@@ -137,5 +176,6 @@ def concept_years(claims: Iterable[Claim], founded: dict[int, str], last_year: i
                      else (level(len(cell["writers"])), _age(y - first))),
                 features={"contested": sides, "both_papers": int(len(cell["papers"]) > 1), "modality": int(cell["modal"])},
                 outcome=level(len(cells.get((k, y + 1), empty)["writers"])),
+                case=k,
             ))
     return out

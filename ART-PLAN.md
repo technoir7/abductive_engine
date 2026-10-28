@@ -374,3 +374,59 @@ acquisitions, own past as in replay 17, with a new signal: contested (in a
 year, critics both approve and disapprove of the artist). Read as replay
 17: shuffles of each artist's years, and the next-year placebo (valid
 here: the feature is the press's, the outcome the museums').
+
+### Test 3 results (2026-10-28)
+
+9,896 concepts alive at the end of 2025. Contested's gain on 2026: **+2.0
+nats** (20 deals: at most +0.4, mean −3.0), so it holds forward. Of the
+1,425 concepts forecast more likely than not to have several writers, 882
+did in nine months; 145 not so forecast did. The most confident forecasts
+are catch-all concepts ("the exhibition", "art", 1,000+ claims): trivial
+forecasts, and a sign that the anchor rule (0.80) has not stopped all
+catch-alls.
+
+### Test 2 results (2026-10-28)
+
+Critics contested about an artist (1,463 artist-years, 576 artists) →
+museum acquisitions: +1.5 nats, within its shuffles (−1.7 to +17.3);
+Chicago −15, Cleveland −25. Museums do not follow controversy.
+
+### Test 4: new cells start from what is known (planned before it runs)
+
+A feature splits each own-past cell; under a uniform Dirichlet(1) prior
+each new cell starts knowing nothing, so a feature with real but weak
+information pays a learning cost it may never earn back (both papers,
+modality in 1b). Test 4 gives each split cell the own-past cell's
+prediction as its prior, with weight 3 (the uniform prior's weight, so
+no stronger): p = (n_y + 3 p_own(y)) / (n + 3). Fixed here, not tuned.
+Rerun 1b's three features, then the three together. Reading as 1b.
+*Amended before running, from the unit tests:* the split cell's prior
+counts each case twice (in its cell and in the own-past cell), which made
+pure noise "pay" (+161 nats on a test panel). The baseline is therefore
+the same estimator with the feature left out, so only the feature
+differs; noise then costs a little and never pays.
+
+### Test 4 results (2026-10-28)
+
+With split cells starting from the own-past cell, and the baseline the
+same estimator (so sharper, and harder to beat): contested **+12.7 nats**
+(deals at most −259), both papers −119 (deals at most −99: not above
+them), modality −90 (above deals, still not paying), all three together
+−288 (positive in 4 of 24 years). Backoff does not rescue the weak
+features; contested remains the one concept mechanism that holds.
+
+### What the method has found so far
+
+- **Holds:** the NYT's attention comes with or before Chicago's
+  acquisitions (replay 17, 9,665 artists); a contested debate outlives an
+  uncontested one of the same size and age (every year since 2007, and
+  forward on 2026).
+- **Does not hold:** aggregate talk (replays 15–16); links between
+  particular concepts; the Guardian or critics' approval leading museums;
+  controversy about an artist bringing acquisitions; papers and modality
+  as concept mechanisms once size is graded finely.
+- **Method, as it now stands:** cases, not aggregates; one hypothesis
+  across all cases; prequential log Bayes factor against the case's own
+  past graded finely; controls by dealing the feature within the year
+  (meaning), shuffling a case's years (fame), and the next-year placebo
+  when feature and outcome come from different bodies (order).

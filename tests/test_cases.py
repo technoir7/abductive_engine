@@ -5,7 +5,7 @@ from __future__ import annotations
 import random
 
 from abductive.art_series import Claim
-from abductive.cases import Record, concept_years, dealt, doubling, judge, level
+from abductive.cases import Record, concept_years, dealt, doubling, forecast, judge, level
 
 
 def test_levels_are_none_one_several():
@@ -87,3 +87,35 @@ def test_the_fine_own_past_reads_this_years_writers_and_the_writers_so_far():
     rows = {r.year: r for r in concept_years(claims, founded={1: "2004-11"}, last_year=2006, fine=True)}
     assert rows[2004].own == (1, 1, 0)
     assert rows[2005].own == (3, 3, 1)           # 3 writers this year (3-4), 4 so far (3-4), aged 1
+
+
+def test_a_forecast_uses_only_earlier_years_and_names_its_case():
+    records = _records(range(2000, 2005), 200, lambda f, rng: 2 * f)
+    target = [Record(2005, (0,), {"f": 1, "noise": 0}, 0, case="x")]
+    [(case, p_own, p_with)] = forecast(records + target, "f", 2005)
+    assert case == "x"
+    assert abs(sum(p_own) - 1) < 1e-9 and abs(sum(p_with) - 1) < 1e-9
+    assert p_with[2] > 0.95 and 0.3 < p_own[2] < 0.7     # learned from 2000-2004 only
+
+
+def test_each_concept_year_names_its_concept():
+    rows = concept_years([_claim(7, "2004-11", "A")], founded={7: "2004-11"}, last_year=2006)
+    assert {r.case for r in rows} == {7}
+
+
+def test_with_backoff_noise_costs_little_and_a_settling_feature_still_pays():
+    # Many small own-past cells, as with finely graded size: splitting them costs.
+    rng, records = random.Random(0), []
+    for y in range(2000, 2010):
+        for _ in range(300):
+            own = rng.randrange(60)
+            records.append(Record(y, (own,), {"noise": rng.randrange(3)}, own % 3))
+    uniform, backed = judge(records, "noise").gain, judge(records, "noise", backoff=True).gain
+    assert uniform < -50 and uniform / 3 < backed <= 0   # noise never pays
+    settled = _records(range(2000, 2010), 200, lambda f, rng: 2 * f)
+    assert judge(settled, "f", backoff=True).gain > 500
+
+
+def test_features_can_be_judged_together():
+    records = _records(range(2000, 2010), 200, lambda f, rng: 2 * f)
+    assert judge(records, ("f", "noise"), backoff=True).gain > 500
