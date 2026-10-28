@@ -119,3 +119,12 @@ def test_with_backoff_noise_costs_little_and_a_settling_feature_still_pays():
 def test_features_can_be_judged_together():
     records = _records(range(2000, 2010), 200, lambda f, rng: 2 * f)
     assert judge(records, ("f", "noise"), backoff=True).gain > 500
+
+
+def test_a_concept_is_named_by_what_its_claims_are_most_often_about():
+    from abductive.cases import concept_labels
+    claims = [Claim(1, "2005-01", "A", "reports", "neither", "nyt", about="Guernica"),
+              Claim(1, "2005-02", "B", "reports", "neither", "nyt", about="Picasso's Guernica"),
+              Claim(1, "2005-03", "C", "reports", "neither", "nyt", about="Picasso's Guernica"),
+              Claim(2, "2005-03", "C", "reports", "neither", "nyt", about="graffiti")]
+    assert concept_labels(claims) == {1: "Picasso's Guernica", 2: "graffiti"}

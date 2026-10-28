@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import math
 import random
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass, field, replace
 from typing import Iterable
 
@@ -179,3 +179,12 @@ def concept_years(claims: Iterable[Claim], founded: dict[int, str], last_year: i
                 case=k,
             ))
     return out
+
+
+def concept_labels(claims: Iterable[Claim]) -> dict[int, str]:
+    """Each concept named by what its claims are most often about (ties:
+    the first seen)."""
+    abouts: dict[int, Counter] = defaultdict(Counter)
+    for c in claims:
+        abouts[c.concept][c.about] += 1
+    return {k: a.most_common(1)[0][0] for k, a in abouts.items()}
