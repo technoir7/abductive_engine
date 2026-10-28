@@ -430,3 +430,27 @@ features; contested remains the one concept mechanism that holds.
   past graded finely; controls by dealing the feature within the year
   (meaning), shuffling a case's years (fame), and the next-year placebo
   when feature and outcome come from different bodies (order).
+
+## 9. The engine on cases (planned 2026-10-28, before it is built)
+
+The engine's method (DESIGN §§5–7): rival schemes kept side by side,
+each judged prequentially, a leader that changes only when a rival is
+decisively ahead, and every change recorded. On cases:
+- **A scheme** is a set of mechanisms (features), each case's outcome
+  predicted from its own past and those features (backoff tables, test 4).
+- **The population** is every subset of the feature pool (3 features for
+  concepts: 8 schemes; 4 for artists: 16). With so few, all are kept
+  alive; proposing from surprises is needed only for larger pools.
+- **Leadership:** evidence between two schemes is their decayed sum of
+  yearly log score differences, half-life 5 years (the art world's slower
+  clock; macro uses weeks). The leader changes when a rival is ahead by
+  more than 3 nats (Jeffreys' "strong"); the incumbent keeps ties. Each
+  change is a shift, read as a change in what drives the case.
+- **The engine's forecast** each year is the leader's, scored against own
+  past alone.
+- **Runs:** concepts (fine own past; contested, both papers, modality) and
+  artists (own past as replay 17; NYT, Guardian, approval, contested last
+  year → museum acquisitions).
+- **Reading:** which mechanisms lead, when the leader changes, and whether
+  the engine's forecast beats own past. Against the design: a leader that
+  changes every year, or an engine worse than own past.
