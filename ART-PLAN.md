@@ -246,3 +246,15 @@ Each step test first.
   quarters that is seven and a half years, so only long-lived concepts can
   gain links; the rest are scored on persistence alone. Not changed for
   this replay; if it finds nothing, this is the first suspect.
+
+### Matched control (planned 2026-10-28, before it runs)
+
+The first run's random deals each gave about 6,400 series against the real
+concepts' 2,692, because concepts dealt at random spread across the years
+and so more pass the 5-writer, 8-quarter rule. To compare like with like:
+- each of the five deals again, keeping 2,692 of its chosen series drawn at
+  random (`--series 2692`, seeded by the deal);
+- the real concepts rerun with each quarter's scores saved, to see whether
+  the gain is spread across quarters or comes from a few.
+- **Reading:** concepts formed by meaning beat the matched deals if their
+  gain over persistence (nats a quarter) is above all five.
