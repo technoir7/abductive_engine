@@ -137,3 +137,16 @@ def test_a_variant_learns_its_parameters_from_the_past():
 def test_a_variant_can_drop_a_link():
     linked = Scheme((X_UP,), frozenset({(X_UP, "Y")}), KINDS)
     assert linked.variant(remove=(X_UP, "Y")).links == frozenset()
+
+
+def test_belief_in_a_link_survives_overwhelming_evidence_against_it():
+    # Count series sit at 0 for long spells, then jump; the evidence against a
+    # link can then fall far past what exp() can take.
+    linked = Scheme((X_UP,), frozenset({(X_UP, "Y")}), KINDS)
+    rng, x_before = random.Random(0), 0.0
+    for i in range(300):
+        x = rng.choice((-1.0, 1.0))
+        y = 100 * x_before if i % 7 == 0 else 0.0
+        linked.score_and_learn(Week(D0 + timedelta(weeks=i), {"Y": y, "X": 0.0}, {"X": x, "Y": y}))
+        x_before = x
+    assert linked.existence((X_UP, "Y")) == 0.0

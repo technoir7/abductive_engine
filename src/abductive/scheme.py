@@ -139,7 +139,11 @@ class Scheme:
 
     def existence(self, link: Link) -> float:
         """The probability that LINK exists, given the evidence so far."""
-        return 1.0 / (1.0 + math.exp(-self._evidence[link]))
+        e = self._evidence[link]
+        # Written per sign so exp() never sees a large positive argument.
+        if e >= 0:
+            return 1.0 / (1.0 + math.exp(-e))
+        return math.exp(e) / (1.0 + math.exp(e))
 
     def score_and_learn(self, week: Week) -> dict[str, float]:
         """Each observed change's log density, from last week's concept states,
