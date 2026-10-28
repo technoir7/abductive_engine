@@ -454,3 +454,18 @@ decisively ahead, and every change recorded. On cases:
 - **Reading:** which mechanisms lead, when the leader changes, and whether
   the engine's forecast beats own past. Against the design: a leader that
   changes every year, or an engine worse than own past.
+
+### §9 results (2026-10-28)
+
+- **Concepts** (263,241 concept-years; pool contested, both papers,
+  modality; 8 schemes): own past leads 2001–2013; **one shift, in 2014, to
+  contested**, held to the end. From then the engine beats own past by
+  +38 nats (8 of 10 years). Both papers and modality never lead.
+- **Artists** (241,625 artist-years, POE `evals/artist_records.py`; pool
+  NYT, Guardian (from 2010), approval, contested last year → museum
+  acquisitions; 16 schemes): NYT and contested lead in 2001–2002 on little
+  evidence, then **NYT alone from 2003 to the end**; the engine beats the
+  artist's own acquisition history in every year from 2002, +275 nats in
+  all. The Guardian, critics' approval and controversy never join it.
+- Against the design: neither leader flickers (two and one shifts in
+  24 years), and the engine never does worse than own past over a run.
