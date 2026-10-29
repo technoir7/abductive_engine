@@ -697,3 +697,17 @@ set (years to September, as Test 10b, outcome "holds or grows next year")
 so POE's own case engine judges whether a mechanism predicts a trend's
 growth; per §10 it should find none. The report must say that the lists
 describe the present and are not forecasts.
+
+### §11 deviations, decided on reading the first lists (2026-10-29)
+
+1. **No cap on a list.** AI is the 13th new theme by writers, one past the
+   cap of 12. The cap was a display choice, so lists now keep every theme
+   and the panel shows 12 with the rest on request; the report gets the
+   first 8. Changed after seeing AI fall just past the cap, said so here.
+2. **Names checked by rule, not by eye.** Reading three claims of this year
+   showed several young groups held together by phrasing, not idea ("art in
+   storage and display": a maquette studio, a storage unit, a coin-slot
+   piece; "art and warfare": an alarm system, an earthquake, an arson
+   attack). Each theme on a list is checked: the local model is given its
+   name and ten of this year's claims (drawn at random, seed 0) and says
+   which are about it. A trend is listed only if at least half fit.
