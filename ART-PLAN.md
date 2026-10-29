@@ -566,3 +566,22 @@ quarters, 2000 Q1 to 2026 Q3, the open quarter (forecast: 2026 Q4).
   scattered small groups.
 - **Order:** grouping, names and episodes are shown to the user before
   anything goes into POE or the app.
+
+### §10 deviations, decided on a pilot before any prediction (2026-10-29)
+
+Pilot: the Guardian's claims 2000–2004 (idea vectors), grouping only.
+1. **The bar for a broad group, 10 writers → 36.** At 10, "most broad
+   groups" picks groups of about 20 claims (k = 800 for 15,000 claims):
+   fragments, not trends. 36 writers in three years is three a quarter on
+   average, the least for the engine to see a trend rise or fall by
+   doubling bins. Subjects stay at 10. Groups then read as themes ("young
+   artists, new generation, YBAs", "war, photographs, soldiers",
+   "materials, bronze, plastic, glass"). Stability (two groupings of
+   overlapping years agreeing) was tried as the rule instead and rejected:
+   it always prefers the fewest groups (k = 25: "painting", "exhibition").
+2. **Each year's grouping starts from last year's centres** (ordered by how
+   many of this year's claims each draws), new centres seeded by k-means++.
+   Grouped afresh, only 42% of broad groups were followed into the next
+   year, so trends would break at year ends and look like deaths; started
+   from last year's, 68%. Still causal: last year's centres were formed
+   from claims before.

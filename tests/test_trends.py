@@ -30,7 +30,7 @@ def test_k_is_the_one_giving_the_most_broad_groups():
     X = _blobs(rng, np.eye(8), 20)                 # eight ideas, each broad
     writers = [f"w{i % 20}" for i in range(len(X))]
     subjects = [f"s{i % 20}" for i in range(len(X))]
-    k, labels = choose_k(X, writers, subjects, np.random.default_rng(1), start=2, least=15)
+    k, _, labels = choose_k(X, writers, subjects, np.random.default_rng(1), start=2, least=15)
     assert k == 8 and len(broad_groups(labels, writers, subjects, least=15)) == 8
 
 
@@ -48,7 +48,27 @@ def test_words_that_set_a_group_apart_rank_first():
     assert distinctive_words(texts, top=2)["t"] == ["ai", "generated"]
 
 
+def test_a_word_common_to_every_group_sinks():
+    texts = {g: [f"the the the the {g}word"] for g in "abcd"}
+    assert distinctive_words(texts, top=1)["a"] == ["aword"]
+
+
 def test_a_trend_moves_if_its_share_doubled_or_halved():
     assert moving([0.10, 0.12, 0.09, 0.11]) is False
     assert moving([0.02, 0.03, 0.05]) is True
     assert moving([0.08, 0.03]) is True
+
+
+def test_kmeans_can_start_from_last_years_centres():
+    rng = np.random.default_rng(0)
+    X = _blobs(rng, np.eye(4), 30)
+    init = np.eye(4, dtype=np.float32)[::-1]          # centres given in reverse order
+    _, labels = kmeans(X, 4, np.random.default_rng(1), init=init)
+    assert labels[0] == 3 and labels[-1] == 0          # each group keeps its centre's index
+
+
+def test_a_broad_group_can_need_more_writers_than_subjects():
+    labels = np.array([0] * 12)
+    writers = [f"w{i}" for i in range(12)]
+    subjects = [f"s{i}" for i in range(12)]
+    assert broad_groups(labels, writers, subjects, least=10, least_writers=20) == set()

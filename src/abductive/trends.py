@@ -26,15 +26,24 @@ def _nearest(X: np.ndarray, centres: np.ndarray) -> np.ndarray:
     return np.concatenate([np.argmax(X[i:i + _CHUNK] @ centres.T, axis=1) for i in range(0, len(X), _CHUNK)])
 
 
-def kmeans(X: np.ndarray, k: int, rng: np.random.Generator, iters: int = 25) -> tuple[np.ndarray, np.ndarray]:
-    """Spherical k-means on unit rows, seeded by k-means++ on cosine
+def kmeans(X: np.ndarray, k: int, rng: np.random.Generator, iters: int = 25,
+           init: np.ndarray | None = None) -> tuple[np.ndarray, np.ndarray]:
+    """Spherical k-means on unit rows. Starts from INIT's first k centres
+    (last year's, ART-PLAN §10.2), the rest seeded by k-means++ on cosine
     distance. Returns unit centres and each row's group."""
     n = len(X)
     k = min(k, n)
     centres = np.empty((k, X.shape[1]), np.float32)
-    centres[0] = X[rng.integers(n)]
-    d = np.maximum(1 - X @ centres[0], 0)
-    for j in range(1, k):
+    given = 0 if init is None else min(k, len(init))
+    if given:
+        centres[:given] = init[:given]
+        d = np.maximum(1 - np.concatenate([np.max(X[i:i + _CHUNK] @ centres[:given].T, axis=1)
+                                           for i in range(0, n, _CHUNK)]), 0)
+    else:
+        centres[0] = X[rng.integers(n)]
+        d = np.maximum(1 - X @ centres[0], 0)
+        given = 1
+    for j in range(given, k):
         total = d.sum()
         centres[j] = X[rng.choice(n, p=d / total) if total > 0 else rng.integers(n)]
         d = np.minimum(d, np.maximum(1 - X @ centres[j], 0))
@@ -52,32 +61,37 @@ def kmeans(X: np.ndarray, k: int, rng: np.random.Generator, iters: int = 25) -> 
     return centres, labels
 
 
-def broad_groups(labels: np.ndarray, writers: Sequence[str], subjects: Sequence[str], least: int = LEAST) -> set[int]:
-    """Groups whose claims come from at least LEAST writers about at least
-    LEAST subjects."""
+def broad_groups(labels: np.ndarray, writers: Sequence[str], subjects: Sequence[str], least: int = LEAST,
+                 least_writers: int | None = None) -> set[int]:
+    """Groups whose claims come from at least LEAST_WRITERS (default LEAST)
+    writers about at least LEAST subjects."""
+    least_writers = least if least_writers is None else least_writers
     w: dict[int, set] = {}
     s: dict[int, set] = {}
     for g, wr, su in zip(labels.tolist(), writers, subjects):
         w.setdefault(g, set()).add(wr)
         s.setdefault(g, set()).add(su)
-    return {g for g in w if len(w[g]) >= least and len(s[g]) >= least}
+    return {g for g in w if len(w[g]) >= least_writers and len(s[g]) >= least}
 
 
 def choose_k(X: np.ndarray, writers: Sequence[str], subjects: Sequence[str], rng: np.random.Generator,
-             start: int = 50, least: int = LEAST) -> tuple[int, np.ndarray]:
+             start: int = 50, least: int = LEAST, least_writers: int | None = None,
+             init: np.ndarray | None = None) -> tuple[int, np.ndarray, np.ndarray]:
     """The k giving the most broad groups, doubling from START until the
-    count falls (or k passes the number of claims)."""
-    best_k, best_labels, best_n = 0, None, -1
+    count falls (or k passes the number of claims). INIT: centres to start
+    from, most important first. Returns k, its centres and labels."""
+    best = (0, None, None)
+    best_n = -1
     k = start
     while k <= len(X):
-        _, labels = kmeans(X, k, rng)
-        n = len(broad_groups(labels, writers, subjects, least))
+        centres, labels = kmeans(X, k, rng, init=init)
+        n = len(broad_groups(labels, writers, subjects, least, least_writers))
         if n < best_n:
             break
         if n > best_n:
-            best_k, best_labels, best_n = k, labels, n
+            best, best_n = (k, centres, labels), n
         k *= 2
-    return best_k, best_labels
+    return best
 
 
 def follow(before: Mapping[Hashable, set], after: Mapping[Hashable, set]) -> dict:
@@ -101,14 +115,16 @@ _TOKEN = re.compile(r"[a-z][a-z'-]+")
 
 
 def distinctive_words(texts: Mapping[Hashable, Sequence[str]], top: int = 10, min_count: int = 1) -> dict:
-    """Each group's words ranked by count in the group times how rare they
-    are overall (log of all words over the word's count)."""
+    """Each group's words ranked by class TF-IDF: the word's share of the
+    group's words times log(1 + average words per group / the word's count
+    overall), so words common everywhere ("the", "exhibition") sink."""
     counts = {g: Counter(w for t in ts for w in _TOKEN.findall(t.lower())) for g, ts in texts.items()}
     overall = sum(counts.values(), Counter())
-    total = sum(overall.values())
+    average = sum(overall.values()) / max(len(counts), 1)
 
     def rank(c: Counter) -> list[str]:
-        scored = [(-n * math.log(total / overall[w]), w) for w, n in c.items() if n >= min_count]
+        size = sum(c.values())
+        scored = [(-(n / size) * math.log(1 + average / overall[w]), w) for w, n in c.items() if n >= min_count]
         return [w for _, w in sorted(scored)[:top]]
     return {g: rank(c) for g, c in counts.items()}
 
