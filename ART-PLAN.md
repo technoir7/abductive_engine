@@ -949,3 +949,59 @@ yearly trends above give the same finding.
    about), which is a leak, not a finding. Found on seeing that result,
    so said here; the market cases are now the years 2009, 2014 and 2018–2024
    (open: 2025).
+3. **A market case also needs a table some year before.** The run with
+   controls gave the market's leader (argued trend + sculpture + NYT) +384
+   nats as a rival set but the engine only +31. Almost all of the gap came
+   from 2014, the first scored year: the only year learned before it was
+   2009, when no artist had an earlier table, so the own-past model had
+   never seen a known past place and the press features stood in for it,
+   as in deviation 2. The leader was chosen on that windfall. Found on
+   reading the result, so said here; 2009 is now dropped as a market case
+   (it has no earlier table), so 2014 is learned only and 2018–2024 are
+   scored. The market alone was rerun; the first run's summary is kept
+   (success/market_before_dev3.json).
+4. **Years start at 2003, not 2000.** The trend features need the §11
+   lists, which start in 2003; the four case sets run 2003–2025.
+5. **The placebo is no test for approval and press.** An approval is a
+   claim, so next year's trend claims include next year's approvals, and
+   next year's NYT and medium-tagged articles are next year's press: the
+   year-after features count part of the outcome and are bound to win
+   (they did, by about 11,000 and 17,000 nats). The plan missed this. For
+   those two the dealt control and the gain over own past carry the case,
+   and the panel and reports say so; the placebo stands for museum buys
+   and the market, where the outcome is counted apart from the press.
+
+### §12 results (2026-10-29)
+
+Run in POE (evals/success_run.py) on the four case sets, 2003–2024 scored
+(market 2018–2024), every rival the 255 sets of the eight features. "Adds"
+is how much the engine loses when that feature is dealt at random (3
+deals, all alike to a decimal).
+- **Critics approve**: growing + argued trend + painting + NYT, since
+  2022, +342 nats over own past. Argued adds 131, NYT 62, growing 37,
+  painting 2. All push up (argued +0.89 on the log-odds for one claim).
+  Placebo not a test (deviation 5). Prediction (argued trends lower
+  approval) wrong: being argued over goes with more approvals next year.
+- **More press**: new + growing + argued trend + NYT, since 2025, +143.
+  Argued adds 61, growing 17, NYT 6, new 0 (it joined the leader in the
+  last year, so no scored year used it). Pushes: argued +0.59, growing
+  +0.35; new trend −0.85 and NYT −0.59 (with the same press this year,
+  claims in a new trend or a NYT share of it mean less press next year).
+  Placebo not a test. Prediction (own past does most, NYT adds, trends add
+  little) wrong on the trends: argued trends add the most.
+- **Museum buys**: argued trend + photography + NYT, since 2015, +227.
+  Argued adds 41, NYT 62; photography nothing (dealt, the engine gains
+  3 more). Placebo +191: coverage before the purchase predicts it better
+  than coverage after, so it leads. Prediction (NYT stays leader, nothing
+  adds 3 nats) wrong: an argued trend adds about 40.
+- **Market (Artprice Top 500)**: after deviation 3, growing trend + NYT,
+  since 2023 (NYT alone from 2018), +2.4 over 2018–2024; dealt, −3.6
+  (growing) and −7.8 (NYT); placebo +7.2. Nothing in the coverage reliably
+  predicts next year's place; what there is goes with the market rather
+  than ahead of it. Prediction (NYT leads, the rest adds little) right on
+  the order, but the lead is too small to claim. Before deviation 3:
+  argued + sculpture + NYT, +31 (the 2014 windfall).
+- Medium barely matters anywhere: painting adds 2 nats to approval,
+  photography nothing to museum buys, sculpture nothing to the market once
+  fixed. The feature that adds most to three of the four kinds is being
+  written about inside a trend critics argue over.
