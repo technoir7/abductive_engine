@@ -741,12 +741,13 @@ Nothing is built until the user has read it.
      (none, one, several).
   3. *Museum buys*: works acquired by Chicago or Cleveland next year (the
      existing artists case set).
-  4. *Market, as the press reports it*: claims next year that report a
-     sale, price, estimate or auction result for the artist (none, one,
-     several). About 7,700 such claims in the corpus, some 250 a year,
-     mostly headline sales, so it measures the market as critics see it,
-     not the market. Real auction results per artist would need a paid
-     source (§12.7); none is bought without the user's word.
+  4. *Market*: the artist's place in Artprice's yearly Top 500 artists by
+     auction turnover next year (not listed / ranks 101–500 / top 100, in
+     either the all-artists or the contemporary ranking), from Artprice's
+     free reports (§12.7). Only years with a table are cases; a gap year is
+     missing, never "not listed". Claims in the press that report a sale or
+     price (about 7,700, some 250 a year) are kept as the market as critics
+     see it, for the market report's description, not as an outcome.
 - **A work** is described, not observed: the engine's cases are artists, and
   a work is known through what critics said about it (its subject, the
   trends its claims fall in, its medium from the papers' own tags, the tone
@@ -852,3 +853,26 @@ Every source needs an account the user would make; Claude makes none.
   first-print and dated to each report's publication, as in POE's
   report_figures.csv. Other Hiscox editions are free from Hiscox's site;
   fetched only if the user agrees.
+- **Artprice, free reports (downloaded 2026-10-29 from imgpublic.artprice.com
+  to ~/Documents/art-market-reports/artprice/, outside git).** Each annual
+  report ends with the Top 500 artists by auction turnover (rank, name,
+  dates, turnover; recent ones also lots sold and unsold and best price),
+  and each contemporary report (July to June, artists born after 1945) a
+  Top 500 of its own. Read by POE evals/artprice.py, keeping a row only
+  when it reads cleanly and its turnover is no higher than the rank above:
+  all artists 2009 (498 of 500 ranks), 2010 (428), 2014 (415), 2015 (416),
+  2018–2025 (491–499); contemporary 2015 (460), 2019–2021 and 2023–2026
+  (496–500). Unusable: 2011 (its text does not extract), contemporary 2022
+  (199 rows, almost none matching any museum artist, so misread). No free
+  report found for 2012–2013 or 2016–2017. About 140–190 of each year's
+  all-artists 500 match an artist the two museums acquired (by name in
+  any order and birth year), and about 100 of the contemporary 500; most of
+  the rest are artists neither museum collects (many Chinese). So the
+  market outcome covers the market's top, for museum-collected artists
+  only, with gaps.
+- Hiscox Artist Top 100, 2023 edition (French, from hiscox.fr) added; no
+  2025 edition found at a free address. Used as a check only.
+- Artsy's public API: still up while being retired, but it needs a
+  developer account (the user's to make), its documented resources are
+  for Artsy's own live auctions rather than prices realised, and it may go
+  without notice. Not used.
