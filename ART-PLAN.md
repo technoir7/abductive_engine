@@ -585,3 +585,28 @@ Pilot: the Guardian's claims 2000–2004 (idea vectors), grouping only.
    year, so trends would break at year ends and look like deaths; started
    from last year's, 68%. Still causal: last year's centres were formed
    from claims before.
+
+### §10 results, quarterly (2026-10-29)
+
+955 trends (506,308 of 561,133 claims), 52,969 trend-quarters judged.
+- **No mechanism holds.** Against own past over all quarters: contested
+  −118 nats, modality −149, both papers −176; every combination worse.
+  The leader is own past from 2003 Q3 on; engine − own past −12.6 nats.
+- **Random groupings** (five): −19.9, −7.9, +1.9, −20.6, −12.2. Real
+  trends are not distinguishable from them on this test.
+- **Known episodes:** 3 of 5 pass. NFTs (peak 2022), Black artists and
+  race (peaks 2020–2022), graffiti (peak 2006). Misses: AI art is a trend
+  that rose sharply from 2022 (claims 8 in 2020, 92 in 2023) but is
+  grouped with robots and machines talk from 2009, whose share peaked in
+  2012; restitution is found ("looted antiquities, returned", peak 2003,
+  Iraq) but the Benin Bronzes years are not its peak.
+
+### Test 10b: a year ahead (planned 2026-10-29, before it runs)
+
+Concepts' finding (contested → taken up again) was judged a year ahead; a
+quarter may be too short for trends of a few writers a quarter. One rerun,
+nothing else changed but the step: years ending in September (so the open
+year, October 2025 to September 2026, is complete), own past this year
+and last, outcome next year's writers falling, holding or rising a
+doubling bin, half-life 5 years, the same five random groupings and
+feature deals. Whatever it shows is reported; no further horizons.
