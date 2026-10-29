@@ -711,3 +711,13 @@ describe the present and are not forecasts.
    attack). Each theme on a list is checked: the local model is given its
    name and ten of this year's claims (drawn at random, seed 0) and says
    which are about it. A trend is listed only if at least half fit.
+3. **A theme silent this year** (it can still be fading) has no claims of
+   this year to check, so its name is checked on its biggest year of the
+   three before. Found when the check reached one.
+4. **One trend per name.** The grouping sometimes hands an idea to a new
+   trend number (food and art: one trend 2.1% → 0% while another rises
+   0% → 2.3% in 2024), so it showed as both new and fading, and some names
+   came twice. Each list keeps the first trend of each name, and a trend
+   leaves "fading" when a trend of the same name has 12+ writers this year
+   (it carries on under another number). The names are the local model's,
+   so this merges only what it called the same.
