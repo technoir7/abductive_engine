@@ -892,3 +892,25 @@ information adds it. Everything else stays: scoring, half-life, the
 trends, yearly and quarterly) and their results replaced, the old ones
 kept in the record above. Expected: combinations come close to their best
 part, so leaders may become combinations, and some gains change.
+
+**Amended again, the same day, before any rerun on real data.** Two fixes
+of the count tables were tried on made-up cases and rejected:
+(1) cells starting from their parts' prediction counted the same cases
+twice, so on near-certain outcomes "f + noise" beat "f" by 31 nats;
+(2) weighing, in each cell, "follow the parts" against the cell's own
+counts (context-tree weighting) cut what a useless feature costs by 40–80%
+but let deeper combinations win on lucky runs, since a mixture of mixtures
+is not one model. The question "does X add anything beyond NYT?" is the
+standard question for an additive model, so mechanisms now combine
+additively: each scheme is a multinomial logistic model of next year's
+outcome on each case's own past (one term per own-past grade, as the
+tables had) plus one term per mechanism level, fitted each year on the
+years before only (L2 prior: sd 3 on own-past terms, sd 1 on mechanism
+terms), scored on the year, as before. A useless mechanism gets a term
+near zero and costs next to nothing; a useful one shows its size and sign
+(helps or hurts), which the portraits need. What is lost: interactions
+(two mechanisms mattering only together) are caught only in part. A
+combination may lead only when it stands 3 nats ahead of each of its
+parts. Everything else (standing, half-life, shift, controls) is as
+before. Both engines are run on artists, concepts and trends and compared
+before either replaces the other in POE.
