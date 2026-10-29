@@ -128,3 +128,31 @@ def test_a_concept_is_named_by_what_its_claims_are_most_often_about():
               Claim(1, "2005-03", "C", "reports", "neither", "nyt", about="Picasso's Guernica"),
               Claim(2, "2005-03", "C", "reports", "neither", "nyt", about="graffiti")]
     assert concept_labels(claims) == {1: "Picasso's Guernica", 2: "graffiti"}
+
+
+def test_a_trends_quarter_reads_its_writers_and_grades_features_against_that_quarters_trends():
+    from abductive.cases import trend_quarters
+    claims = [
+        _claim(1, "2000-01", "A", force="judges", stance="approval"),
+        _claim(1, "2000-02", "B", paper="nyt", force="judges", stance="disapproval"),
+        _claim(1, "2000-03", "C", force="judges", stance="approval"),
+        *[_claim(1, "2000-04", w) for w in "ABCD"],
+        _claim(2, "2000-01", "A", force="judges", stance="approval"),
+        _claim(2, "2000-02", "B", force="predicts", stance="disapproval"),
+        _claim(2, "2000-03", "B", force="judges", stance="disapproval"),
+    ]
+    rows = {(r.case, r.year): r for r in trend_quarters(claims, {1: 0, 2: 0}, open_quarter=2)}
+    one, two = rows[(1, 0)], rows[(2, 0)]
+    assert one.own == (3, 0, 0)                  # three writers; none before; first year
+    assert one.outcome == 1                      # four next quarter: the same doubling bin
+    assert one.features == {"contested": 1, "both_papers": 1, "modality": 0}
+    assert two.features == {"contested": 2, "both_papers": 0, "modality": 1}   # the only one with modality: at the median
+    assert two.outcome == 0                      # nobody next quarter
+    assert rows[(1, 1)].own == (3, 3, 0)         # four writers; three before
+    assert rows[(1, 2)].outcome is None          # the open quarter
+
+
+def test_a_trend_eight_quarters_unasserted_is_no_longer_a_case():
+    from abductive.cases import trend_quarters
+    claims = [_claim(1, "2000-01", "A")]
+    assert [r.year for r in trend_quarters(claims, {1: 0}, open_quarter=20)] == list(range(8))

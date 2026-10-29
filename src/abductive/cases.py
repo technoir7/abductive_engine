@@ -188,3 +188,79 @@ def concept_labels(claims: Iterable[Claim]) -> dict[int, str]:
     for c in claims:
         abouts[c.concept][c.about] += 1
     return {k: a.most_common(1)[0][0] for k, a in abouts.items()}
+
+
+DORMANT_TREND_QUARTERS = 8   # two years, as concepts
+
+
+def _graded(raw: dict) -> dict:
+    """0 where absent, else 1 at or below the median of those present, 2 above."""
+    present = sorted(v for v in raw.values() if v > 0)
+    if not present:
+        return {k: 0 for k in raw}
+    mid = len(present) // 2
+    median = present[mid] if len(present) % 2 else (present[mid - 1] + present[mid]) / 2
+    return {k: 0 if v == 0 else 1 if v <= median else 2 for k, v in raw.items()}
+
+
+def _trend_age(quarters: int) -> int:
+    return 0 if quarters < 4 else 1 if quarters < 12 else 2
+
+
+def trend_quarters(claims: Iterable[Claim], start: dict, open_quarter: int) -> list[Record]:
+    """Each trend (Claim.concept) as a case, quarter by quarter (art_series
+    quarters), from its START quarter to OPEN_QUARTER while alive (asserted
+    within DORMANT_TREND_QUARTERS). Own past: writers this quarter and over
+    the four before, in doubling bins, and age. Outcome: next quarter's
+    writers a doubling bin or more below (0), the same bin (1), or above
+    (2); None in the open quarter. Features (ART-PLAN §10.7), graded against
+    that quarter's trends: contested (the minority side's share of
+    judgements), both papers (the smaller paper's share of writers),
+    modality (share of claims that predict or doubt)."""
+    from .art_series import quarter
+    cells: dict = {}
+    for c in claims:
+        cell = cells.setdefault((c.concept, quarter(c.month)),
+                                {"writers": set(), "by_paper": defaultdict(set), "approval": 0, "disapproval": 0,
+                                 "claims": 0, "modal": 0})
+        cell["writers"].add(c.writer)
+        cell["by_paper"][c.paper].add(c.writer)
+        cell["claims"] += 1
+        if c.force == "judges" and c.stance in ("approval", "disapproval"):
+            cell[c.stance] += 1
+        if c.force in ("predicts", "doubts"):
+            cell["modal"] += 1
+    asserted: dict = defaultdict(list)
+    for k, q in cells:
+        asserted[k].append(q)
+
+    def writers(k, q) -> set:
+        return cells[(k, q)]["writers"] if (k, q) in cells else set()
+
+    alive: dict[int, list] = defaultdict(list)
+    for k, first in start.items():
+        for q in range(first, open_quarter + 1):
+            if q - max([first] + [x for x in asserted.get(k, ()) if x <= q]) >= DORMANT_TREND_QUARTERS:
+                break
+            alive[q].append(k)
+    out = []
+    for q in sorted(alive):
+        raw = {"contested": {}, "both_papers": {}, "modality": {}}
+        for k in alive[q]:
+            cell = cells.get((k, q))
+            judged = cell["approval"] + cell["disapproval"] if cell else 0
+            raw["contested"][k] = min(cell["approval"], cell["disapproval"]) / judged if judged else 0.0
+            sizes = [len(w) for w in cell["by_paper"].values()] if cell else []
+            raw["both_papers"][k] = min(sizes) / sum(sizes) if len(sizes) > 1 else 0.0
+            raw["modality"][k] = cell["modal"] / cell["claims"] if cell else 0.0
+        levels = {f: _graded(v) for f, v in raw.items()}
+        for k in alive[q]:
+            before = set().union(*(writers(k, p) for p in range(q - 4, q)))
+            now = len(writers(k, q))
+            outcome = None
+            if q < open_quarter:
+                nxt, cur = doubling(len(writers(k, q + 1))), doubling(now)
+                outcome = 0 if nxt < cur else 1 if nxt == cur else 2
+            out.append(Record(q, (doubling(now), doubling(len(before)), _trend_age(q - start[k])),
+                              {f: levels[f][k] for f in raw}, outcome, case=k))
+    return out

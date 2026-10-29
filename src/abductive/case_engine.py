@@ -16,7 +16,6 @@ from .cases import LEVELS, Record, _key, _log_p_backoff
 
 HALF_LIFE_YEARS = 5
 SHIFT_NATS = 3.0          # Jeffreys' "strong"
-_DECAY = 0.5 ** (1 / HALF_LIFE_YEARS)
 
 
 class CaseScheme:
@@ -42,7 +41,9 @@ class Shift:
 
 
 class CaseEngine:
-    def __init__(self, pool: tuple[str, ...]):
+    def __init__(self, pool: tuple[str, ...], half_life: float = HALF_LIFE_YEARS):
+        """HALF_LIFE is in steps: years, or 20 for quarters (ART-PLAN §10.7)."""
+        self._decay = 0.5 ** (1 / half_life)
         sets = [c for k in range(len(pool) + 1) for c in combinations(pool, k)]
         self.schemes = {s: CaseScheme(s) for s in sets}
         self.leader: tuple = ()
@@ -55,7 +56,7 @@ class CaseEngine:
         scores = {s: scheme.score(rows) for s, scheme in self.schemes.items()}
         result = (scores[self.leader], scores[()])
         for s, scheme in self.schemes.items():
-            self._standing[s] = _DECAY * self._standing[s] + scores[s]
+            self._standing[s] = self._decay * self._standing[s] + scores[s]
             scheme.learn(rows)
         best = max(self._standing, key=self._standing.get)
         if best != self.leader and self._standing[best] - self._standing[self.leader] > SHIFT_NATS:

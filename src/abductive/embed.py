@@ -10,7 +10,8 @@ about 400 MB rather than 2.4 GB.
 
 Writes ROOT/vectors/<paper>/<YYYY-MM>.f16 (one row per assertion) and
 .keys.jsonl ([article id, index of the assertion in it]); a month is done
-once both exist.
+once both exist. With --ideas, each claim is embedded with proper names
+removed (names.py, ART-PLAN §10.1) into ROOT/ideas/ instead.
 """
 from __future__ import annotations
 
@@ -20,9 +21,10 @@ import math
 import struct
 import urllib.request
 from pathlib import Path
-from typing import Callable, Sequence
+from typing import Callable, Mapping, Sequence
 
 from .disk import ensure_room
+from .names import idea_phrase, proper_names
 
 DIMS = 256
 Embedder = Callable[[list[str]], list[list[float]]]
@@ -39,15 +41,17 @@ def shorten(v: Sequence[float], dims: int = DIMS) -> list[float]:
     return [x / norm for x in cut]
 
 
-def _paths(root: Path, paper: str, year: int, month: int) -> tuple[Path, Path]:
-    base = root / "vectors" / paper / f"{year}-{month:02d}"
+def _paths(root: Path, paper: str, year: int, month: int, out: str = "vectors") -> tuple[Path, Path]:
+    base = root / out / paper / f"{year}-{month:02d}"
     return base.with_suffix(".f16"), base.with_suffix(".keys.jsonl")
 
 
-def embed_month(root: Path, paper: str, year: int, month: int, embed: Embedder, dims: int = DIMS) -> int:
-    """Embed one month's checked assertions unless done; returns how many."""
+def embed_month(root: Path, paper: str, year: int, month: int, embed: Embedder, dims: int = DIMS,
+                text: Callable[[Mapping], str] = phrase, out: str = "vectors") -> int:
+    """Embed one month's checked assertions, each as TEXT gives it, into
+    ROOT/OUT unless done; returns how many."""
     src = root / "grounded" / paper / f"{year}-{month:02d}.jsonl"
-    vec_path, key_path = _paths(root, paper, year, month)
+    vec_path, key_path = _paths(root, paper, year, month, out)
     if not src.exists() or (vec_path.exists() and key_path.exists()):
         return 0
     ensure_room(root)
@@ -56,7 +60,7 @@ def embed_month(root: Path, paper: str, year: int, month: int, embed: Embedder, 
         row = json.loads(line)
         for i, a in enumerate(row["assertions"]):
             keys.append([row["id"], i])
-            texts.append(phrase(a))
+            texts.append(text(a))
     values: list[float] = []
     for k in range(0, len(texts), 100):
         for v in embed(texts[k:k + 100]):
@@ -67,8 +71,8 @@ def embed_month(root: Path, paper: str, year: int, month: int, embed: Embedder, 
     return len(keys)
 
 
-def read_vectors(root: Path, paper: str, year: int, month: int, dims: int = DIMS):
-    vec_path, key_path = _paths(root, paper, year, month)
+def read_vectors(root: Path, paper: str, year: int, month: int, dims: int = DIMS, out: str = "vectors"):
+    vec_path, key_path = _paths(root, paper, year, month, out)
     keys = [tuple(json.loads(line)) for line in key_path.read_text().splitlines()]
     raw = vec_path.read_bytes()
     values = struct.unpack(f"<{len(raw) // 2}e", raw)
@@ -87,12 +91,20 @@ def ollama_embedder(model: str = "nomic-embed-text", url: str = "http://localhos
 def main() -> None:
     parser = argparse.ArgumentParser(description="Embed the checked assertions, month by month.")
     parser.add_argument("--root", type=Path, required=True)
+    parser.add_argument("--ideas", action="store_true", help="embed with proper names removed, into ROOT/ideas/")
     args = parser.parse_args()
     embed = ollama_embedder()
+    sources = sorted((args.root / "grounded").glob("*/*.jsonl"))
+    text, out = phrase, "vectors"
+    if args.ideas:
+        names = proper_names(f for src in sources for line in src.read_text().splitlines()
+                             for a in json.loads(line)["assertions"] for f in (a["about"], a["asserts"]))
+        print(f"{len(names)} proper names")
+        text, out = (lambda a: idea_phrase(a, names)), "ideas"
     total = 0
-    for src in sorted((args.root / "grounded").glob("*/*.jsonl")):
+    for src in sources:
         y, m = map(int, src.stem.split("-"))
-        total += embed_month(args.root, src.parent.name, y, m, embed)
+        total += embed_month(args.root, src.parent.name, y, m, embed, text=text, out=out)
     print(f"embedded {total} assertions")
 
 

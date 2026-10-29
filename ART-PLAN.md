@@ -556,6 +556,11 @@ quarters, 2000 Q1 to 2026 Q3, the open quarter (forecast: 2026 Q4).
   4. AI-made art: rising from 2022, peak 2023 or later.
   5. Street art and Banksy: peak before 2015 (a pre-2020 control).
   A miss is reported, not fixed by changing the rules to find it.
+  Operationally: a trend matches an episode if one of the episode's words
+  is among its 10 most distinctive words; it passes if its share of
+  writers peaks in the years given. Words, fixed before grouping: (1) nft,
+  nfts, crypto; (2) restitution, looted, repatriation, bronzes; (3) black,
+  race, racial, racism; (4) ai; (5) street, graffiti.
 - **Against the design:** trends that read as kinds of thing ("exhibition
   openings"), a handful of giant groups, or episodes found only as
   scattered small groups.
