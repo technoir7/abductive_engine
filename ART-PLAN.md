@@ -476,3 +476,88 @@ decisively ahead, and every change recorded. On cases:
   all. The Guardian, critics' approval and controversy never join it.
 - Against the design: neither leader flickers (two and one shifts in
   24 years), and the engine never does worse than own past over a run.
+
+## 10. Trends (planned 2026-10-29, before it is built or run)
+
+**Why.** The user read the art report and asked which *trends* are
+contested (craft revival, AI, identity, activism). The engine cannot say:
+its concepts (§4) are about 10,000 small topics ("Lord Bath's stolen
+Titian", "the Arena Homme+ issue"), because claims were grouped by what
+they are about, a name first. Trends appear only as scraps ("craft" twice,
+"NFTs" twice, AI never). Two flaws to avoid in a coarser grouping: banal
+groups ("museums", "painting", "the market") and young trends (AI art)
+swallowed by old groups or too new to judge.
+
+**1. Group by the idea, not the name.** Each claim is embedded again
+(nomic-embed-text, local) as "about: asserts" with proper names removed. A
+word is a proper name if, past the first word of its field, it is written
+lowercase in under 5% of its uses in the whole corpus (measured
+2026-10-29: Picasso, Tate, MoMA, Benin 0%; black 60%, indigenous 16%,
+impressionism 49%, craft 85%). Words in capitals (AI, NFT) are kept: as
+often terms as names. "Mire Lee's machine sculptures" keeps "machine
+sculptures"; "Ilya Kabakov: died in May" keeps "died in May".
+
+**2. Group each period by itself.** Every year Y, the claims of Y−2 to Y
+are grouped by spherical k-means; the claims of Y take their group from
+Y's grouping. So a claim is grouped by what was written up to the end of
+its year, never later, and a new idea forms its own group in the years it
+is written about instead of joining one formed decades earlier.
+
+**3. A trend is broad.** A group counts as a trend if, in its three years,
+at least 10 different writers make its claims about at least 10 different
+subjects (distinct "about" texts): not one critic's hobby horse, not one
+story. Each year's k is the one giving the most such groups, searched by
+doubling from 50 until the count falls (the same kind of rule as θ: most
+shared groups, never chosen on prediction).
+
+**4. Trends are followed across years.** Year Y's group B continues year
+Y−1's group A when they are each other's best match by shared claims (the
+two groupings share two years) and A holds at least half of B's shared
+claims. A trend is a chain of such groups.
+
+**5. Named by what sets it apart.** Each trend's words are ranked by how
+much more common they are in its claims than in all claims; the local
+model (qwen3.6, free) writes a 2–5 word name from the top words and 15
+claims. Names are checked by reading claims before they are shown.
+
+**6. Background or moving.** By its share of all writers each year: a
+trend whose share has at least doubled or halved at some point is moving;
+otherwise it is background ("museums", if it is steady). Background trends
+stay in the data and in the engine; the report lists moving ones.
+
+**7. The engine on trends, by quarter.** Cases are trends; steps are
+quarters, 2000 Q1 to 2026 Q3, the open quarter (forecast: 2026 Q4).
+- Own past: writers this quarter and over the previous four, in doubling
+  bins, and age (first year, up to 3 years, older).
+- Outcome: next quarter's writers fall a doubling bin or more, hold, or
+  rise a bin or more.
+- Features (pool as for concepts): contested (the minority side's share of
+  approving and disapproving judgements), both papers (the smaller
+  paper's share of writers), modality (share of claims that predict or
+  doubt). Each is 0 when absent, else 1 or 2 by whether it is below or
+  above that quarter's median among trends that have it.
+- The case engine (§9) with a 5-year half-life, i.e. 20 quarters.
+- Young trends are forecast by the leading mechanism, learned on all
+  trends; the report flags trends with under 3 years of claims.
+
+**Checks.**
+- *Random grouping:* claims dealt at random into trends within each year,
+  sizes kept, run through the same engine. Real trends must gain more over
+  own past than all five deals.
+- *Random features:* the leader's features dealt among each quarter's
+  trends, five deals, as replay 18.
+- *Known episodes, a test only, never an input.* Written down now, before
+  grouping. Each should appear as a trend whose distinctive words name it
+  and whose share peaks in the years given:
+  1. NFTs and crypto art: peak 2021–2022.
+  2. Return of looted objects (Benin Bronzes, restitution): rising from
+     2018, peak 2019–2023.
+  3. Black artists and race in the art world: peak 2020–2022.
+  4. AI-made art: rising from 2022, peak 2023 or later.
+  5. Street art and Banksy: peak before 2015 (a pre-2020 control).
+  A miss is reported, not fixed by changing the rules to find it.
+- **Against the design:** trends that read as kinds of thing ("exhibition
+  openings"), a handful of giant groups, or episodes found only as
+  scattered small groups.
+- **Order:** grouping, names and episodes are shown to the user before
+  anything goes into POE or the app.
