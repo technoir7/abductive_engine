@@ -876,3 +876,19 @@ Every source needs an account the user would make; Claude makes none.
   developer account (the user's to make), its documented resources are
   for Artsy's own live auctions rather than prices realised, and it may go
   without notice. Not used.
+
+### §9 amended: combined mechanisms back off to their parts (2026-10-29, before any rerun)
+
+The user noticed that "NYT coverage" beat "NYT + Guardian", and every
+combination lost to its parts. The cause is the backoff: a scheme's cells
+started from each case's own past alone, so a combined scheme had to learn
+the NYT effect again inside every finer cell, from nothing, and lost to
+NYT alone whatever the Guardian added. A combination now starts each cell
+from the average prediction of the schemes with one feature fewer (the
+lattice of its parts, down to own past), with the same weight as before.
+A feature that adds nothing then costs next to nothing; one that adds
+information adds it. Everything else stays: scoring, half-life, the
+3-nat shift, the controls. All case sets are rerun (artists, concepts,
+trends, yearly and quarterly) and their results replaced, the old ones
+kept in the record above. Expected: combinations come close to their best
+part, so leaders may become combinations, and some gains change.
