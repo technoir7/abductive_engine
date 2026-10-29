@@ -23,7 +23,7 @@ from abductive.trend_lists import BEFORE, LEAST_WRITERS, candidates, shown, year
 ROOT = Path.home() / "Documents" / "art-press-texts"
 NOW = 2026               # the year to September 2026
 POOL = ("contested", "both_papers", "modality")
-SAMPLE = 3
+SAMPLE = 8
 FIRST_SHOWN = 2010       # shares shown from here
 
 

@@ -690,7 +690,8 @@ themes only. Names are read against claims before they are shown.
    disapproval), by the minority side's share of verdicts.
 
 Each trend shown carries its name, writers and share each year, the papers
-it is in, its top words and three of this year's claims.
+it is in, its top words and eight of this year's claims (three at
+first; eight from 2026-10-29, so the report can say what critics argued).
 
 **The finding goes with them.** The trends also go to POE as a third case
 set (years to September, as Test 10b, outcome "holds or grows next year")
