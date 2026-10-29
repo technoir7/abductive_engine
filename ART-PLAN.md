@@ -934,3 +934,18 @@ Run in POE (services/cases.py) on the shipped case sets, yearly:
 Not yet rerun: the quarterly trends and the single-mechanism judgements in
 this repo (cases.judge, case_engine.py), which still use tables; the
 yearly trends above give the same finding.
+
+### §12 deviations (2026-10-29)
+
+1. **Fewer control runs.** Each feature dealt at random 5 times for all
+   eight features and four outcomes is 160 runs of 256 rival models each
+   (about 100 s to 5 min a run). Instead: each feature of each outcome's
+   leader dealt 3 times, plus the next-year placebo, on 8 cores (about an
+   hour).
+2. **A market case needs a table this year and next.** The first run gave
+   the market +1,004 nats for growing + argued trends + sculpture + NYT. In
+   a year without a table (2013, 2017) the artist's current place is
+   unknown, and press coverage can stand in for it (the famous are written
+   about), which is a leak, not a finding. Found on seeing that result,
+   so said here; the market cases are now the years 2009, 2014 and 2018–2024
+   (open: 2025).
