@@ -648,3 +648,52 @@ in 2026).
   critics write about a trend tells whether the whole trend grows. Trends
   are for describing the present (what is argued over, what is growing),
   forecast by their own past only.
+
+## 11. Trends shown in POE (planned 2026-10-29, before it is built)
+
+The user agreed to show trends on POE's art tab and in its report, and asked
+why AI was absent from the first lists. Display only: nothing here feeds a
+forecast or a test.
+
+**Why AI was absent (measured before this plan).** AI has its own trend
+(#1977), but the first lists kept trends with 15+ writers this year (AI has
+12), and AI's share is falling (critics writing on it: 2.9% in the year to
+Sep 2023, 1.7% now), so it is not "growing". In the papers' art pages AI
+is a modest topic: about 5% of Guardian art articles mention it since 2023
+and 1–3% are about it; NYT art articles hardly do (under 1%), partly
+because its archive gives only the lead paragraph and AI-art stories are
+often filed outside "Art". The lists below are chosen to show what is new,
+not to bring AI in; that AI then appears under "new" is a consequence, said
+here because the rules were set after seeing it was missing.
+
+**Period.** The open year runs October 2025 to September 2026 ("this
+year", as in Test 10b), set against the three years to September before.
+
+**Population.** Trends with at least 12 writers this year: the breadth
+floor (36 writers over three years) for one year.
+
+**Names.** The local model names each candidate again with a sharper
+question: "theme" only for a particular subject, issue, debate or movement
+that could be followed in the news; "general" for art or the art world in
+general (artists' role or reputation, critics, styles, institutions,
+exhibitions, a medium in general); "none" for no shared idea. Lists show
+themes only. Names are read against claims before they are shown.
+
+**Lists**, each up to 12, a trend may be in more than one:
+1. **New**: broad for the first time in 2021 or later, by writers this year.
+2. **Growing**: this year's share of writers at least 1.5 times its
+   average share over the three years before (new this year counts), by
+   that ratio.
+3. **Fading**: this year's share at most half its highest share in the
+   three years before, which had 12+ writers, by that highest share.
+4. **Argued over**: at least 10 verdicts this year (approval or
+   disapproval), by the minority side's share of verdicts.
+
+Each trend shown carries its name, writers and share each year, the papers
+it is in, its top words and three of this year's claims.
+
+**The finding goes with them.** The trends also go to POE as a third case
+set (years to September, as Test 10b, outcome "holds or grows next year")
+so POE's own case engine judges whether a mechanism predicts a trend's
+growth; per §10 it should find none. The report must say that the lists
+describe the present and are not forecasts.
