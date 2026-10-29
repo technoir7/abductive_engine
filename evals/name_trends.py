@@ -20,22 +20,27 @@ Words that set the group apart: {words}
 Sample claims:
 {claims}
 
-Name the shared idea in 2 to 5 plain words, the way an art critic would name a theme or trend (for example "craft and the handmade", "museums returning looted objects", "art made with AI"). Name the idea, not a person, show or institution. If the claims share only a kind of thing (exhibitions opening, obituaries), name that plainly.
+Name the shared idea in 2 to 5 plain words, the way an art critic would name a theme or trend (for example "craft and the handmade", "museums returning looted objects", "art made with AI"). Name the idea, not a person, show or institution. If the claims share only a kind of thing (exhibitions opening, obituaries, painting in general), name that plainly.
 
-Answer with JSON only: {{"name": "..."}}"""
+Then say which it is:
+- "theme": a subject, issue, debate or movement that critics write about (looted objects, AI, gender, heists, a medium coming back)
+- "kind": only a kind of thing or routine coverage (exhibitions, artists in general, painting in general, prizes, obituaries)
+- "none": the claims share no idea, only a way of writing
+
+Answer with JSON only: {{"name": "...", "kind": "theme" | "kind" | "none"}}"""
 
 
-def name(trend: dict) -> str:
+def name(trend: dict) -> dict:
     body = json.dumps({"model": MODEL, "prompt": PROMPT.format(words=", ".join(trend["words"]),
                                                                claims="\n".join(f"- {c}" for c in trend["sample"])),
                        "stream": False, "think": False, "format": "json", "options": {"temperature": 0}}).encode()
     req = urllib.request.Request("http://localhost:11434/api/generate", body, {"Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=600) as r:
         text = json.load(r)["response"]
-    out = json.loads(text)["name"].strip()
-    if not out:
-        raise ValueError(f"trend {trend['id']}: empty name from {text!r}")
-    return out
+    out = json.loads(text)
+    if not out.get("name", "").strip() or out.get("kind") not in ("theme", "kind", "none"):
+        raise ValueError(f"trend {trend['id']}: bad answer {text!r}")
+    return {"name": out["name"].strip(), "kind": out["kind"]}
 
 
 def main() -> None:
@@ -48,7 +53,7 @@ def main() -> None:
             continue
         names[str(k)] = name(trends[k])
         path.write_text(json.dumps(names, indent=0))
-        print(f"#{k}: {names[str(k)]}  ({' '.join(trends[k]['words'][:6])})", flush=True)
+        print(f"#{k}: {names[str(k)]['name']} [{names[str(k)]['kind']}]  ({' '.join(trends[k]['words'][:6])})", flush=True)
 
 
 if __name__ == "__main__":

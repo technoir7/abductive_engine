@@ -628,3 +628,23 @@ changed:
 2. **The rise/fall scale was capped.** Doubling bins stop at 17+ writers,
    so a trend with 17 or more writers could not rise; a year ahead most
    trends are there. Trend bins are now uncapped, own past and outcome.
+
+### §10 results after the two fixes (2026-10-29)
+
+814 trends (520,532 of 561,133 claims); k moves smoothly (699 in 2025, 603
+in 2026).
+- **Known episodes: 5 of 5 pass.** NFTs (peaks 2021, 2022); restitution
+  and repatriation (peak 2021); Black artists and race (peak 2020, and
+  2022); AI-made art, now its own trend (broad from 2025, peak 2025);
+  graffiti (peak 2006). The fixes were made for the faults above, not for
+  the misses, but AI and restitution changed with them; read accordingly.
+- **No mechanism holds, a quarter or a year ahead.** Quarterly: contested
+  −159 nats, modality −192, both papers −220; engine − own past −9.0
+  (random groupings −9.5 to −20.1). Yearly: contested −96, modality −86,
+  both papers −83; −23.8 (random groupings −13.0 to −32.0). Own past leads
+  from 2004 (quarterly) and 2005 (yearly) to the end.
+- **Reading.** Disagreement keeps a small topic in the press (concepts,
+  §9) and press coverage leads museum buying (artists), but no sign in how
+  critics write about a trend tells whether the whole trend grows. Trends
+  are for describing the present (what is argued over, what is growing),
+  forecast by their own past only.
