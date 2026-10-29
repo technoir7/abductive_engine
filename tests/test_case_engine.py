@@ -47,3 +47,11 @@ def test_a_mechanism_that_starts_to_matter_takes_the_lead_and_the_change_is_reco
     assert engine_2006 == own_2006
     engine_late, own_late = scores[2014]
     assert engine_late > own_late + 100
+
+
+def test_a_scheme_predicts_a_case_from_what_it_has_learned():
+    from abductive.case_engine import CaseScheme
+    scheme = CaseScheme(("f",))
+    scheme.learn([Record(0, (0,), {"f": 1}, 2)] * 20 + [Record(0, (0,), {"f": 0}, 0)] * 20)
+    p = scheme.predict(Record(1, (0,), {"f": 1}, None))
+    assert abs(sum(p) - 1) < 1e-9 and p[2] > 0.8

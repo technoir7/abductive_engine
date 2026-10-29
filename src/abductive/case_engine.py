@@ -8,6 +8,7 @@ is recorded as a shift in what drives the cases.
 """
 from __future__ import annotations
 
+import math
 from collections import defaultdict
 from dataclasses import dataclass
 from itertools import combinations
@@ -26,6 +27,11 @@ class CaseScheme:
 
     def score(self, rows: list[Record]) -> float:
         return sum(_log_p_backoff(self._cells[_key(r, self.features)], r.outcome, self._own[r.own]) for r in rows)
+
+    def predict(self, r: Record) -> list[float]:
+        """The chance of each outcome for R, from what has been learned."""
+        cell, base = self._cells[_key(r, self.features)], self._own[r.own]
+        return [math.exp(_log_p_backoff(cell, y, base)) for y in range(LEVELS)]
 
     def learn(self, rows: list[Record]) -> None:
         for r in rows:
