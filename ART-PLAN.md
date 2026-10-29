@@ -741,9 +741,12 @@ Nothing is built until the user has read it.
      (none, one, several).
   3. *Museum buys*: works acquired by Chicago or Cleveland next year (the
      existing artists case set).
-  4. *Market*: not measurable per artist with the data held (only yearly
-     market totals). Shown as unmeasured; new data would need the user's
-     decision.
+  4. *Market, as the press reports it*: claims next year that report a
+     sale, price, estimate or auction result for the artist (none, one,
+     several). About 7,700 such claims in the corpus, some 250 a year,
+     mostly headline sales, so it measures the market as critics see it,
+     not the market. Real auction results per artist would need a paid
+     source (§12.7); none is bought without the user's word.
 - **A work** is described, not observed: the engine's cases are artists, and
   a work is known through what critics said about it (its subject, the
   trends its claims fall in, its medium from the papers' own tags, the tone
@@ -772,7 +775,7 @@ several claims:
 - *NYT coverage*: the existing leader for museum buying, so a new feature
   must do better than what is already known.
 Own past, graded finely (doubling bins): the outcome this year and the
-years before. Each of the three measurable outcomes is its own case set,
+years before. Each of the four outcomes is its own case set,
 judged by the case engine (every subset of the eight features a rival,
 5-year half-life, shift at 3 nats), with the usual controls: each feature
 dealt at random among the year's artists (5 deals), and a placebo using the
@@ -786,12 +789,16 @@ feature's value from the year after instead of this one.
   predictable (§10).
 - Critics approve: being in an argued trend may lower the chance of
   approval and raise disapproval; no confident prediction for media.
+- Market as reported: NYT coverage leads (the Times reports sales of the
+  artists it covers); trend and medium features add little.
 Whatever comes out is reported, including no gain anywhere.
 
-### 12.4 Step 3: the portrait
+### 12.4 Step 3: the portraits
 
-The POE report model writes one portrait from the engine's findings only:
-for each kind of success, what the leading mechanism favours (which
+One full report for each kind of success (critics approve, more press,
+museum buys, market as reported), each written by the POE report model
+from the engine's findings only, as the trend-list reports are: for that
+kind of success, what the leading mechanism favours (which
 features, how strongly, since when, and the artists it raises most); where
 the kinds agree and where they pull apart; and step 1's detail of what
 critics rewarded this year, labelled as description. Where nothing beat own
@@ -802,13 +809,30 @@ what is in the data. No image.
 ### 12.5 Where it shows
 
 A "success" panel on POE's art tab: four columns (one per kind of success,
-market marked unmeasured), each with its leader, gain over own past and the
-features that help; step 1's bars; and the portrait, refreshed like the
-other reports. The three success case sets are kept apart from the
+market labelled "as the press reports it"), each with its leader, gain over
+own past, the features that help, and a button that opens its full report;
+step 1's bars above them. Reports refresh like the other reports. The three success case sets are kept apart from the
 existing case panels (artists, concepts, trends) so those stay as they are.
 
 ### 12.6 Cost
 
-All local, except one written portrait on the server (under a cent). Building
+All local, except four written reports on the server (under a cent each). Building
 records: minutes. Each case set: 256 rival schemes over ~250,000
 artist-years; estimated under half an hour each.
+
+### 12.7 Real market data: options found (2026-10-29), nothing bought
+
+Every source needs an account the user would make; Claude makes none.
+- AuctionAsk API: lots by artist with price realised and date, 5.4M records
+  from 200+ houses; auction results only on the $99/month tier (50,000
+  requests, enough for the panel's ~9,700 artists in one month); years
+  covered and terms on storing data not stated, to check first.
+- Art Market API: auction results by artist over about 20 years; no prices
+  published.
+- TheBasis.Art: free per-artist statistics; single prices metered ($19 for
+  50), too few for 9,700 artists; API pricing not published.
+- Altfn Data: 4.1M records 1989–2026, bulk download; enterprise pricing.
+- Artnet, Artprice: largest, by subscription; no bulk use.
+- Artsy: public API being retired.
+- Free research sets: Princeton (34,200 sales, 590 living artists,
+  1996–2012), too narrow for the panel.
