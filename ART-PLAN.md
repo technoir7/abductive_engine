@@ -722,3 +722,93 @@ describe the present and are not forecasts.
    leaves "fading" when a trend of the same name has 12+ writers this year
    (it carries on under another number). The names are the local model's,
    so this merges only what it called the same.
+
+## 12. The work most likely to succeed now (planned 2026-10-29, before it is built or run)
+
+The user asked to use the analysis to describe "the ideal work of art most
+likely to succeed today", knowing the terms need defining. This section
+defines them, says what is tested, and fixes the predictions before any run.
+Nothing is built until the user has read it.
+
+### 12.1 Terms
+
+- **Success** is four things, kept apart, because the fields that consecrate
+  art can disagree (Bourdieu: critics' esteem and the market can pull in
+  opposite directions). Each is an outcome for an artist the year after:
+  1. *Critics approve*: approving verdicts about the artist next year
+     (none, one, several).
+  2. *More press*: articles naming the artist next year, in either paper
+     (none, one, several).
+  3. *Museum buys*: works acquired by Chicago or Cleveland next year (the
+     existing artists case set).
+  4. *Market*: not measurable per artist with the data held (only yearly
+     market totals). Shown as unmeasured; new data would need the user's
+     decision.
+- **A work** is described, not observed: the engine's cases are artists, and
+  a work is known through what critics said about it (its subject, the
+  trends its claims fall in, its medium from the papers' own tags, the tone
+  of the verdicts).
+- **Today** is the year to September 2026, as in §11. The portrait is for
+  the year after.
+
+### 12.2 Step 1: what critics rewarded this year (description only)
+
+For the year to September 2026: approvals against disapprovals by trend (all
+trends with at least 10 verdicts, named as in §11) and by medium (the
+papers' tags), with a sample of approved and of disapproved claims for each.
+No forecast is drawn from it; it gives the portrait its detail.
+
+### 12.3 Step 2: what an artist's coverage predicts (the test)
+
+Cases: every artist in the artists panel (museum-acquired, ~9,700), by year
+2000–2025, as in replay 18. Features of an artist's year, from the claims
+whose subject names them (reception.py's rule), each graded none / one /
+several claims:
+- *in a new trend*, *in a growing trend*, *in a fading trend*, *in an argued
+  trend*: the §11 list rules applied to every year, not only 2026, to all
+  trends (the theme filter needs names, which only 2026's candidates have);
+- *painting*, *photography*, *sculpture*: articles naming the artist that
+  carry the paper's tag for that medium;
+- *NYT coverage*: the existing leader for museum buying, so a new feature
+  must do better than what is already known.
+Own past, graded finely (doubling bins): the outcome this year and the
+years before. Each of the three measurable outcomes is its own case set,
+judged by the case engine (every subset of the eight features a rival,
+5-year half-life, shift at 3 nats), with the usual controls: each feature
+dealt at random among the year's artists (5 deals), and a placebo using the
+feature's value from the year after instead of this one.
+
+**Predictions, fixed before the run:**
+- Museum buys: NYT coverage stays the leader; no trend or medium feature
+  adds 3 nats over it.
+- More press: own past (already in the press) does most of the work; NYT
+  coverage adds; trend features add little, since trends themselves are not
+  predictable (§10).
+- Critics approve: being in an argued trend may lower the chance of
+  approval and raise disapproval; no confident prediction for media.
+Whatever comes out is reported, including no gain anywhere.
+
+### 12.4 Step 3: the portrait
+
+The POE report model writes one portrait from the engine's findings only:
+for each kind of success, what the leading mechanism favours (which
+features, how strongly, since when, and the artists it raises most); where
+the kinds agree and where they pull apart; and step 1's detail of what
+critics rewarded this year, labelled as description. Where nothing beat own
+past, the portrait says the honest answer is "no feature of the work
+helps; what helps is already being written about". It is told to use only
+what is in the data. No image.
+
+### 12.5 Where it shows
+
+A "success" panel on POE's art tab: four columns (one per kind of success,
+market marked unmeasured), each with its leader, gain over own past and the
+features that help; step 1's bars; and the portrait, refreshed like the
+other reports. The three success case sets are kept apart from the
+existing case panels (artists, concepts, trends) so those stay as they are.
+
+### 12.6 Cost
+
+All local, except one written portrait on the server (under a cent). Building
+records: minutes. Each case set: 256 rival schemes over ~250,000
+artist-years; estimated under half an hour each.
