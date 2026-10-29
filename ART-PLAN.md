@@ -914,3 +914,23 @@ combination may lead only when it stands 3 nats ahead of each of its
 parts. Everything else (standing, half-life, shift, controls) is as
 before. Both engines are run on artists, concepts and trends and compared
 before either replaces the other in POE.
+
+### §9 amended: results with the additive engine (2026-10-29)
+
+Run in POE (services/cases.py) on the shipped case sets, yearly:
+- Artists: NYT + critics' approval leads from 2023 (engine − own past
+  +223 nats over 2002–2024). Alone: NYT +218, approval adds about 23,
+  Guardian about 2, contested about 0. History of the leader: NYT from
+  2003, NYT + approval from 2009, all four from 2016, NYT + approval from
+  2023. The tables had NYT alone, +177.
+- Concepts: contested + both papers + modality from 2002 (engine +153; the
+  triple +779 over all years; both papers alone +509, modality +191,
+  contested +168). The tables had contested alone (+38) and scored both
+  papers −119: the clearest case of the flaw.
+- Trends: nothing holds over the years (engine −0.3; every rival −17 to
+  −2); contested has stood 3 nats ahead only since 2024.
+- Control: each feature dealt at random among the year's cases, three
+  deals: −61 to +10 nats for every feature, against the hundreds above.
+Not yet rerun: the quarterly trends and the single-mechanism judgements in
+this repo (cases.judge, case_engine.py), which still use tables; the
+yearly trends above give the same finding.
