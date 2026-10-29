@@ -836,3 +836,19 @@ Every source needs an account the user would make; Claude makes none.
 - Artsy: public API being retired.
 - Free research sets: Princeton (34,200 sales, 590 living artists,
   1996–2012), too narrow for the panel.
+- **Reports already held** (~/Documents/art-market-reports/, read
+  2026-10-29). Art Basel & UBS 2017–2025: yearly market shares by medium
+  (dealers and auctions, by price band), female artists' share of sales and
+  of artists shown, established against emerging; no named artists. Hiscox
+  Artist Top 100, 2024 edition: auction sales of works made after 2000 at
+  Christie's, Sotheby's and Phillips, 2019–2023, with named artists (top
+  fives by value, under-45s, women, lots; a full profile of the top
+  artist); one edition only.
+  Too few years and artists for the case engine (it needs many cases each
+  year), so they are used as **checks and context, not outcomes**: the
+  market report sets the press's picture against Art Basel's medium and
+  gender shares for the same years, and against whether Hiscox's named
+  top artists are the ones the press reports selling. Figures are read
+  first-print and dated to each report's publication, as in POE's
+  report_figures.csv. Other Hiscox editions are free from Hiscox's site;
+  fetched only if the user agrees.
