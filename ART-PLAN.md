@@ -1005,3 +1005,37 @@ deals, all alike to a decimal).
   photography nothing to museum buys, sculpture nothing to the market once
   fixed. The feature that adds most to three of the four kinds is being
   written about inside a trend critics argue over.
+
+### 12.8 An image prompt at the end of each report (planned 2026-10-29, before it is built)
+
+Amends 12.4's "no image": each report ends with an image prompt, a text an
+image model could draw from, labelled as an illustration of what a
+"successful" work looks like by that measure. The engine makes no image.
+Every choice is made by a rule, the same for all four kinds, so that the
+four prompts differ only where the findings do:
+- **None where nothing is claimed.** Where the strength verdict is "too
+  small to claim anything" (the market now), the section says there is
+  nothing to illustrate and gives no prompt.
+- **Subject: one theme, by rule.** From this year's trend lists, the theme
+  the leading features favour most: the largest sum of the leader's push
+  (for one claim) over the lists the theme is on, so a list that pushes
+  down (press's new trend) counts against it. Ties go to the most
+  approvals less disapprovals this year, then the most writers. If the
+  leader uses no list, every theme ties on the first step. Now:
+  approve, indigenous and subcontinental art; press and museum, women
+  artists' careers. Which particular theme helps was never tested (only
+  "a theme on this list"); the prompt says the theme is this year's.
+- **Medium, by rule.** The medium in the leading features that pushes
+  up most; if none, the medium with the most approvals less disapprovals
+  this year, labelled as not tested. Now: approve, painting; press and
+  museum, photography (museum's from the leader, though it adds nothing).
+- **The writer writes only the description**: one paragraph, 40 to 90
+  words, the work's subject and medium in plain visual terms, drawn from
+  the theme's words and what critics said in it; no names of real people,
+  works or places. Code adds the label above it and a fixed setting
+  after it, so nothing the data does not say is left to the writer or the
+  image model: "The work alone in an empty white gallery, photographed
+  straight on for a museum catalogue, in even, soft daylight."
+- Prompt version 5; four report calls, under a cent each.
+- Making images is outside the engine. Rule fixed before any are made, so
+  none is picked: one run per prompt, every image it returns shown.
