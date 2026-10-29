@@ -24,10 +24,12 @@ def level(n: int) -> int:
     return min(n, 2)
 
 
-def doubling(n: int) -> int:
+def doubling(n: int, cap: int | None = 6) -> int:
     """0, 1, 2, 3-4, 5-8, 9-16, 17+: size graded finely enough that a
-    feature cannot stand in for it."""
-    return 0 if n == 0 else min(6, (n - 1).bit_length() + 1)
+    feature cannot stand in for it. CAP None keeps doubling (trends, whose
+    writers run past 17, ART-PLAN §10 fault 2)."""
+    b = 0 if n == 0 else (n - 1).bit_length() + 1
+    return b if cap is None else min(cap, b)
 
 
 @dataclass(frozen=True)
@@ -203,11 +205,17 @@ def _graded(raw: dict) -> dict:
     return {k: 0 if v == 0 else 1 if v <= median else 2 for k, v in raw.items()}
 
 
-def _trend_age(quarters: int) -> int:
-    return 0 if quarters < 4 else 1 if quarters < 12 else 2
+def _trend_age(periods: int, per_year: int) -> int:
+    return 0 if periods < per_year else 1 if periods < 3 * per_year else 2
 
 
-def trend_quarters(claims: Iterable[Claim], start: dict, open_quarter: int) -> list[Record]:
+def year_to_september(month: str) -> int:
+    """Years ending in September, since the one ending September 2000 (0)."""
+    y, m = map(int, month.split("-"))
+    return y - 2000 + (m >= 10)
+
+
+def trend_quarters(claims: Iterable[Claim], start: dict, open_quarter: int, per_year: int = 4) -> list[Record]:
     """Each trend (Claim.concept) as a case, quarter by quarter (art_series
     quarters), from its START quarter to OPEN_QUARTER while alive (asserted
     within DORMANT_TREND_QUARTERS). Own past: writers this quarter and over
@@ -216,11 +224,17 @@ def trend_quarters(claims: Iterable[Claim], start: dict, open_quarter: int) -> l
     (2); None in the open quarter. Features (ART-PLAN §10.7), graded against
     that quarter's trends: contested (the minority side's share of
     judgements), both papers (the smaller paper's share of writers),
-    modality (share of claims that predict or doubt)."""
+    modality (share of claims that predict or doubt). PER_YEAR 1 steps by
+    years ending in September instead (Test 10b): own past then this year
+    and last, dormancy two years."""
     from .art_series import quarter
+    period = quarter if per_year == 4 else year_to_september
+    if per_year not in (1, 4):
+        raise ValueError(f"steps are quarters (4) or years (1), not {per_year} a year")
+    dormant = DORMANT_TREND_QUARTERS * per_year // 4
     cells: dict = {}
     for c in claims:
-        cell = cells.setdefault((c.concept, quarter(c.month)),
+        cell = cells.setdefault((c.concept, period(c.month)),
                                 {"writers": set(), "by_paper": defaultdict(set), "approval": 0, "disapproval": 0,
                                  "claims": 0, "modal": 0})
         cell["writers"].add(c.writer)
@@ -240,7 +254,7 @@ def trend_quarters(claims: Iterable[Claim], start: dict, open_quarter: int) -> l
     alive: dict[int, list] = defaultdict(list)
     for k, first in start.items():
         for q in range(first, open_quarter + 1):
-            if q - max([first] + [x for x in asserted.get(k, ()) if x <= q]) >= DORMANT_TREND_QUARTERS:
+            if q - max([first] + [x for x in asserted.get(k, ()) if x <= q]) >= dormant:
                 break
             alive[q].append(k)
     out = []
@@ -255,12 +269,12 @@ def trend_quarters(claims: Iterable[Claim], start: dict, open_quarter: int) -> l
             raw["modality"][k] = cell["modal"] / cell["claims"] if cell else 0.0
         levels = {f: _graded(v) for f, v in raw.items()}
         for k in alive[q]:
-            before = set().union(*(writers(k, p) for p in range(q - 4, q)))
+            before = set().union(*(writers(k, p) for p in range(q - per_year, q)))
             now = len(writers(k, q))
             outcome = None
             if q < open_quarter:
-                nxt, cur = doubling(len(writers(k, q + 1))), doubling(now)
+                nxt, cur = doubling(len(writers(k, q + 1)), None), doubling(now, None)
                 outcome = 0 if nxt < cur else 1 if nxt == cur else 2
-            out.append(Record(q, (doubling(now), doubling(len(before)), _trend_age(q - start[k])),
+            out.append(Record(q, (doubling(now, None), doubling(len(before), None), _trend_age(q - start[k], per_year)),
                               {f: levels[f][k] for f in raw}, outcome, case=k))
     return out

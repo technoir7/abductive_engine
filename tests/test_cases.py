@@ -156,3 +156,21 @@ def test_a_trend_eight_quarters_unasserted_is_no_longer_a_case():
     from abductive.cases import trend_quarters
     claims = [_claim(1, "2000-01", "A")]
     assert [r.year for r in trend_quarters(claims, {1: 0}, open_quarter=20)] == list(range(8))
+
+
+def test_trends_can_step_by_years_ending_in_september():
+    from abductive.cases import trend_quarters, year_to_september
+    assert [year_to_september(m) for m in ("2000-09", "2000-10", "2001-09")] == [0, 1, 1]
+    claims = [_claim(1, "2000-10", "A"), _claim(1, "2001-03", "B"), _claim(1, "2001-11", "C")]
+    rows = {r.year: r for r in trend_quarters(claims, {1: 1}, open_quarter=2, per_year=1)}
+    assert rows[1].own == (2, 0, 0)              # two writers in the year to September 2001
+    assert rows[1].outcome == 0                  # one the year after: a bin lower
+    assert rows[2].own == (1, 2, 1) and rows[2].outcome is None
+
+
+def test_a_big_trend_can_still_rise():
+    from abductive.cases import trend_quarters
+    claims = [_claim(1, "2000-01", f"w{i}") for i in range(20)] + [_claim(1, "2000-04", f"w{i}") for i in range(40)]
+    r = next(r for r in trend_quarters(claims, {1: 0}, open_quarter=1) if r.year == 0)
+    assert r.own[0] == 6 and r.outcome == 2       # 20 writers, then 40: a bin up
+    assert doubling(400, None) == 10 and doubling(400) == 6

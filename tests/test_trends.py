@@ -2,7 +2,7 @@
 (ART-PLAN §10)."""
 import numpy as np
 
-from abductive.trends import broad_groups, choose_k, distinctive_words, follow, kmeans, moving
+from abductive.trends import broad_groups, distinctive_words, follow, kmeans, moving
 
 
 def _blobs(rng, centres, n):
@@ -23,15 +23,6 @@ def test_a_broad_group_has_many_writers_on_many_subjects():
     writers = [f"w{i}" for i in range(12)] + ["one critic"] * 12 + [f"w{i}" for i in range(12)]
     subjects = [f"s{i}" for i in range(12)] * 2 + ["one story"] * 12
     assert broad_groups(labels, writers, subjects, least=10) == {0}
-
-
-def test_k_is_the_one_giving_the_most_broad_groups():
-    rng = np.random.default_rng(0)
-    X = _blobs(rng, np.eye(8), 20)                 # eight ideas, each broad
-    writers = [f"w{i % 20}" for i in range(len(X))]
-    subjects = [f"s{i % 20}" for i in range(len(X))]
-    k, _, labels = choose_k(X, writers, subjects, np.random.default_rng(1), start=2, least=15)
-    assert k == 8 and len(broad_groups(labels, writers, subjects, least=15)) == 8
 
 
 def test_a_group_is_followed_by_its_best_match_holding_half_its_shared_claims():

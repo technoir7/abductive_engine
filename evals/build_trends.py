@@ -19,14 +19,14 @@ import numpy as np
 from abductive.embed import read_vectors
 from abductive.names import proper_names, without_names
 from abductive.press import read_month
-from abductive.trends import _nearest, broad_groups, choose_k, distinctive_words, follow, moving
+from abductive.trends import _nearest, broad_groups, distinctive_words, follow, kmeans, moving
 
 ROOT = Path.home() / "Documents" / "art-press-texts"
 FIRST, LAST = 2000, 2026
 SPAN = 3                 # years in each grouping
 LEAST_WRITERS = 36       # three a quarter on average over SPAN years (ART-PLAN §10, deviation 1)
 LEAST_SUBJECTS = 10
-START_K = 25
+CLAIMS_PER_GROUP = 81   # median of the most-broad-groups rule's 27 yearly choices (ART-PLAN §10, deviation 3)
 SAMPLES = 15
 
 
@@ -68,8 +68,8 @@ def group_years(meta, X):
         if centres is not None:
             pull = np.bincount(_nearest(X[idx], centres), minlength=len(centres))
             init = centres[np.argsort(-pull, kind="stable")]
-        k, centres, labels = choose_k(X[idx], writers, subjects, np.random.default_rng(y), start=START_K,
-                                      least=LEAST_SUBJECTS, least_writers=LEAST_WRITERS, init=init)
+        k = max(1, round(len(idx) / CLAIMS_PER_GROUP))
+        centres, labels = kmeans(X[idx], k, np.random.default_rng(y), init=init)
         broad = broad_groups(labels, writers, subjects, LEAST_SUBJECTS, LEAST_WRITERS)
         out[y] = (idx, labels, broad)
         print(f"{y}: {len(idx)} claims, k={k}, {len(broad)} broad groups", flush=True)

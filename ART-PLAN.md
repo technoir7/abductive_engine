@@ -610,3 +610,21 @@ year, October 2025 to September 2026, is complete), own past this year
 and last, outcome next year's writers falling, holding or rising a
 doubling bin, half-life 5 years, the same five random groupings and
 feature deals. Whatever it shows is reported; no further horizons.
+
+### Test 10b result, and two faults found reading it (2026-10-29)
+
+**Result as planned:** a year ahead, no mechanism holds either (contested
+−79 nats, modality −72, both papers −65; random groupings −7.8 to +6.2).
+Reading the open year's lists showed two faults in the build, which make
+both runs unfair; fixed and both rerun once, as below, with nothing else
+changed:
+1. **Trends broken by k changing.** Each year's k came from a doubling
+   grid, so it jumped (800 → 400 in 2026, whose window is nine months
+   short; also 2006, 2007, 2009, 2015), dropping half the centres at once:
+   hundreds of trends "died" and were "born" again in one year. Now k is
+   the window's claims over 81, the median claims per group of the rule's
+   own 27 yearly choices, so k moves smoothly and only the centres that
+   draw the fewest claims are dropped (deviation 3).
+2. **The rise/fall scale was capped.** Doubling bins stop at 17+ writers,
+   so a trend with 17 or more writers could not rise; a year ahead most
+   trends are there. Trend bins are now uncapped, own past and outcome.

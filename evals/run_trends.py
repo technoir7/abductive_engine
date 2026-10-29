@@ -1,6 +1,9 @@
 """ART-PLAN §10.7 and checks: the case engine on trends, by quarter.
 
-    uv run python -m evals.run_trends
+    uv run python -m evals.run_trends [--years]
+
+--years steps by years ending in September (Test 10b) and writes
+engine_years.json.
 
 Reads ROOT/trends/claims.jsonl (evals/build_trends.py). Runs the engine on
 the trends, then on five random groupings (each year's claims dealt among
@@ -10,6 +13,7 @@ each scheme's gain, and the open quarter's forecasts.
 """
 from __future__ import annotations
 
+import argparse
 import json
 import random
 from collections import defaultdict
@@ -18,17 +22,19 @@ from pathlib import Path
 
 from abductive.art_series import Claim, quarter
 from abductive.case_engine import CaseEngine
-from abductive.cases import dealt, trend_quarters
+from abductive.cases import dealt, trend_quarters, year_to_september
 
 ROOT = Path.home() / "Documents" / "art-press-texts"
 POOL = ("contested", "both_papers", "modality")
-OPEN = quarter("2026-09")
-HALF_LIFE_QUARTERS = 20
+STEPS = {4: (quarter, 20, "engine.json"), 1: (year_to_september, 5, "engine_years.json")}   # period, half-life, output
 DEALS = 5
 
 
+PER_YEAR = 4
+
+
 def label(q: int) -> str:
-    return f"{2000 + q // 4} Q{q % 4 + 1}"
+    return f"{2000 + q // 4} Q{q % 4 + 1}" if PER_YEAR == 4 else f"year to Sep {2000 + q}"
 
 
 def load(root: Path):
@@ -38,7 +44,7 @@ def load(root: Path):
         if r["start"] is None:
             continue
         claims.append(Claim(r["trend"], r["month"], r["writer"], r["force"], r["stance"], r["paper"]))
-        start[r["trend"]] = quarter(f"{r['start']}-01")
+        start[r["trend"]] = STEPS[PER_YEAR][0](f"{r['start']}-01")
     return claims, start
 
 
@@ -63,7 +69,7 @@ def run(records):
     for r in records:
         if r.outcome is not None:
             closed[r.year].append(r)
-    engine = CaseEngine(POOL, half_life=HALF_LIFE_QUARTERS)
+    engine = CaseEngine(POOL, half_life=STEPS[PER_YEAR][1])
     gains = {s: 0.0 for s in engine.schemes if s}
     total, by_year = 0.0, defaultdict(float)
     for i, q in enumerate(sorted(closed)):
@@ -71,15 +77,23 @@ def run(records):
         e, o = engine.step(q, closed[q])
         if i > 0:
             total += e - o
-            by_year[2000 + q // 4] += e - o
+            by_year[2000 + q // PER_YEAR] += e - o
             for s in gains:
                 gains[s] += scores[s] - o
     return engine, total, gains, by_year
 
 
 def main() -> None:
+    global PER_YEAR
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--years", action="store_true")
+    PER_YEAR = 1 if parser.parse_args().years else 4
+    OPEN = STEPS[PER_YEAR][0]("2026-09")
+
+    def cases(claims):
+        return trend_quarters(claims, start, OPEN, per_year=PER_YEAR)
     claims, start = load(ROOT)
-    records = trend_quarters(claims, start, OPEN)
+    records = cases(claims)
     print(f"{len(start)} trends, {sum(r.outcome is not None for r in records)} trend-quarters judged")
     engine, total, gains, by_year = run(records)
     print(f"engine - own past: {total:+.1f} nats; leader {engine.leader or '(own past)'}")
@@ -89,7 +103,7 @@ def main() -> None:
         print(f"  {' + '.join(s):40} {g:+.1f}")
 
     print("random groupings (engine - own past):",
-          [round(run(trend_quarters(regrouped(claims, d), start, OPEN))[1], 1) for d in range(DEALS)], flush=True)
+          [round(run(cases(regrouped(claims, d)))[1], 1) for d in range(DEALS)], flush=True)
     if engine.leader:
         deals = []
         for d in range(DEALS):
@@ -104,7 +118,7 @@ def main() -> None:
     forecasts = [{"trend": r.case, "own": r.own, "features": r.features,
                   "own_past": own.predict(r), "with_leader": lead.predict(r)}
                  for r in records if r.outcome is None]
-    (ROOT / "trends" / "engine.json").write_text(json.dumps({
+    (ROOT / "trends" / STEPS[PER_YEAR][2]).write_text(json.dumps({
         "leader": engine.leader, "shifts": [(s.year, s.frm, s.to) for s in engine.shifts], "total": total,
         "gains": {" + ".join(s): g for s, g in gains.items()}, "by_year": by_year,
         "forecast_quarter": label(OPEN + 1), "forecasts": forecasts}))

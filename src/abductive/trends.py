@@ -74,26 +74,6 @@ def broad_groups(labels: np.ndarray, writers: Sequence[str], subjects: Sequence[
     return {g for g in w if len(w[g]) >= least_writers and len(s[g]) >= least}
 
 
-def choose_k(X: np.ndarray, writers: Sequence[str], subjects: Sequence[str], rng: np.random.Generator,
-             start: int = 50, least: int = LEAST, least_writers: int | None = None,
-             init: np.ndarray | None = None) -> tuple[int, np.ndarray, np.ndarray]:
-    """The k giving the most broad groups, doubling from START until the
-    count falls (or k passes the number of claims). INIT: centres to start
-    from, most important first. Returns k, its centres and labels."""
-    best = (0, None, None)
-    best_n = -1
-    k = start
-    while k <= len(X):
-        centres, labels = kmeans(X, k, rng, init=init)
-        n = len(broad_groups(labels, writers, subjects, least, least_writers))
-        if n < best_n:
-            break
-        if n > best_n:
-            best, best_n = (k, centres, labels), n
-        k *= 2
-    return best
-
-
 def follow(before: Mapping[Hashable, set], after: Mapping[Hashable, set]) -> dict:
     """Which group of BEFORE each group of AFTER continues: each the other's
     best match by shared claims (ties to the first), and the match holding at
