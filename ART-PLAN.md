@@ -1450,3 +1450,31 @@ after version leaves the writer nothing to fill:
   asserts about whom, so every sentence can be checked against what a
   critic wrote.
 - Same label as before. Five report calls, under a cent each.
+
+### 15.6 The imagined artist, grown for each kind of success (planned 2026-10-31, before it is built)
+
+The user: an artist grown from the engine to fit each kind of success.
+Amends 15.1 after the reading: the life's claims are chosen by that kind's
+success, not by the image's theme or by date. The work (image prompt, wall
+text, statement) is unchanged and stays apart.
+- **Whose lives.** The artist-years of the kind's own cases (§12 and §13
+  records) in the latest year whose outcome is known: those that had the
+  success the year after (outcome one or several). Their claims that year,
+  any theme, read as about a life (15.2). For the market and movers, the
+  same cases (a place in, or a move up, the next table).
+- **Which claims, by rule.** Artists with the outcome "several" first, then
+  "one"; within that, the most recent claims first; at most 2 claims per
+  artist, so the life is drawn from several lives, not one; at most 8 in
+  all. Numbered, with who made each and when.
+- **What the test says, said first by code.** Once 15.3 has run, a fixed
+  sentence before the life gives its finding for this kind, from the
+  verdict rules: life stories predict this success; or come with it rather
+  than before it (the year-after control); or add nothing. Until then:
+  "Whether a life story helps this kind of success has not yet been
+  tested."
+- **Unchanged from 15.1 after the reading:** the writer only recasts; every
+  sentence cites [n]; code refuses a sentence citing none and lists the
+  claims cited below the life; "the artist", no names. Where no claim
+  qualifies, code says so.
+- Order: the reading (running), then 15.3's test, then this, then the
+  panel (15.4). Five report calls, under a cent each; the rest is local.
