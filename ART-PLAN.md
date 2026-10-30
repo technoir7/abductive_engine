@@ -1151,3 +1151,28 @@ which is not to be got round). Each year's parse is checked by count
 against the source before use. Then §12's market is rerun on the fuller
 years, the snapshot and the four reports rebuilt, and §13–§14 run on it.
 A rerun can change the market's finding; whatever it is, it is reported.
+
+### §12.10 result: the market on 2009–2025 (2026-10-30)
+
+Tables now cover every year from 2009 to 2025 (2011 read by rank order
+alone; 2016–2017 from archived pages; names split after a typeset
+ligature in the 2022–2025 PDFs joined again, which had kept artists like
+Clyfford Still from matching). Scored 2011–2024, 14 years (was 7).
+- Leader growing trend + NYT (NYT alone from 2013, growing joined 2023):
+  +58.1 over own past (was +2.4): clear but modest. Dealt growing +54.6
+  (adds 3.5); dealt NYT +26–29 (adds about 30). Pushes up: NYT +0.57,
+  growing +0.49 for one.
+- Placebo +96.0 beats +58.1: next year's coverage predicts a place better
+  than this year's, so coverage goes with market success rather than
+  ahead of it, as before, now on twice the years.
+- The finding moves from "nothing" to "NYT coverage goes with a place in
+  the Top 500", still not a forecast.
+
+**Deviation 6 (decided before rebuilding the snapshot).** §12.9 made the
+market's prompt describe "where nothing predicts"; the user since chose
+description for the market whatever the numbers (2026-10-30: "Only the
+market section"). So a kind describes when the snapshot carries its
+at_the_top counts (only the market), not when its gain is small; the
+reasons' first sentence says why from the verdicts: too small to claim,
+or coverage that goes with this success rather than ahead of it, or
+otherwise that it shows those who have it, not what predicts it.
