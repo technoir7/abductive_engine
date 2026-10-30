@@ -1244,3 +1244,15 @@ every kind:
   wall text either.
 - Prompt version 7; five report calls (the four kinds and movers),
   under a cent each.
+
+### §12.11 deviation 1 (2026-10-30, after the first run)
+
+Three of the five first wall texts gave the artist a history the data does
+not hold ("the artist has said she came to the camera late", "made this
+early, before the work was shown", "early work by this artist took the
+same stance"): the theme is women artists' careers, and the writer turned
+critics' claims about real artists' careers into facts about this one. The
+rule is tightened, nothing else: the text says nothing about the artist
+beyond making this work (no words, wishes, life, career, earlier work,
+no he or she); claims about careers become what the work is about.
+Prompt version 8; the five reports are written again.
