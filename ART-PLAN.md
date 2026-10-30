@@ -1277,3 +1277,118 @@ rules as §12.11 with deviation 1, except the voice:
   artist, built from critics' claims in this theme, not the words of any
   real artist. None where nothing is illustrated.
 - Prompt version 9; five report calls, under a cent each.
+
+## 15. Biography (planned 2026-10-30; nothing built or run, awaiting the user's approval)
+
+The user's question: how much does an artist's life story count, against
+the work, for each kind of success? Some artists make their work a
+personal essay; some seem famous for their lives more than their art. What
+the engine shows so far is only suggestive: for press, museum buys, the
+market and movers the image theme is women artists' careers, whose claims
+are nearly all about lives (§12.9, §12.11 deviation 1); for museum buys the
+themes with the best records are about the person (§14). "Biography" was
+never tested. Three parts, in this order.
+
+### 15.1 The imagined artist, kept apart from the work
+
+The wall text and artist statement stay about the work only (§12.11
+deviation 1, §12.12). A separate last section, "The imagined artist", gives
+the imagined maker a life:
+- **What it may say.** Only what critics' claims in this theme say about
+  artists' lives (in the snapshot already), recast as one fictional life.
+  No name, no real person, place or institution, no dates beyond what the
+  claims give, never "successful". Third person, "the artist".
+- **Shape.** One paragraph, 60 to 120 words.
+- **Code adds the label**: a fictional life built from what critics said
+  about real artists' lives in this theme, not facts about anyone. None
+  where nothing is illustrated.
+- **Once 15.2 exists,** the snapshot gives the writer only the theme's
+  claims read as being about a life, and where there are none, code says
+  so in place of the section (critics approve may be such a case).
+- One report call per kind, under a cent each.
+
+### 15.2 The boundary, amended: two more parts to each claim
+
+§2 settled the reading form: who, about what, what is asserted, force,
+stance; "no categories of ours". Testing biography needs the engine to see
+which claims are about a life, and none of the five parts records that. The
+themes cannot stand in: deciding which themes are "biographical" would be
+our sorting, which §2 and the no-hard-coded-theses rule forbid.
+
+The proposal extends the fixed form, the observation language (EPISTEMOLOGY
+§3, concession 1: it is ours, and fixed on purpose), rather than sorting
+claims into themes. The model reports two more things about each claim,
+both about what the claim refers to, not what it means or whether it is
+right:
+- **subject**: what the claim is about is a person, a work (or works or a
+  show of them), an institution, or something else (a movement, a medium,
+  the market, an idea);
+- **life**: whether the claim concerns the life of a person who makes art
+  (their circumstances, history, career, character, body or identity), yes
+  or no, whether it says so of the person or of a work.
+Together they separate the two things the user named:
+- *life story*: subject a person, life yes ("she faced discrimination as a
+  designer in the late 1980s");
+- *work from life*: subject a work, life yes ("the painting recounts her
+  childhood").
+- The existing **who** part separates life told by the artist (quoted) from
+  life told by others, with no more reading.
+
+The model still proposes nothing to believe: it reports reference, as it
+reports force. The engine forms and judges as before. The concepts, themes
+and trend lists are not rebuilt; only new features are added.
+
+**How it is read.** The claims already read (561,133 grounded claims) are
+read again for these two parts only, from the claim itself (who, about,
+asserts). The articles are not re-read: a fresh reading would return
+different claims and undo everything built on them. Haiku via `claude -p`
+on the subscription, as the first reading. Fixed instructions, written
+before the pilot and not changed after it without a deviation here.
+
+**Checks on the instrument, not on the discourse.** A pilot of one month
+(about a thousand claims): its cost, and a sample shown to the user to see
+the instructions are understood. Every claim is kept whatever it is read
+as; nothing is dropped for disagreement (two papers, two voices).
+
+### 15.3 The test
+
+Per artist-year, three features, graded none, one, several like the others:
+life story, work from life, and life told by the artist. Each kind's pool:
+its §12 leader plus the three; past-only scoring, three random deals, the
+year-after control (no fair test for approve and press, §12 deviation 5),
+the same verdict rules (SMALL 10, LARGE 100). Market and movers kept apart
+as before. Nothing in the leaders changes unless the new features earn it.
+
+**The idea came from the data, so it cannot be confirmed by the same
+data** (EPISTEMOLOGY §8). Past-only scoring keeps the test honest year by
+year, but the hypothesis was suggested by looking at these years. The
+stronger test is the forecast: each kind's forecast for 2026 with and
+without the new features, written down when this runs and judged when
+2026's outcomes arrive.
+
+**Predictions, written before any reading:** life story adds over 10 for
+museum buys; for the market and movers the year-after control beats it
+(life story goes with a place, not ahead of it); for critics approve, life
+story adds under 10 and work from life does better than life story; life
+told by the artist adds under 10 everywhere.
+
+### 15.4 A biography panel
+
+After the test, its own panel on the dashboard and its own report, like
+the themes panel: for each kind, what the three features do (push, odds,
+what dealing them out costs, the year-after control) and the verdicts;
+then, as description, the share of this year's claims about our artists
+that concern a life, and the life claims made about the artists at the
+top of each kind. The report quotes odds worked out by code, as v6.
+
+### 15.5 Cost and order
+
+- 15.1 now: five report calls, under a cent each.
+- 15.2 pilot: about a thousand claims; cost measured, then shown to the
+  user with a sample before the full reading.
+- 15.2 full reading: a rough estimate only, to be replaced by the pilot's
+  measure: about 20 to 25 million tokens in and a few million out, about
+  $35 to $60 at list price, on the subscription (at the first reading's
+  rate, about 10 to 15 points of the weekly meter). Not started without
+  the user's word.
+- 15.3 and 15.4: local runs like §14 (minutes), then the panel.
