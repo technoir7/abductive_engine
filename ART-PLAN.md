@@ -1197,3 +1197,23 @@ Run on the 2009–2025 tables (§12.10), scored 2011–2024.
   of it, as it does with a place.
 - Prediction (nothing beats own past by 10) wrong on the size, right in
   spirit: what there is travels with the rise.
+
+### §14 results (2026-10-30)
+
+Pool per kind: its §12 leader plus good- and poor-record themes; records
+from earlier years only, every theme a claim was grouped into (814).
+- **Museum buys**: good-record themes lead with photography + NYT (since
+  2014; NYT + good themes from 2007), +243.5, against +227.0 for §12's
+  leader; the argued trend drops out. Dealt, good themes +227.0, +230.3,
+  +227.0 (adds about 15). One claim in a good-record theme, 1.7 times the
+  odds. Placebo +232.7 below +243.5: the coverage comes before the
+  purchase. The named themes with the best records for museum buys are
+  about an artist's standing and career: art history by decade, the
+  artist's personal style, the identity of the painter, reputation and
+  legacy, personality and character, body of work.
+- **Critics approve, more press, market**: the records do not enter the
+  leader; dealt, nothing changes (approve +336–347 against +343, the
+  others identical). Placebo no test for approve and press (§12
+  deviation 5).
+- Prediction (good-record themes add under 10 for approval and press, and
+  do better for museum buys than the market) right.
