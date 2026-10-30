@@ -1256,3 +1256,24 @@ rule is tightened, nothing else: the text says nothing about the artist
 beyond making this work (no words, wishes, life, career, earlier work,
 no he or she); claims about careers become what the work is about.
 Prompt version 8; the five reports are written again.
+
+### 12.12 An artist statement too (planned 2026-10-30, before it is built)
+
+At the user's request, each illustrated report also ends with a fictional
+artist statement for the same imagined work, after the wall text. Same
+rules as §12.11 with deviation 1, except the voice:
+- **Voice.** The imagined artist, in the first person ("I"), for every
+  kind. It may say what the work is about and what it tries to do, since
+  that is what a statement is, but only from the theme's distinctive
+  words and what critics said in it, and the work as the image prompt
+  describes it.
+- **Still nothing about the artist's life.** No life, career, earlier
+  work, training, origin, gender or name; claims about careers become
+  what the work is about. No real person, work, place or institution, no
+  quotes, nothing praised, bought or sold, never "successful".
+- **Shape.** One paragraph, 60 to 120 words; no title line (the wall
+  text names the work).
+- **Code adds the label** above it: a fictional statement by an imagined
+  artist, built from critics' claims in this theme, not the words of any
+  real artist. None where nothing is illustrated.
+- Prompt version 9; five report calls, under a cent each.
