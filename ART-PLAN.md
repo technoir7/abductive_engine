@@ -1217,3 +1217,30 @@ from earlier years only, every theme a claim was grouped into (814).
   deviation 5).
 - Prediction (good-record themes add under 10 for approval and press, and
   do better for museum buys than the market) right.
+
+### 12.11 A fictional wall text for each illustrated work (planned 2026-10-30, before it is built)
+
+Each report that has an image prompt also ends with a wall text for that
+same imagined work, after the prompt, the kind of text a visitor reads on
+the wall beside it. It is fiction and labelled so. Rules, the same for
+every kind:
+- **Who is speaking, by kind, fixed in code.** Museum buys: the museum's
+  label for a work it has just acquired. Market and market movers: the
+  wall text of the commercial gallery showing it for sale. Critics
+  approve and more press: the wall text of the gallery exhibition the
+  critics are writing about. A voice, not a finding.
+- **What it may say.** Only the theme's distinctive words and what
+  critics said in it (the claims the image prompt already draws on), put
+  in that voice, and the work as the image prompt describes it. No real
+  person, work, place or institution; no invented facts about the artist
+  (name, age, birthplace, schooling, prizes, collections, prices); no
+  claim that the work was praised, bought or sold; never "successful".
+  The artist is "the artist".
+- **Shape.** A first line with an invented title in italics, the medium
+  and the forecast year; then one paragraph of 60 to 120 words.
+- **Code adds the label** above it, naming the voice and saying it is
+  fiction built from critics' claims in this theme, not facts about any
+  real work or artist. Where there is nothing to illustrate, there is no
+  wall text either.
+- Prompt version 7; five report calls (the four kinds and movers),
+  under a cent each.
