@@ -1057,3 +1057,25 @@ states the rule's reasons exactly and the writer cannot reword them:
   not findings, and the setting is the same for every prompt.
 Nothing in it comes from outside the data (so nothing on what the two
 museums tend to collect, which the data does not record).
+
+### 12.9 The market's image prompt describes instead (planned 2026-10-30, before it is built)
+
+Where nothing predicts a kind of success (the market now), its prompt
+describes what goes with that success instead of what leads to it, as the
+market's year-after control found (coverage travels with a place in the
+Top 500). Rules, fixed before looking at the result:
+- **Who.** Our artists in Artprice's latest Top 500 table (now 2025:
+  303 of them, both series, as the case set reads them).
+- **Subject.** Among this year's themes (the trend lists' year, to
+  September), the one whose claims name the most of these artists; ties
+  to the most claims about them, then this year's approvals less
+  disapprovals. The reasons give how many it names and the theme next.
+- **Medium.** The medium tag on the most articles naming these artists
+  in the same year; ties in the order painting, photography, sculpture.
+  Only those three are tagged, said as before.
+- The counts are made offline (evals/success_snapshot.py, from the press,
+  claims and Artprice tables) and shipped in the snapshot; the rule runs
+  in narrative._image_subject like the others. The reasons section says
+  first that this prompt describes, not predicts, and why.
+- Same label, writer's description and fixed setting as §12.8. One
+  report call.
