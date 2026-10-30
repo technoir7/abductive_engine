@@ -1176,3 +1176,11 @@ at_the_top counts (only the market), not when its gain is small; the
 reasons' first sentence says why from the verdicts: too small to claim,
 or coverage that goes with this success rather than ahead of it, or
 otherwise that it shows those who have it, not what predicts it.
+
+### §13 deviation 1 (2026-10-30, before any run)
+
+The outcome is recoded: did not move up (down or the same band), up one
+band, up two bands or more. The case engine reads every push and its
+"most raised" list against outcome 0 as "none", so with down / same / up
+its figures would have meant the chance of not falling. Now they mean the
+chance of moving up, which is §13's question.
