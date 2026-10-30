@@ -1129,3 +1129,25 @@ from earlier years.
   report, description and test kept apart.
 - Plan 4 (the missing market years) comes first if approved, so §13 and
   §14 run on the fuller market data.
+
+### 12.9 amended: the critics' own words about the artists at the top (2026-10-30, before it is built)
+
+The market prompt's "what critics said" was the theme's sample claims,
+about any artist. It becomes the claims made this year about the
+artists at the top in the chosen theme, the 8 most recent (by
+publication date, then paper and article), as "about: asserts". The
+writer draws the work from these; the rule choosing theme and medium is
+unchanged.
+
+### 12.10 Plan 4: the missing market years (2026-10-30, before it is built)
+
+The user approved fetching free, official tables of Artprice's Top 500
+(all artists): 2011 (trends2011_en.pdf, already here; its table failed to
+parse: the parser is fixed, not the data), 2012 and 2013 (Artprice's PDFs
+from imgpublic.artprice.com) and 2016–2017 (Artprice's own report pages
+as archived by web.archive.org; the live pages sit behind a bot check,
+which is not to be got round). Each year's parse is checked by count
+(about 500 rows, as the others) and by spot-checking the first ranks
+against the source before use. Then §12's market is rerun on the fuller
+years, the snapshot and the four reports rebuilt, and §13–§14 run on it.
+A rerun can change the market's finding; whatever it is, it is reported.
