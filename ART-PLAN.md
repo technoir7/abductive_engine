@@ -1478,3 +1478,38 @@ text, statement) is unchanged and stays apart.
   qualifies, code says so.
 - Order: the reading (running), then 15.3's test, then this, then the
   panel (15.4). Five report calls, under a cent each; the rest is local.
+
+### 15.7 Life blocks: the imagined artist assembled from scored life themes (planned 2026-10-31, before it is built)
+
+Replaces 15.6's choice of claims, and 15.3's three features, at the
+user's word ("modular Lego blocks of biography"). 15.6 took the lives of
+artists who had the success, but fame brings both life stories and success,
+so those lives may only mark who was famous already. Here the engine scores
+life stories as it scores themes (§14):
+- **The blocks.** A life block is a theme the engine formed (§11), counting
+  only its claims read as about a life (15.2). No grouping is ours.
+- **Each block's record, per kind.** §14's track record (successes next
+  year less expected among artists with the same amount so far, over
+  expected plus PRIOR 5), from earlier years only, counting each
+  artist-year's life claims in the block. All five kinds, movers included.
+- **The test.** Each kind's §12 leader plus two features: life claims in
+  blocks with a good record so far, and in blocks with a poor one (none,
+  one, several). Controls as §14: three random deals of the two, the
+  year-after control (no fair test for approve and press). Market and
+  movers apart as before. 15.3's split by subject and by who told it is
+  left for later; 15.3's predictions are kept for it.
+- **The imagined artist.** From the trend lists' year (to September), the
+  claims read as about a life in the blocks with the best records for that
+  kind (above 0), best block first, most recent first within a block; at
+  most 2 claims per person or thing they are about, at most 8 in all. The
+  writer only recasts, every sentence citing [n]; code refuses a sentence
+  citing none and lists the claims, each with its block, under the life.
+- **What code says first,** from the test's verdict for the kind: good-
+  record life blocks predict this success; or come with it rather than
+  before it; or add nothing beyond what already leads. Where no block has a
+  record above 0, code says no life story stands out and there is no life.
+- **Predictions, before the run:** good-record blocks add over 10 for
+  museum buys; for the market and movers the year-after control beats
+  them; for critics approve they add under 10.
+- Local runs as §14, five report calls under a cent each, then the panel
+  (15.4), showing each kind's best and worst blocks.
