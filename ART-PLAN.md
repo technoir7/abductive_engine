@@ -1392,3 +1392,16 @@ top of each kind. The report quotes odds worked out by code, as v6.
   rate, about 10 to 15 points of the weekly meter). Not started without
   the user's word.
 - 15.3 and 15.4: local runs like §14 (minutes), then the panel.
+
+### §15 decisions so far (2026-10-30)
+
+- **15.2's amended boundary: approved by the user.** Their reasoning: the
+  wall texts were already being kept clear of biography, a judgment about
+  what claims are about; the two new parts make that judgment explicit
+  and testable.
+- **15.1's timing: under discussion.** Leaning to after the reading; also
+  weighing a version from what the engine already has, made first.
+- **15.2's reading: nothing runs without the user's word**, the pilot
+  included. The user reports the first reading took about 5 to 6 percent
+  of a week's allowance; this reading writes far less per claim and reads
+  no articles, so it should take less; the pilot measures it.
