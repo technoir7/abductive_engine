@@ -1079,3 +1079,53 @@ Top 500). Rules, fixed before looking at the result:
   first that this prompt describes, not predicts, and why.
 - Same label, writer's description and fixed setting as §12.8. One
   report call.
+
+## 13. Market movers (planned 2026-10-30, before it is built or run)
+
+A separate panel and report, apart from §12's four kinds. §12 asked where
+an artist sits in the Top 500 next year, and the artist's own place
+predicted that; this asks who moves.
+- **Outcome.** Bands by best rank, both series as §12 reads them: not
+  listed, 251–500, 101–250, 26–100, 1–25. Next year's move: down a band or
+  more, same band, up a band or more.
+- **Cases.** As §12's market (deviation 3): a state year with a table that
+  year, the next and some year before. Own past: this year's band and the
+  best band before.
+- **Features, engine, controls** as §12: the eight, the additive engine,
+  each leading feature dealt at random (3 deals), and the year-after
+  placebo, a fair test here (market places are counted apart from the
+  press).
+- **Bar** as §12: under 10 nats over own past is too small to claim.
+- **Prediction.** As for places, nothing in the coverage beats own past by
+  10 nats.
+- **Shows** as a "market movers" panel with its own report (the success
+  report's prompt, for one kind); an image prompt only if the bar is met.
+
+## 14. Which themes help (planned 2026-10-30, before it is built or run)
+
+A separate panel and report. §12 tested "a claim in some theme on this
+list", never a theme itself, so the image prompts call their theme "this
+year's example". This tests themes by their track record, learned only
+from earlier years.
+- **Track record.** For each kind of success, each theme and each year Y:
+  over earlier artist-years (state years before Y) with a claim about the
+  artist in that theme, successes next year (outcome one or several)
+  observed less expected, where expected is the rate among all artists
+  with the same amount of that success that year; divided by expected
+  plus 5 (so a theme with few cases stays near 0). Every claim grouped
+  into a theme counts, not only themes on a list.
+- **Two features per artist-year**: claims in themes with a record above
+  0 ("good-record themes") and below 0 ("poor-record themes"), graded
+  none / one / several.
+- **Test.** For each kind, the additive engine with a pool of that kind's
+  §12 leader plus the two new features, so the question is whether a
+  theme's record adds anything to what already leads. Controls and bar as
+  §12 (each new feature dealt at random; placebo where fair).
+- **Prediction.** Good-record themes add under 10 nats for approval and
+  press (the lists already capture most of it), and do better for museum
+  buys than for the market.
+- **Shows** as a "which themes help" panel: per kind, whether the record
+  adds, and this year's themes with the best and worst records; its own
+  report, description and test kept apart.
+- Plan 4 (the missing market years) comes first if approved, so §13 and
+  §14 run on the fuller market data.
