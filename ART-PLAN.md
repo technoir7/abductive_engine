@@ -1039,3 +1039,21 @@ four prompts differ only where the findings do:
 - Prompt version 5; four report calls, under a cent each.
 - Making images is outside the engine. Rule fixed before any are made, so
   none is picked: one run per prompt, every image it returns shown.
+
+### 12.8 amended: how each prompt was made, said before it (2026-10-30, before it is built)
+
+Each report gets a section just before the image prompt that explains how
+the prompt was made. Code writes it from the same rule's inputs, so it
+states the rule's reasons exactly and the writer cannot reword them:
+- the theme: which lists the findings favour and which way each pushes
+  (a list that pushes down is said to count against), how many themes
+  tied, the approvals that broke the tie, and the theme that came next;
+  that only being on a list was tested, not this theme;
+- the medium: from the findings (and what dealing it at random showed it
+  adds), or from this year's approvals (description, not tested); that
+  only the media the papers tag were tested, naming the media critics
+  judged this year that never could be;
+- that the work's details are a reading of the theme's words and claims,
+  not findings, and the setting is the same for every prompt.
+Nothing in it comes from outside the data (so nothing on what the two
+museums tend to collect, which the data does not record).
