@@ -1426,3 +1426,27 @@ top of each kind. The report quotes odds worked out by code, as v6.
     work/no); the rest are borderline.
 - Recommendation: default effort, as the first reading. Nothing more runs
   without the user's word.
+
+### 15.1 after the reading: every sentence traced to a claim (planned 2026-10-30, before it is built)
+
+The user: the imagined artist's life must not be made up; it must come from
+the engine. The before version let the writer choose from every claim in
+the theme and fill the gaps (approve's life was mostly the writer's). The
+after version leaves the writer nothing to fill:
+- **Which claims, by rule.** The claims the engine grouped into the
+  image's theme in the trend lists' year (to September), read as being
+  about a life (15.2). For a kind that describes (the market), only those
+  about the artists at the top. The most recent first, at most 8. Shipped
+  in the snapshot with their numbers, who made them and when.
+- **None:** code writes "Critics' claims in this theme this year say
+  nothing about artists' lives." in place of the section, and the writer
+  writes nothing.
+- **The writer recasts, and only that.** Each sentence ends with the
+  number of the claim or claims it comes from, [n], says nothing those
+  claims do not, and recasts them as one artist ("the artist"; no names).
+- **Code checks and shows the trail.** A sentence without a valid [n]
+  refuses the report (it fails loudly, as a missing section does). Below
+  the life, code lists the claims cited: who made each, when, and what it
+  asserts about whom, so every sentence can be checked against what a
+  critic wrote.
+- Same label as before. Five report calls, under a cent each.
