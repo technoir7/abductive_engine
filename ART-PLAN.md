@@ -1405,3 +1405,24 @@ top of each kind. The report quotes odds worked out by code, as v6.
   included. The user reports the first reading took about 5 to 6 percent
   of a week's allowance; this reading writes far less per claim and reads
   no articles, so it should take less; the pilot measures it.
+
+### §15 trial results (2026-10-30)
+
+- **15.1 before version** made from what the engine has (every claim in
+  the theme, prompt v10) and frozen in
+  `art-press-texts/success/reports_before_life_reading/`. Two weaknesses
+  seen: market and movers lean on one real artist's details each; approve's
+  theme says little about lives, so its life is mostly the writer's.
+- **15.2 trial**, Haiku via `claude -p`, fixed instructions
+  (`src/abductive/reading_life.py`), batches of 100, nothing refused:
+  - default effort (as the first reading), 862 claims of 2026-08: $0.0345,
+    so about $22 for all 561,133, a third of the first reading ($67.88);
+  - low effort, 1,159 fresh claims of 2026-07: $0.0342, about $17 for all
+    (a run on 2026-08's claims again was cheaper only from the cache);
+  - the two efforts agree on life for 87% of 2026-08's claims and on
+    subject for 80%; default marks 229 as about a life, low 178, both 146.
+    In a sample of disagreements default is right on the clear ones
+    (a claim about "Kusama's tortuous early life": default person/yes, low
+    work/no); the rest are borderline.
+- Recommendation: default effort, as the first reading. Nothing more runs
+  without the user's word.
