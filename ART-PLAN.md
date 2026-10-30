@@ -1184,3 +1184,16 @@ band, up two bands or more. The case engine reads every push and its
 "most raised" list against outcome 0 as "none", so with down / same / up
 its figures would have meant the chance of not falling. Now they mean the
 chance of moving up, which is §13's question.
+
+### §13 results (2026-10-30)
+
+Run on the 2009–2025 tables (§12.10), scored 2011–2024.
+- Leader argued trend + NYT since 2016 (growing from 2013, argued alone
+  from 2014): +69.3 over own past, clear but modest. Pushes up, for one:
+  argued 1.75 times the odds, NYT 1.68 times. Dealt argued +58–65 (adds
+  about 7); dealt NYT +48.4 (adds about 21).
+- Placebo +105.6 beats +69.3: next year's coverage predicts a move up
+  better than this year's, so coverage goes with a rise rather than ahead
+  of it, as it does with a place.
+- Prediction (nothing beats own past by 10) wrong on the size, right in
+  spirit: what there is travels with the rise.
