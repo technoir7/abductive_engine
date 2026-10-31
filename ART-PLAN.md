@@ -1781,3 +1781,13 @@ kind but approve; from about 2019 they are told at par, and in 2023–25
 more than par for the market and the movers, while the most-covered
 artists (press) now get less of them. The user's "waning" shows in press
 and slightly in museums, not in the market, where it arrives late.
+
+**15.13 results (2026-10-31).** Kept only where both readers pass: approve
+2 of 4 sentences, press 3 of 6, museum 3 of 8, movers 3 of 8; market lost
+every sentence, so it has no life. Predictions: more dropped than either
+reader alone: held (about 60%, against 47% and 26%); no life loses all:
+failed (market). Both readers passed one sentence with an added detail
+(press: "after picking up someone else's" camera; the claim says only that
+he picked up the camera). Also fixed: GLM-5.3 ran out of its 4,000 tokens
+while thinking on movers; now 16,000. The cut sentences are not kept, so
+whether the readers were right to cut them cannot be checked.
