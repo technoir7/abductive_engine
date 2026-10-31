@@ -1739,3 +1739,14 @@ agreement filter on evidence: the sentences are our writing, held to the
 claims, and a sentence either reader doubts is not traced. Prediction:
 more is dropped than either reader dropped alone (15.9 47%, 15.10 26%);
 no life loses all.
+
+**§16 results (2026-10-31).** Chicago's own types: 5,621 Individuals, 263
+companies, 235 cultures, and a few schools, organisations and unknowns.
+Changed before the run: untyped makers (38) and couples and collaboratives
+(14) count, by the name rule, since the untyped are mostly recent
+acquisitions not yet typed (Reggie Burrows Hodges, Kameelah Janan Rasheed)
+and dropping them would bias against them. One maker Chicago no longer
+lists has no type. Artists: 9,665 → 9,068 (597 out). Predictions: a few
+hundred drop out: held (597); every leader unchanged: held; gains move
+under 10%: held (approve +0.4%, press +0.1%, museum −1.8%, market −2.8%,
+movers −4.5%); museum moves most: failed, movers moves most.
