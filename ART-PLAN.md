@@ -1928,3 +1928,15 @@ artists and the six told least (15.12's score), with the year. These are
 description, so none is coloured as help or harm. The scores reach the
 panel through the snapshot and the API only; the reports' input does not
 change, so the reports are not rewritten for it.
+
+**15.15 results (2026-10-31).** Every life has sentences now, each from
+its first write. Press: "The artist, the photographer acclaimed for
+observations of British life and one of the world's most feted
+photographic artists, might be The Most Interesting Man in the World [3,
+4, 6]." Movers keeps its trans-representation sentence; market lost its
+Kerry James Marshall sentence to the readers, rightly (the claim's "these
+paintings were an end point" became "the artist's career was"). The word
+rule cut an invented "spouse", "another photographer" and "partner".
+Predictions: every life keeps at least two sentences: failed (press and
+market keep one); the readers cut under a third of what passes the word
+rule: held (2 of 10).
