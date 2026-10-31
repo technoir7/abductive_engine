@@ -1864,3 +1864,21 @@ cannot be told: the cut sentences are not kept.
   readers". The engine's judging is then open to check, as the claims
   are. (2) Tense: a fixed table of common irregular verbs (become/became,
   take/took, begin/began, ...) counts each form as the same word.
+
+**15.14 second run (2026-10-31), with the cuts shown.** Kept: press 1 of 3
+sentences, museum 1 of 2 ("…captured gay life in the city in the 1970s");
+approve, market, movers none. What the shown cuts say:
+- The word rule cut what it should: the instructions' own example ("94
+  years old and whose health is failing… became a queer icon") copied
+  into lives whose claims lack it; an invented sentence (a footwear
+  designer in the late 1980s); "became fashion's favorite artist" where the
+  claim says "is".
+- The readers cut every sentence joining two or three claims, faithful
+  ones too ("whose health is failing [3], is 94 years old [5], and started
+  taking photos at 8 years old and never stopped [6]"): they judge the
+  joining of different people as saying more, which is the design.
+- **Change, before the next run.** The writer's example becomes a pattern
+  with no content. The readers are told the claims are about different
+  real people, joined on purpose into one imagined artist, and to judge
+  only whether each part of a sentence is said by a claim it cites (life
+  check v3).
