@@ -1750,3 +1750,34 @@ lists has no type. Artists: 9,665 → 9,068 (597 out). Predictions: a few
 hundred drop out: held (597); every leader unchanged: held; gains move
 under 10%: held (approve +0.4%, press +0.1%, museum −1.8%, market −2.8%,
 movers −4.5%); museum moves most: failed, movers moves most.
+
+**15.12 results (2026-10-31).** Built on the §16 rebuild. The latest year
+with known success is 2025 for every kind; championed that year: approve
+200 artists, press 71, museum 608, market 302, movers 124. A block's score
+in a year spreads with a typical SD of 0.08 (approve) to 0.16 (market).
+The lives changed: identity now enters where the championed are told it
+more than their share: market ("Black artists and visibility": Kerry James
+Marshall, Amy Sherald), movers ("transgender representation in art",
+"queer art and identity", "female artists and their work"), museum
+("female artists and identity", Peter Hujar's "gay life in the city").
+
+The test of the user's observation (mean score of the 18 identity blocks;
+word list ours, diagnostic only):
+
+| kind | 2013–17 | 2020–23 | 2025 |
+|---|---|---|---|
+| approve | −0.010 | +0.010 | +0.016 |
+| press | −0.028 | +0.004 | −0.129 |
+| museum | −0.098 | +0.009 | −0.006 |
+| market | −0.163 | −0.074 | +0.097 |
+| movers | −0.092 | +0.005 | +0.130 |
+
+Predictions: museum higher in 2020–23 than 2013–17: held (from about one
+SD under to par); museum lower in 2025 than 2020–23: held, but by less
+than noise; approve higher in 2020–23 than 2013–17: held, by little;
+approve lower in 2025: failed. Read: before about 2018, life stories of
+identity were told less about the championed than their share, in every
+kind but approve; from about 2019 they are told at par, and in 2023–25
+more than par for the market and the movers, while the most-covered
+artists (press) now get less of them. The user's "waning" shows in press
+and slightly in museums, not in the market, where it arrives late.
