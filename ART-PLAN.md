@@ -1713,9 +1713,9 @@ that, 15.7 found, predicts nothing); 15.7's test stays, said as before.
   kind, life claims about that year's championed artists in blocks scoring
   above 0: best block first, then most recent; at most 2 a block, 2 an
   artist, 8 in all; then 15.9's reading against the claims (15.13). The
-  list under the life says which artist each claim was about is not
-  shown, as before; it says the claims were about artists who had this
-  success in Y.
+  list under the life gives each claim's critic, date and block, as
+  before, and says the claims were about artists who had this success in
+  Y.
 - **What code says,** under the 15.7 finding: the life is what was said
   about the artists who had this success in Y, more than about others,
   and is description, not a cause.
