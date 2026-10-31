@@ -1829,3 +1829,12 @@ the claims in words of its own, which the readers then refused.
   artist's pronouns are the critics', and may change from sentence to
   sentence as the claims do. The user's example is still cut by the word
   rule ("age", "when", and "their" unless a claim has it).
+- **Amended again before the build** (user: "or use pronouns when the
+  pronouns are explicitly specified ie 'Joe, they/them' ... but i see your
+  point about keeping neutral on pronouns"): "the artist" by default. A
+  critic's own "she" or "he" is the critic's assumption, not the artist's
+  stated pronoun, so it is not taken. A pronoun is used only where a claim
+  the sentence cites states the person's pronouns ("they/them",
+  "she/her", "he/him"), and then only that set (they, them, their, ...).
+  In the press such statements are about six in all, so most lives say
+  "the artist".
