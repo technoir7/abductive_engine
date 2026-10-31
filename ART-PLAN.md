@@ -1670,3 +1670,25 @@ transgender), used for this audit only and fed into nothing.
 - This year there are 25 life claims in race blocks out of about 3,500, so
   any fair rule would rarely draw one; none may be forced in (no
   hard-coded theses).
+
+## 16 Makers who are not people (planned 2026-10-31, before it is built)
+
+Found in 15.11, fix approved by the user ("3 yes"). Chicago's makers were
+never filtered: every maker Chicago acquired counted as an artist, so
+cultures ("Ancient Egyptian", "French", "Byzantine"), "Unknown",
+workshops, followers and companies are among the 9,665 artists in every
+success analysis since §12. Cleveland's were filtered by name only.
+- **The rule, the museums' own where they have one.** Chicago types each
+  maker (Individual, Culture, Corporate Body, ...): only Individuals count.
+  Both museums then pass the same name rule, Cleveland's of §12 with
+  "follower", "circle" and "manner" added, since Chicago types "Workshop
+  of Titian" as an Individual.
+- **The data.** Chicago's maker types are fetched for the makers already in
+  museums.json (public API, about 60 calls); acquisitions are not
+  refetched, so nothing else in the data moves.
+- **The rebuild.** Everything that reads the artists: the cases, the §12
+  success runs, §13 movers, §14 themes, 15.7 lives, the snapshot, the five
+  reports. No push during it.
+- **Predictions, before the run:** a few hundred makers drop out; each
+  kind's leader stays the same and its gain moves under 10%; museum, which
+  counts acquisitions directly, moves most.
