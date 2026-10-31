@@ -1882,3 +1882,18 @@ approve, market, movers none. What the shown cuts say:
   real people, joined on purpose into one imagined artist, and to judge
   only whether each part of a sentence is said by a claim it cites (life
   check v3).
+
+**15.14 third run (2026-10-31).** Market and movers have lives that keep
+to their claims and read as one; press keeps one sentence; approve and
+museum none. Movers: "…understands the importance of representing trans
+people and, because they are an artist of color, has to think these
+issues through more than the average person [3], and their work is a
+poignant act of elevation, granting their community dignity, stature and
+reverence [8]." The shown cuts: the readers were right on "were
+introduced to their first photography teacher" (the claim: introduced to
+Ewen Spencer by that teacher) and on "They are The Most Interesting Man in
+the World" (the claim: "might be"); arguable on "carved their own path"
+and "only began photographing at 29 after picking up a camera" (the claim:
+"the camera"); the word rule cut "photographed" for the claim's "shot",
+a synonym, by design. The checks are strict and sometimes cut a faithful
+sentence; nothing invented passed that the shown lists reveal.
