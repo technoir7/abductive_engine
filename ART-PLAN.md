@@ -1629,3 +1629,16 @@ no model reads its own writing.
 - **As built:** GLM-5.3 Flash cannot turn thinking off (the first live
   refresh failed with a 400), so the check thinks at low effort, with room
   for its answer. The writer's thinking is still off.
+
+**15.10 results (2026-10-31).** Five reports rewritten, each on the first
+try. GLM-5.3 dropped 8 of 31 sentences (26%): approve 2 of 7, press 1 of 8,
+museum 2 of 4, market 2 of 8, movers 1 of 4. Predictions: the Duchamp
+sentence was written the right way round this time ("set art aside for
+another discipline"), so its drop could not be tested; the drop share
+within 15 points of 15.9's 47%: failed (21 points lower), so GLM is the
+more lenient reader of the two; no life loses all: held. Small additions
+still pass ("came to prominence", "to those who came to see it"). Where
+the claims are about different artists the life can contradict itself
+(museum: West Coast, 19th-century Austrian and British at once): faithful
+to the claims, not a coherent person. The lives panel (15.4 as built) is
+live, every kind's verdict "nothing".
