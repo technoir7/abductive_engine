@@ -1791,3 +1791,34 @@ failed (market). Both readers passed one sentence with an added detail
 he picked up the camera). Also fixed: GLM-5.3 ran out of its 4,000 tokens
 while thinking on movers; now 16,000. The cut sentences are not kept, so
 whether the readers were right to cut them cannot be checked.
+
+### 15.14 The life in the critics' words, joined without adding (planned 2026-10-31, before it is built)
+
+At the user's word: the life should keep to the claims but not read like
+a list ("The artist is 94 years old. The artist's health is failing.").
+15.13 cut about 60% and all of market's life, because the writer recast
+the claims in words of its own, which the readers then refused.
+- **The writer's job, narrowed.** Each claim keeps the critic's own words;
+  the writer only (a) puts "the artist" for the artist's name, (b) may
+  change tense, and (c) may join up to three claims in one sentence with
+  joins that assert nothing: "and", commas, an aside ("The artist, 94 and
+  in failing health, became a queer icon"), "who" or "whose". No word
+  that links claims in time, cause or contrast (when, after, because,
+  but, later, ...) unless it is in one of the claims it joins. No
+  pronoun for the artist: in a life about identity a pronoun is itself a
+  claim (he, she, they, his, her, their).
+- **Code checks the words, before any model reads.** Every word of a
+  sentence must be either in the claims it cites (allowing for plural and
+  tense endings) or in a fixed list of words that assert nothing (the,
+  a, and, of, in, is, was, who, whose, ...; the list is in the code, and
+  holds no word of time, cause or contrast). A pronoun for a person is
+  never allowed. A sentence that fails is dropped. This is the engine
+  judging, by a rule anyone can read.
+- **Then the two readers (15.13),** for what words alone cannot catch, as
+  a claim turned round with the same words.
+- **What code says** under the life: how many sentences each check cut.
+- **Predictions, before the run:** the user's own example ("at the age
+  of 94 when their health was failing") is cut by the word rule (age,
+  when, their); with claims kept in their words, the two readers cut under
+  a quarter of what passes the word rule; every life keeps at least three
+  sentences.
