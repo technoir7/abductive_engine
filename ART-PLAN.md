@@ -1999,3 +1999,26 @@ left out the image prompt or the life on four refreshes running) has the
 writer write again, as an empty life does. All five reports rewritten on
 the first try. The lives are short: one to three sentences kept (museum
 three, approve two; press, market and movers one).
+
+### 15.17 A short life has the writer write again (planned 2026-10-31, before it is built)
+
+**Why.** After 15.16 the lives keep one to three sentences. The checks
+are right to cut; the writer is unlucky. 15.15 lets it write again only
+when nothing survives. At the user's word ("Sounds good. Do the
+optimal").
+
+**Rule.** A life is short when fewer sentences survive than
+min(3, claims given). A short life has the writer write the whole report
+again, up to three writes in all (as 15.15). Code keeps the first write
+whose life is not short; where every write is short, the write with the
+most sentences kept (the earliest on a tie). The checks, the claims and
+the readers are unchanged: this only gives the writer more chances, and
+picks among writes by a count, never by what a sentence says. An empty
+life is a short one, so 15.15's retry folds into this.
+
+**Cost.** At most two more writes and their readings per kind, under a
+cent each (agreed for report regenerations).
+
+**Predictions, before the run.** At least three of the five lives keep
+three sentences or more. No life keeps fewer sentences than in
+reports_after_15_16b.
