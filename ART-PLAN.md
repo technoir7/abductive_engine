@@ -1897,3 +1897,23 @@ and "only began photographing at 29 after picking up a camera" (the claim:
 "the camera"); the word rule cut "photographed" for the claim's "shot",
 a synonym, by design. The checks are strict and sometimes cut a faithful
 sentence; nothing invented passed that the shown lists reveal.
+
+### 15.15 A margin for parody (planned 2026-10-31, before it is built)
+
+At the user's word: "Yes. Fix that. I mean this is borderline parody so
+there is a margin of error for strict adherence. Also the might be the
+most interesting man in the world line is pretty funny and may be worth
+letting in."
+- **Retries.** Where no sentence of a life survives the checks, the writer
+  writes the report again, up to two more times; the checks stay as they
+  are. After the third, the report says there is no life, with its cuts.
+- **Hedges kept.** The writer keeps a claim's hedges ("might", "perhaps",
+  "seems"): "They might be The Most Interesting Man in the World" is the
+  claim; "They are" was cut, rightly, for making it certain.
+- **The margin is the readers'.** Life check v4: small differences of
+  wording that keep the meaning ("a camera" for "the camera", word order)
+  are y; n only for an added fact, a changed or reversed meaning, or a
+  claim made more certain or more general. The word rule is unchanged: it
+  is what stops invention, and a synonym is still a new word.
+- Predictions: every life keeps at least two sentences; the readers cut
+  under a third of what passes the word rule.
