@@ -1822,3 +1822,10 @@ the claims in words of its own, which the readers then refused.
   when, their); with claims kept in their words, the two readers cut under
   a quarter of what passes the word rule; every life keeps at least three
   sentences.
+- **Amended before the build, at the user's word** ("I don't see the need
+  for a ban on pronouns, especially given how prominent they were in the
+  public discourse"): no ban. A pronoun is a word like any other: a
+  sentence may use one only where a claim it cites has it. So the
+  artist's pronouns are the critics', and may change from sentence to
+  sentence as the claims do. The user's example is still cut by the word
+  rule ("age", "when", and "their" unless a claim has it).
