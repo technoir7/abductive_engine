@@ -1626,3 +1626,6 @@ no model reads its own writing.
 - **No report of its own yet.** Every success report already carries the
   finding and the life; a separate life report waits until a block adds
   something to report.
+- **As built:** GLM-5.3 Flash cannot turn thinking off (the first live
+  refresh failed with a 400), so the check thinks at low effort, with room
+  for its answer. The writer's thinking is still off.
