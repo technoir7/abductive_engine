@@ -1608,3 +1608,21 @@ no model reads its own writing.
   this", if written again, is dropped; the share of sentences dropped is
   within 15 points of 15.9's 14 of 30 (47%); no life loses all.
 - Cost: about the same as 15.9, under a cent a report.
+
+### 15.4 as built: the lives panel (planned 2026-10-31, before it is built)
+
+15.4 was written for 15.3's three features; 15.7 replaced them with two.
+- **The panel.** One column per kind, movers included: the life-block
+  test's verdict, then the six best and six worst life blocks by record.
+  Blocks are coloured as help or harm only where the verdict says the
+  blocks predict the kind; otherwise they are grey, the past only.
+- **The verdict is the engine's,** the same rule that writes the report's
+  finding (in the leader, over 10 nats beyond the kind's own leader, and
+  dealing good-record blocks out costs over 1), sent by the API as one
+  word: untested, nothing, with (comes with success, not before), predicts.
+  The panel does not judge for itself: for press, good_life is in the
+  leader but adds nothing, and a panel judging by "in the leader" would
+  show it as help.
+- **No report of its own yet.** Every success report already carries the
+  finding and the life; a separate life report waits until a block adds
+  something to report.
