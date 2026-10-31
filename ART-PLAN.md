@@ -1593,3 +1593,18 @@ seen: market kept "The artist gave up something else to do this [6]",
 which turns claim 6 (Duchamp gave up art for chess) around. That is the
 known limit of the writer's model reading its own writing; a second model
 is still left for later.
+
+### 15.10 The life checked by a second model (planned 2026-10-31, before it is built)
+
+The user left the order to me ("do what you think optimal"); this comes
+before the panel because a reversed claim is live on the dashboard. 15.9's
+reading is unchanged (same instructions, same form, code drops n), but the
+reader is GLM-5.3 Flash (Z.ai, on Fireworks), not the writer's DeepSeek, so
+no model reads its own writing.
+- Thinking off where the model allows it; the answer is still a line per
+  sentence, refused out of form, asked once more, then the report fails and
+  the last good report stays up.
+- **Predictions, before the run:** market's "gave up something else to do
+  this", if written again, is dropped; the share of sentences dropped is
+  within 15 points of 15.9's 14 of 30 (47%); no life loses all.
+- Cost: about the same as 15.9, under a cent a report.
