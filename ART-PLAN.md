@@ -1843,3 +1843,9 @@ the claims in words of its own, which the readers then refused.
   pronouns"): the imagined artist is "they" by default, singular and
   neutral; "she" or "he" only where a cited claim states the person's
   pronouns. A critic's own "she" or "he" is still not taken.
+- **Amended a third time before the build** (user: "saying 'the artist'
+  all over seems unnecessarily stilted; maybe default to 'they/them'
+  pronouns"; "they them seems most neutral"): the imagined artist is
+  "they" by default, singular and neutral; "she" or "he" only where a
+  cited claim states the person's pronouns. A critic's own "she" or "he"
+  is still not taken.
