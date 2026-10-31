@@ -1917,3 +1917,14 @@ letting in."
   is what stops invention, and a synonym is still a new word.
 - Predictions: every life keeps at least two sentences; the readers cut
   under a third of what passes the word rule.
+
+### 15.4 as built, revised for 15.12 (planned 2026-10-31, before it is built)
+
+The lives panel still lists the blocks with the best and worst forecast
+records (15.7), which no longer choose the life. It now shows, per kind,
+the forecast verdict as before (one line: life stories add nothing to
+forecasting), then the six blocks told most about that year's championed
+artists and the six told least (15.12's score), with the year. These are
+description, so none is coloured as help or harm. The scores reach the
+panel through the snapshot and the API only; the reports' input does not
+change, so the reports are not rewritten for it.
