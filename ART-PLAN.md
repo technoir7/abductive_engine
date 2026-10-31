@@ -1537,3 +1537,20 @@ already written about, which the NYT and trend features already count. With
 the rule as planned (best block first), museum, market and movers draw all
 eight claims from one block each. The lives are shown as what those blocks
 hold, not as what helps.
+
+### 15.8 The imagined artist from artists, across blocks (planned 2026-10-31, before it is built)
+
+At the user's word, after seeing the 15.7 lives. Two changes to the choice
+of claims; the test, the records and the finding are unchanged.
+- **Only claims about artists.** A claim counts only if it names an artist
+  Chicago or Cleveland collected (the same linking that counts claims about
+  artists everywhere since §12, and that the blocks' records were scored
+  from). 15.7 let in claims about collectors, a politician, a poet.
+- **Across blocks.** At most 2 claims from any one block, so eight claims
+  come from at least four blocks; the rest of the order is 15.7's (best
+  block first, most recent first, at most 2 about one artist).
+- Not changed: the writer may still stretch a claim (code checks that each
+  sentence cites one, not what it says); a check of each sentence against
+  its claims is left for later.
+- Expected: fewer claims to choose from, since many claims name no
+  collected artist; if a kind has none, its report says there is no life.
