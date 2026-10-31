@@ -1970,3 +1970,17 @@ engine's other ontologies.
   0 among them; in market and movers, the identity blocks that enter
   (word list of 15.12, diagnostic only) have an edge above 0 to each
   other.
+
+**15.16 results, before any push (2026-10-31).** The graph: 12,272 edges
+above 0 among the named blocks, over 7,064 artist-years with a life
+claim. Strongest: blocks that are nearly one theme ("female artists and
+their work" → "women artists' careers", 5.6 times the usual); "Black
+artists and visibility" → "Black history and representation", 10.9 times.
+Predictions: the walk changes at least two lives: held (all five);
+every life's blocks are linked: held; market's and movers' identity blocks
+are linked: held. But the walk collapses each life into near-duplicate
+blocks, since those are told together most: movers went from women
+artists, trans representation, queer art and AI to four women-artists
+blocks; approve to photography only. The theme formation (§11) split some
+themes into several blocks, and the walk amplifies that. Not pushed; the
+choice goes to the user.
