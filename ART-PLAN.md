@@ -1642,3 +1642,31 @@ the claims are about different artists the life can contradict itself
 (museum: West Coast, 19th-century Austrian and British at once): faithful
 to the claims, not a coherent person. The lives panel (15.4 as built) is
 live, every kind's verdict "nothing".
+
+### 15.11 Audit: why the lives carry no race (2026-10-31, diagnostic only)
+
+The user doubted that the lives, after the post-2020 era, carry almost no
+identity. Traced with a word list over the engine's block names (black,
+indigenous, slavery for race; also gender, women, female, feminism, queer,
+transgender), used for this audit only and fed into nothing.
+- **The press has it.** Claims in race blocks doubled from 2019 (0.66% of
+  claims) to 2020–22 (1.1–1.3%), then fell (0.69% in 2026). Identity
+  blocks as a whole rose from 2.4% (2012) to 5–6% from 2019 on.
+- **Mostly about the work.** Only about a quarter of race-block claims are
+  read as about a life (22–40% a year); the rest are about the work, which
+  the life leaves out by the user's design.
+- **Linking is not the loss.** This year's life claims name a collected
+  artist at about the same rate: race 16%, identity 21%, the rest 18%.
+  Seen in passing: Cleveland's culture names link as artists ("ancient
+  egyptian"), a separate flaw.
+- **The records are not the loss.** Identity blocks all score above 0:
+  "gender representation in art" ranks 2nd for approve, 4th for press;
+  the race blocks rank between 19th and 51st of about 254.
+- **The choice is the loss.** Eight claims, two a block, from the best
+  records: only the top four or five blocks get in. But 15.7 found the
+  records predict nothing for any kind, so ranking blocks by record is
+  ranking by noise, and anything below the top few is hidden, identity
+  among it. Gender got in where its block ranked in the top four.
+- This year there are 25 life claims in race blocks out of about 3,500, so
+  any fair rule would rarely draw one; none may be forced in (no
+  hard-coded theses).
