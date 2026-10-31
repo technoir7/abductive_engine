@@ -1692,3 +1692,50 @@ success analysis since §12. Cleveland's were filtered by name only.
 - **Predictions, before the run:** a few hundred makers drop out; each
   kind's leader stays the same and its gain moves under 10%; museum, which
   counts acquisitions directly, moves most.
+
+### 15.12 The life from what is said about the championed (planned 2026-10-31, before it is built)
+
+At the user's word: forecasting is not the yardstick for a biography; the
+question is what life stories are told about the artists who are
+championed, by critics, the press, museums and the market. Approved
+("yes to both"). Replaces 15.7's choice of blocks (by a forecast record
+that, 15.7 found, predicts nothing); 15.7's test stays, said as before.
+- **The championed.** For each kind and year Y, the artists who had that
+  success in Y: critics' approval, press coverage, a museum acquisition, a
+  Top 500 place, a move up (each kind's own outcome, as §12 counts it). The
+  rest: every other artist with a claim about their life that year.
+- **Each block's score in Y.** Life claims in the block about the
+  championed, against what their share of all life claims that year would
+  give: (observed − expected) / (expected + 5), the same shape and prior as
+  §14's record, with no earlier years needed, since this describes Y.
+  Above 0: told more about the championed than their share.
+- **The life.** From the latest year Y whose success is known for the
+  kind, life claims about that year's championed artists in blocks scoring
+  above 0: best block first, then most recent; at most 2 a block, 2 an
+  artist, 8 in all; then 15.9's reading against the claims (15.13). The
+  list under the life says which artist each claim was about is not
+  shown, as before; it says the claims were about artists who had this
+  success in Y.
+- **What code says,** under the 15.7 finding: the life is what was said
+  about the artists who had this success in Y, more than about others,
+  and is description, not a cause.
+- **Testing the user's observation** (identity championed in recent
+  years, waning in the last). Over every year, the scores of the blocks
+  whose names speak of identity (race, gender, women, queer, transgender,
+  indigenous: a word list of ours, used for this test only and fed into
+  nothing). Predictions, before the run: for museum acquisitions and for
+  critics' approval, the identity blocks' mean score is higher in 2020–23
+  than in 2013–17, and lower in the latest year than in 2020–23. Press and
+  market are reported without a prediction.
+- **Limits, said in the report's trust section as now:** the Guardian and
+  the NYT, Chicago and Cleveland; nothing from the West Coast.
+
+### 15.13 Both readers must keep a sentence (planned 2026-10-31, before it is built)
+
+Approved ("yes to both"). Each sentence of the life is read against its
+claims by both the writer's model (DeepSeek, 15.9) and GLM-5.3 (15.10),
+same instructions and form; code keeps it only if both answer y. Not an
+agreement filter on evidence: the sentences are our writing, held to the
+claims, and a sentence either reader doubts is not traced. Prediction:
+more is dropped than either reader dropped alone (15.9 47%, 15.10 26%);
+no life loses all.
