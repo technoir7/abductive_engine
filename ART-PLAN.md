@@ -1940,3 +1940,33 @@ rule cut an invented "spouse", "another photographer" and "partner".
 Predictions: every life keeps at least two sentences: failed (press and
 market keep one); the readers cut under a third of what passes the word
 rule: held (2 of 10).
+
+### 15.16 The artist as a graph of life stories (planned 2026-10-31, before it is built)
+
+At the user's word ("yes do that"), after asking whether the artist
+becomes a graph of themes with probabilistic conditional edges as in the
+engine's other ontologies.
+- **The edges.** Over every artist-year with a claim read as about a life
+  (all years), for each pair of named life blocks A → B: of the
+  artist-years with a life claim in A, how many also have one in B,
+  against B's share of all those artist-years: P(B | A) against P(B).
+  Score (observed − expected) / (expected + 5), as §14 and 15.12. An edge
+  is kept where the score is above 0: life stories told together about
+  the same artist in the same year more than by chance. Directed, since
+  P(B | A) is not P(A | B). Description, not a cause.
+- **The imagined artist as a walk on the graph.** Start at the block told
+  most about the kind's championed (15.12). Then, again and again, add
+  the block that is told more about the championed (score above 0) with
+  the strongest edges from the blocks already in the life (sum of edge
+  scores, ties by the championed score); where none has an edge above 0,
+  the next by the championed score. Four blocks, two claims each, as
+  before; then 15.14–15.15's writing and checks. So the life holds life
+  stories that go together in real lives and are told of the championed.
+- **Shown.** Under each life, code lists its graph: each edge between its
+  blocks, "A → B: told of N% of artists A is told of, M times the usual".
+  The lives panel lists each kind's edges the same way.
+- **Predictions, before the run:** the walk changes the blocks of at least
+  two of the five lives; every life's blocks have at least one edge above
+  0 among them; in market and movers, the identity blocks that enter
+  (word list of 15.12, diagnostic only) have an edge above 0 to each
+  other.
