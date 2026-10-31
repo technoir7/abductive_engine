@@ -1513,3 +1513,27 @@ life stories as it scores themes (§14):
   them; for critics approve they add under 10.
 - Local runs as §14, five report calls under a cent each, then the panel
   (15.4), showing each kind's best and worst blocks.
+
+**15.7 results (2026-10-31).** The reading (15.2) read all 561,133 claims,
+none refused, for $24.48 list. Records were scored over the 254 named blocks
+(blocks the trend lists name; unnamed blocks are left out of the choice, a
+detail the plan did not state). Added to each kind's leader, the two life
+features:
+- **Critics approve:** never enter the leader; dealt, they change nothing (0).
+  Predicted under 10: held.
+- **More press:** good_life entered the leader in 2022 and again in 2024, but
+  pushes down (−0.06 one, −0.31 several), and dealing it at random does
+  better (adds −4.6). Nothing.
+- **Museum buys:** never in the leader; one deal of the three adds 1.3.
+  Predicted over 10: failed.
+- **Market** and **movers:** never in the leader; dealt adds 0 (one movers
+  deal 3.0). The prediction that the year-after control beats them is moot:
+  there is nothing to beat.
+So no life block adds anything beyond what already predicts any kind of
+success, and code says so first in every report. The best-record blocks are
+the artist's identity, personality, reputation and biography (records above
+1 for museum and movers), which fits life stories marking artists who are
+already written about, which the NYT and trend features already count. With
+the rule as planned (best block first), museum, market and movers draw all
+eight claims from one block each. The lives are shown as what those blocks
+hold, not as what helps.
