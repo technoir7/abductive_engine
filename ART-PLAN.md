@@ -1989,3 +1989,13 @@ choice goes to the user.
   blocks are chosen as in 15.12 (told most about the championed); under
   each life code lists the edges between the blocks its claims came from.
   The walk is dropped.
+
+**15.16 as built, results (2026-10-31).** Live: under each life, the
+edges between the blocks its claims came from, one line a pair ("told
+together 4.4 times the usual; 32% of artists told the first are told the
+second, 13% the other way"); the lives panel lists each life's three
+strongest pairs. Also fixed: a report missing a part (market's writer
+left out the image prompt or the life on four refreshes running) has the
+writer write again, as an empty life does. All five reports rewritten on
+the first try. The lives are short: one to three sentences kept (museum
+three, approve two; press, market and movers one).
