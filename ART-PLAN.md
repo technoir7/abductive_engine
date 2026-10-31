@@ -1984,3 +1984,8 @@ artists, trans representation, queer art and AI to four women-artists
 blocks; approve to photography only. The theme formation (§11) split some
 themes into several blocks, and the walk amplifies that. Not pushed; the
 choice goes to the user.
+- **Changed before any push, at the user's word ("a sounds good do
+  that").** The graph describes the life; it does not choose it. The
+  blocks are chosen as in 15.12 (told most about the championed); under
+  each life code lists the edges between the blocks its claims came from.
+  The walk is dropped.
