@@ -1581,3 +1581,15 @@ claim, not that the claim says it.
   across the five lives at least one sentence is dropped and no life loses
   all its sentences.
 - Cost: one more call per report, under a cent.
+
+**15.9 results (2026-10-31).** Five reports rewritten (press twice: the
+writer first left the life out, and the report was refused). The reading
+dropped 14 of 30 sentences: approve 3 of 8, press 2 of 6, museum 3 of 5,
+market 4 of 6, movers 2 of 5. Predictions: 15.8's museum sentence could not
+be tested, since the writer wrote a new life; at least one sentence
+dropped: held; no life loses all: held. What is left is close to the claims,
+often nearly word for word, and short (two to five sentences). One miss
+seen: market kept "The artist gave up something else to do this [6]",
+which turns claim 6 (Duchamp gave up art for chess) around. That is the
+known limit of the writer's model reading its own writing; a second model
+is still left for later.
