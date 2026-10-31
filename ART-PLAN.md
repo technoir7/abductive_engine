@@ -1849,3 +1849,18 @@ the claims in words of its own, which the readers then refused.
   "they" by default, singular and neutral; "she" or "he" only where a
   cited claim states the person's pronouns. A critic's own "she" or "he"
   is still not taken.
+
+**15.14 first run (2026-10-31).** Approve kept 3 sentences that read
+well ("…introduced to Ewen Spencer by their first photography teacher
+Geoff Weston, and took photography seriously and truly believed in it");
+museum kept 1 of 4 (2 cut for words, 1 by the readers); press, market and
+movers kept none. Prediction "every life keeps at least three": failed.
+Testing the word rule on sentences written from the real claims: faithful
+sentences pass, but an irregular change of tense the instructions allow
+("has become" → "became") is cut. Which check emptied the three lives
+cannot be told: the cut sentences are not kept.
+- **Change, before the next run.** (1) Every cut sentence is listed under
+  the life, struck through, with why: the words its claims lack, or "the
+  readers". The engine's judging is then open to check, as the claims
+  are. (2) Tense: a fixed table of common irregular verbs (become/became,
+  take/took, begin/began, ...) counts each form as the same word.
