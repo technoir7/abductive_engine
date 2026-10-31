@@ -1554,3 +1554,30 @@ of claims; the test, the records and the finding are unchanged.
   its claims is left for later.
 - Expected: fewer claims to choose from, since many claims name no
   collected artist; if a kind has none, its report says there is no life.
+
+### 15.9 Each sentence of the life checked against its claims (planned 2026-10-31, before it is built)
+
+At the user's word ("keep the claims grounded in the engine's
+epistemology"), after 15.8's museum life cited claim 4 for a sentence claim
+4 does not say. 15.1's code check only proves that each sentence cites a
+claim, not that the claim says it.
+- **The reading.** After the writer, a second call reads each sentence of
+  the life beside the claims it cites and answers in a fixed form, one
+  letter a sentence: y if the sentence says nothing those claims do not say
+  (only "the artist" for the name, and tense, may change); n if it adds
+  anything: an event, feeling, place, date, number, reason, judgement, or
+  one person's view made general. No categories of ours beyond y/n; the
+  model reads, code judges (EPISTEMOLOGY §9).
+- **What code does.** Drops every sentence read n, and says under the life
+  how many of how many it dropped. An answer out of the form (wrong count,
+  any other letter) is refused, the call is tried once more, then the
+  report fails loudly and the last good report stays up. If no sentence is
+  left, code says so in place of a life.
+- **The reader** is the report writer's model (the only one the server
+  has), with its thinking off, as for the reports: so it reads its own
+  writing, a known limit; a second model is left for later.
+- **Predictions, before the run:** 15.8's museum sentence 1 ("a single
+  sustained preoccupation, carried on for decades", citing [4]) is dropped;
+  across the five lives at least one sentence is dropped and no life loses
+  all its sentences.
+- Cost: one more call per report, under a cent.
