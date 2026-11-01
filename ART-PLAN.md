@@ -2068,3 +2068,15 @@ calls only where something was mended: well under a cent.
 **Predictions, before the run.** Museum's life is whole sentences. No
 life loses a sentence to mending (it cannot, by the rule). At least one
 mend is kept across the five reports.
+
+**15.18 results (2026-11-01).** Sentences kept: approve 5, press 3,
+museum 6, market 4, movers 2. No sentence was a fragment, so the mend
+answered "same" throughout and no mend was kept: the line added to the
+writer's prompt did the work. Predictions: museum's life is whole
+sentences: held. No life loses a sentence to mending: held. At least one
+mend kept: failed (none needed). Museum lost its strongest sentence (the
+New York avant garde and gay life in the 1970s) to the word rule: the
+writer put "photographed" for the critic's "shot". Museum's six sentences
+are short and plain, one claim each. Refreshes refused and redone by the
+caller: press twice (the writer cited a claim not given; a reader out of
+its form twice), movers once (a part missing on all three writes).
