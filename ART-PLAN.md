@@ -2080,3 +2080,36 @@ writer put "photographed" for the critic's "shot". Museum's six sentences
 are short and plain, one claim each. Refreshes refused and redone by the
 caller: press twice (the writer cited a claim not given; a reader out of
 its form twice), movers once (a part missing on all three writes).
+
+### 15.19 The life edited to read well, checked again (planned 2026-11-01, before it is built)
+
+**Why.** After 15.18 museum's life is six short sentences of one claim
+each, and its best sentence was cut because the writer put
+"photographed" for the critic's "shot". Earlier writes joined claims
+well (reports_after_15_16b). The user: "fix it ... it worked before".
+
+**Rule.** 15.18's sentence mend becomes an edit of the whole life. After
+the checks, the writer's model is given the kept sentences, the
+sentences cut only for words their claims lack (with those words), and
+the claims no sentence uses, each beside its claims. It writes the life
+again as whole sentences that read well: joining short sentences (up to
+three claims a sentence, with "and", commas or an aside, as 15.14
+allows), putting back the critic's own word where a cut sentence changed
+it, mending fragments, and joining unused claims where they fit. The
+edit then goes through the same checks: the word rule (15.14) and both
+readers (15.13). Code keeps the edited life only if its surviving
+sentences cite every claim the checked life cited (nothing is lost);
+otherwise the checked life stands as it was. Under the life, code shows
+the life as first checked, so the edit is open to check. 15.17's count
+of sentences is taken before the edit, so joining never makes a life
+short. The model writes; code and the readers judge.
+
+**Also.** A writer who cites a claim it was not given, or a reader who
+answers out of its form twice, has the writer write again (as a missing
+part does) instead of failing the refresh.
+
+**Cost.** One edit call and two reader calls per write: under a cent.
+
+**Predictions, before the run.** Museum's life has fewer sentences than
+six and keeps the New York avant garde claim. At least three lives are
+edited. No life loses a claim (it cannot, by the rule).
