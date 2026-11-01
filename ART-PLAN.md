@@ -2038,3 +2038,33 @@ carries the hedged line the user wanted in ("might be The Most
 Interesting Man in the World [4, 3, 6]"); movers carries trans
 representation, being an artist of color and the cancelled National
 Portrait Gallery show.
+
+### 15.18 Fragments mended, not cut (planned 2026-11-01, before it is built)
+
+**Why.** After 15.17 museum's two kept sentences are fragments with no
+main verb ("The artist, one of New York's most important photographers
+who captured gay life ... [1, 2]."). The user: the fragments are strong,
+so do not cut them; give one another fragment that modifies it, or
+rearrange it, "with the purpose of making it a grammatical sentence".
+
+**Rule.** After the checks of 15.14 and 15.13, the writer's model is
+given the kept sentences, each beside its claims, and the claims no kept
+sentence cites. For each sentence it answers "same", or the sentence
+mended into a whole one, only by rearranging its words, changing tense
+or number, or joining one of the unused claims in the critic's words, with
+the claims cited. Code keeps a mend only if it is one sentence, cites only
+its own claims and unused ones (no claim used twice), passes the word rule
+of 15.14, and both readers find it says no more than its claims (15.13).
+Otherwise the fragment stays as written: a fragment is never cut for being
+one. The mends are listed under the life with what each was, so the
+judging stays open to check. The writer's prompt also asks that a sentence
+go on after an aside about the artist, so fewer fragments need mending.
+The model writes the mend and judges only grammar, which asserts nothing;
+code and the readers judge what it says.
+
+**Cost.** One more call of the writer's model per write, and two reader
+calls only where something was mended: well under a cent.
+
+**Predictions, before the run.** Museum's life is whole sentences. No
+life loses a sentence to mending (it cannot, by the rule). At least one
+mend is kept across the five reports.
