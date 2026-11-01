@@ -2022,3 +2022,19 @@ cent each (agreed for report regenerations).
 **Predictions, before the run.** At least three of the five lives keep
 three sentences or more. No life keeps fewer sentences than in
 reports_after_15_16b.
+
+**15.17 results (2026-11-01).** The first deploy failed on Railway with
+no logs; the user redeployed. Sentences kept, before (reports_after_15_16b)
+and after (reports_after_15_17): approve 2 → 3, press 1 → 3, museum 2 → 2,
+market 1 → 2, movers 1 → 3. Predictions: at least three lives keep three
+or more: held (approve, press, movers). No life keeps fewer: held, by
+count. But museum's two kept sentences are both fragments with no main
+verb ("The artist, one of New York's most important photographers who
+captured gay life ... [1, 2]."): neither the word rule nor the readers
+check grammar, and all three of museum's writes were short, so the
+fullest was kept. Market's first refresh was refused when a reader
+answered out of its form twice; the second refresh wrote. Press now
+carries the hedged line the user wanted in ("might be The Most
+Interesting Man in the World [4, 3, 6]"); movers carries trans
+representation, being an artist of color and the cancelled National
+Portrait Gallery show.
