@@ -2127,3 +2127,6 @@ trans representation claim and the cancelled show into one). Movers'
 first refresh failed when the edit spent its budget thinking and wrote
 nothing; fixed after the run (an empty answer leaves the life as
 checked).
+- **The user on the rough edges (2026-11-01):** kept as they are. A join
+  not wholly about a life is "normal writing every so often", and run-on
+  sentences "seem to be a hallmark of art writing". No change.
