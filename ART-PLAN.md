@@ -2113,3 +2113,17 @@ part does) instead of failing the refresh.
 **Predictions, before the run.** Museum's life has fewer sentences than
 six and keeps the New York avant garde claim. At least three lives are
 edited. No life loses a claim (it cannot, by the rule).
+
+**15.19 results (2026-11-01).** All five lives edited, every edit kept
+(the checks passed and no claim was lost). Sentences shown: approve 4,
+press 4, museum 3, market 3, movers 3, each joining two or three claims.
+Predictions: museum fewer than six sentences and keeps the New York avant
+garde claim: held (the edit put back the critic's "shot" for the
+writer's "photographed"). At least three lives edited: held (five). No
+life loses a claim: held. Seen: the edit joins unused claims even where
+they are not about a life (approve's last sentence is about an
+exhibition's opening); some sentences run long (movers' second joins the
+trans representation claim and the cancelled show into one). Movers'
+first refresh failed when the edit spent its budget thinking and wrote
+nothing; fixed after the run (an empty answer leaves the life as
+checked).
