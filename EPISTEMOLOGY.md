@@ -3,7 +3,8 @@
 *Draft, 2026-10-24. This is the philosophical account of how the engine forms
 concepts, holds beliefs and gives them up. `DESIGN.md` is the technical plan
 and follows from this document. Where the two disagree, this one states the
-intent.*
+intent. For art, `ART-PLAN.md` is the plan of record: every plan, prediction
+and result, and each departure from this account, dated (section 9).*
 
 References to the *Critique of Pure Reason* use the standard A (1781) and B
 (1787) pagination. Other works are cited by section. Quotations are kept
@@ -90,8 +91,10 @@ immediately, through sensibility, under the forms of space and time. And
 
 **In the engine,** what is given is an *observation*: a series (for
 example, consumer prices), the date the value describes, the value, and the
-date it became public. Observations arrive from POE, which fetches them. The
-engine fetches nothing and never sees anything else.
+date it became public. For the economic domains, observations arrive from
+POE, which fetches them; the engine fetches nothing and never sees anything
+else. Art is the exception: the engine fetches the press itself and has it
+read, and what is given is testimony (section 9).
 
 **Time is the form of the given.** Each observation carries two dates. The
 engine is never shown an observation before the date it became public. This
@@ -120,6 +123,12 @@ standing in space, and it is a weaker thing.
    engine's intuitions are, from the world's side, the products of other
    minds' concepts. Kant's intuitions are prior to all concepts; the
    engine's are prior only to its own.
+3. *For art, the given is a model's reading of testimony.* What the engine
+   takes up is not the text but what a model reports the text asserts, in a
+   form we fixed. The form is ours, as in concession 1, and it has been
+   extended once after the data had been seen, openly and with the
+   extension stated before it was used (each claim's subject, and whether it
+   is about a life: ART-PLAN 15.2).
 
 ## 4. Synthesis: how a concept is formed from the given
 
@@ -211,7 +220,9 @@ A remark on POE's main finding. Replayed over 2003–2026, no hand-written
 worldview explained the weeks better than persistence: each signal
 following its own last week. In these terms, POE's experience was organized
 under the First Analogy and had not yet earned the Second. POE now forms
-its own hypotheses (its D24), and has not yet been replayed.
+its own hypotheses (its D24) and puts its leader's core on trial (D27).
+Replayed so (replays 11–14), it still found nothing persistence did not:
+from 2009 every seed held each signal's persistence and no more.
 
 ### Modality (Postulates of Empirical Thought, A218/B265)
 
@@ -363,7 +374,12 @@ begins with an *anomaly*: something the reigning one led us to expect
 otherwise, which persists and resists adjustment (*The Structure of
 Scientific Revolutions*, ch. VI).
 
-**In the engine, every proposal begins with an anomaly.** After each week,
+**In the engine as designed, every proposal begins with an anomaly.** (Not
+yet built: as built, macro proposes every four weeks the link its recent
+surprises most support beyond chance, which is closer to POE's D24 than to
+an anomaly. Art's concepts are formed differently again: every claim is
+taken up in the order it was published and joins the nearest live concept
+or founds one, a synthesis in time, with no anomaly needed.) After each week,
 the leading scheme's surprise at each series is compared with its usual
 surprise. A run of surprise well above usual is an anomaly, and only an
 anomaly occasions a new concept. The proposal is shaped by the anomaly it
@@ -440,10 +456,13 @@ the old one (DESIGN.md §9):
 
 - **It does not guess at random.** POE still revises the hypotheses it
   forms by random change. This engine does not; every proposal has an anomaly or a
-  regulative principle as its occasion. A separate experiment runs a copy
-  with random proposals instead. Its only purpose is to test whether
+  regulative principle as its occasion. A separate experiment is to run a copy
+  with random proposals instead (not yet built). Its only purpose is to test whether
   disciplined concept formation does better than blind variation. That copy
-  is a control, not part of the engine's cognition.
+  is a control, not part of the engine's cognition. In art the controls
+  that exist are of the same spirit: claims dealt at random into concepts
+  of the same sizes, a feature dealt at random among the year's cases, and
+  next year's features as a placebo (section 8).
 - **It does not ask a language model what to think.** For economic data,
   no language model takes part in forming concepts. Art is a different
   case (section 9).
@@ -526,6 +545,33 @@ POE can have only the first kind, because its concepts are fixed. This
 engine is built so that the second kind is possible, and its replays ask
 whether it happens and when.
 
+### Judging across cases (art)
+
+In art, aggregates carried no structure and links between particular
+concepts read as coincidences (ART-PLAN §8). The humanities reason
+otherwise: from particular cases to what holds across them (Ginzburg's
+clues; Bourdieu's consecration is a claim about every career; Moretti
+reads the life cycles of genres). So in art a hypothesis is a
+*mechanism*, a claim about every case at once: "a case in this state this
+year tends to this outcome next year". A case is an artist, a concept or
+a trend. The mechanism is judged prequentially, each year predicted from
+earlier years only, against each case's own past graded finely, since any
+feature that grows with size passes for a mechanism if size is graded
+coarsely. Rival sets of mechanisms are kept side by side; the leader
+changes when a rival stands 3 nats ahead (Jeffreys' "strong"), on
+evidence that decays with a five-year half-life, and a combination must
+beat each of its parts. Three controls ask what a gain means: the feature
+dealt at random among the same year's cases (meaning), a case's years
+shuffled (fame), and next year's feature as a placebo (order).
+
+### Planned before it runs
+
+Every art test was written down before it ran: what it measures, what
+would count against the design, and predictions. Departures are dated and
+said to be departures; failed predictions are recorded as failed; nothing
+was tuned until an answer came out well (ART-PLAN throughout). A
+prediction's worth is that it could have failed.
+
 ## 9. Art: knowledge from testimony
 
 The economic domains give the engine observations: numbers measured by
@@ -543,15 +589,85 @@ language model, and its epistemology differs from the economic one. The
 proposed boundary:
 
 - **The model reads.** It reports what each text asserts, in a fixed form:
-  who claims what, about what, with what force.
+  who asserts, about what, what is asserted (in the text's own words), its
+  force (reports, judges, predicts, doubts) and its stance (approval,
+  disapproval, neither). Since ART-PLAN 15.2 it also reports each claim's
+  subject (a person, a work, an institution, something else) and whether
+  it is about the life of a person who makes art. No categories of ours:
+  the model does not sort claims into themes we chose.
 - **The engine judges.** From those reported assertions it forms concepts
   under the same table, tests them, and gives them up, exactly as it does
-  with numbers. It also learns how far each source is to be trusted.
+  with numbers. Learning how far each source is to be trusted is planned,
+  not built (ART-PLAN §4).
 
 The model's role is then that of apprehension: taking up the given. The
 engine's role is understanding and judgment. Where hypotheses come from
-stays principled, because the model never proposes what to believe. This
-boundary is a proposal; settling it is for the art phase.
+stays principled, because the model never proposes what to believe. The
+boundary is settled (ART-PLAN §2) and was amended once, with the user's
+approval, for the two parts added in 15.2: both record what a claim
+refers to, not what it means or whether it is right.
+
+### The engine judges the reader
+
+The reading is checked by code, not trusted. An answer outside the form is
+refused, never repaired. Every name and number a claim uses must be in its
+article or byline; about 2% fail, and analysis reads only the checked copy
+(ART-PLAN §6).
+
+Two other models shape what is shown, and neither proposes a belief. An
+embedding model decides which claims are near in meaning, so it shapes
+concepts and trends, under thresholds fixed by rule on a pilot month. A
+local model names each trend, says whether it is a particular theme or art
+in general, and checks whether its name fits ten of its claims; a trend is
+listed only if half fit. That decides what is displayed, not what is
+predicted (ART-PLAN §§6, 11).
+
+### The model writes; code and the readers judge
+
+The art reports end with an imagined artist: a short life, built from what
+critics said about the lives of real artists who had a kind of success
+(ART-PLAN 15.1, 15.9–15.19). Here a model writes, and the boundary has to
+hold the other way round: what it writes must say nothing the claims do
+not.
+- **Every sentence cites its claims;** code refuses a sentence that cites
+  none, or a claim it was not given.
+- **The word rule.** Every word must be in the claims the sentence cites,
+  or in a fixed list of words that assert nothing; no word of time, cause
+  or contrast unless a claim has it. A sentence that fails is cut. This is
+  the engine judging, by a rule anyone can read.
+- **Two readers.** Two models from different makers each read every
+  sentence beside its claims and answer y or n in a fixed form: n if it
+  adds an event, feeling, place, date, reason or judgement, reverses a
+  claim, or makes it more certain or more general. Code keeps a sentence
+  only if both say y.
+- **Write again, edit, check again.** A life left short is written again,
+  and the write kept is chosen by a count of sentences, never by what they
+  say. The writer may then edit the life to read well; the edit passes the
+  same checks and is kept only if it still uses every claim the checked
+  life used.
+- **Open to check.** Every cut sentence is shown with why, beside the life
+  as first checked.
+
+This must be faced squarely: the readers are models making judgments of
+entailment. The boundary is no longer "the model only reads". It is that
+models give verdicts in a fixed form, and code decides by a rule (both must
+say y, and the word rule), so no model's verdict alone keeps a sentence.
+The same pattern governs the reports: their verdicts (too small to claim,
+overwhelming, what a control shows) are fixed by code, and the writer only
+states them. The imagined artist is labelled fiction. It is not knowledge
+about anyone; it is the discourse, recast, under a check that it adds
+nothing.
+
+### Description is not prediction
+
+Some of what art shows describes the present and claims nothing about what
+comes next: this year's trend lists, the market's image (which shows what goes
+with a place at the top of the market, by the user's choice), and the lives
+told about the artists who succeeded. Each is said to be
+description where it is shown. And nothing is written into the inputs to
+make a thesis come out: features are the table's headings applied to every
+case alike, and word lists used to audit a result are fed into nothing
+(ART-PLAN 15.11).
 
 ## 10. Where the engine departs from Kant
 
@@ -581,6 +697,16 @@ These departures are known and accepted:
    structural requirement on schemes, not as a self-consciousness. The
    engine has no "I think", only the formal requirement that anything which
    could be accompanied by one must hang together.
+8. **In art, the given is testimony as a model reads it.** Kant's
+   intuitions are received; art's are a model's report of what others
+   asserted, checked by code (section 9).
+9. **Recognition by nearness.** Kant's synthesis of recognition brings a
+   new intuition under a concept. In art, an embedding model's nearness
+   stands in for it: a claim joins the concept it is nearest (section 9).
+10. **Models judge what a model wrote.** Whether a sentence of the imagined
+    artist says more than its claims is judged by two models, and kept by a
+    rule of code. Their verdict is not the engine's own understanding
+    (section 9).
 
 ## Glossary
 
@@ -594,12 +720,23 @@ These departures are known and accepted:
 | Anomaly | a run of surprise well above the leading scheme's usual |
 | Association / directed dependence / community | the three grades of connection (section 6) |
 | Possible / actual / necessary | a concept's status: proposed; earned credit on new observations; invariant across regimes and held by every surviving scheme |
+| Claim (assertion) | in art, one thing a text asserts, as the model reports it: who, about what, what, force, stance; with subject and life since 15.2 |
+| Case | in art, something with a history in the discourse: an artist, a concept, a trend |
+| Mechanism | a hypothesis about every case at once: a case in this state this year tends to this outcome next year |
+| Own past | a case's earlier outcomes, graded finely; what every mechanism must beat |
+| Dealt control | a feature dealt at random among the cases of the same year, keeping how common it is and breaking its tie to the case |
+| Year-after placebo | next year's features in place of this year's; if they do as well, the feature goes with the outcome rather than ahead of it |
+| Trend | claims grouped by idea, followed across years; needs many writers and many subjects |
+| Theme / life block | a trend that is a particular subject; a life block counts only its claims about a life |
+| Word rule | every word of a written sentence must be in the claims it cites, or assert nothing |
+| Reader | a model that judges, y or n, whether a written sentence says more than its claims |
 
 ## References
 
 - Coady, C. A. J. *Testimony: A Philosophical Study*. Oxford, 1992.
 - Dawid, A. P. "Statistical theory: the prequential approach." *Journal of
   the Royal Statistical Society A* 147 (1984).
+- Ginzburg, C. *Clues, Myths, and the Historical Method*. 1989.
 - Hanson, N. R. *Patterns of Discovery*. Cambridge, 1958.
 - Hume, D. *A Treatise of Human Nature* (1739–40), 1.3.6; *An Enquiry
   concerning Human Understanding* (1748), §§7, 10.
@@ -610,6 +747,7 @@ These departures are known and accepted:
 - Lakatos, I. "Falsification and the Methodology of Scientific Research
   Programmes." In Lakatos and Musgrave (eds.), *Criticism and the Growth of
   Knowledge*. Cambridge, 1970.
+- Moretti, F. *Graphs, Maps, Trees*. 2005.
 - Peirce, C. S. *Collected Papers*, vol. 5, §189 (Harvard lectures, 1903).
 - Peters, J., Bühlmann, P. and Meinshausen, N. "Causal inference by using
   invariant prediction." *Journal of the Royal Statistical Society B* 78

@@ -1,6 +1,6 @@
 # The art phase: reading the press
 
-Status: first draft, 2026-10-26, for review. No code until approved.
+Status: first drafted 2026-10-26 for review; built and run section by section since, each plan written before its run. The latest is 15.19 (2026-11-01).
 
 ## 1. Why
 
@@ -917,7 +917,7 @@ before either replaces the other in POE.
 
 ### §9 amended: results with the additive engine (2026-10-29)
 
-Run in POE (services/cases.py) on the shipped case sets, yearly:
+Run in POE (src/engine/services/cases.py) on the shipped case sets, yearly:
 - Artists: NYT + critics' approval leads from 2023 (engine − own past
   +223 nats over 2002–2024). Alone: NYT +218, approval adds about 23,
   Guardian about 2, contested about 0. History of the leader: NYT from
@@ -1278,7 +1278,7 @@ rules as §12.11 with deviation 1, except the voice:
   real artist. None where nothing is illustrated.
 - Prompt version 9; five report calls, under a cent each.
 
-## 15. Biography (planned 2026-10-30; nothing built or run, awaiting the user's approval)
+## 15. Biography (planned 2026-10-30; built and run 15.1–15.19, results under each)
 
 The user's question: how much does an artist's life story count, against
 the work, for each kind of success? Some artists make their work a
@@ -1838,11 +1838,6 @@ the claims in words of its own, which the readers then refused.
   "she/her", "he/him"), and then only that set (they, them, their, ...).
   In the press such statements are about six in all, so most lives say
   "the artist".
-- **Amended a third time before the build** (user: "saying 'the artist'
-  all over seems unnecessarily stilted; maybe default to 'they/them'
-  pronouns"): the imagined artist is "they" by default, singular and
-  neutral; "she" or "he" only where a cited claim states the person's
-  pronouns. A critic's own "she" or "he" is still not taken.
 - **Amended a third time before the build** (user: "saying 'the artist'
   all over seems unnecessarily stilted; maybe default to 'they/them'
   pronouns"; "they them seems most neutral"): the imagined artist is

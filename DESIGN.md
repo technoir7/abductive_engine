@@ -1,7 +1,11 @@
 # Abductive engine: design
 
 *Draft, 2026-10-24. Steps 0–4 of the build order (section 10) are built, save same-week and
-association links.
+association links. Macro work paused there on 2026-10-26; since then the
+engine has been applied to art, whose plan of record, with every plan,
+prediction and result, is [ART-PLAN.md](ART-PLAN.md). This document still
+describes the macro design; where art departs from it, a note says so and
+points to ART-PLAN.
 Decisions still open are listed in section 12.*
 
 The philosophy behind this design is in [EPISTEMOLOGY.md](EPISTEMOLOGY.md).
@@ -11,11 +15,14 @@ disagree, EPISTEMOLOGY.md states the intent.
 ## 1. The question
 
 The Probabilistic Ontology Engine (POE) is given its variables. For macro
-they are eight yes/no signals written by hand ("inflation shock", "credit
-spread stress", ...). Since its D24 it is given no hypotheses about how
-they connect, and forms its own from the evidence. Replayed over 2003–2026
-with hand-written worldviews, none built from these signals explained the
-weeks better than persistence (each signal following its own last week).
+they are eight signals written by hand ("inflation shock", "credit spread
+stress", ...), read since its D25 as low, middle or high. Since its D24 it
+is given no hypotheses about how they connect, and forms its own from the
+evidence. Replayed over 2003–2026, first with hand-written worldviews and
+then (replays 11–14) with worldviews it formed and put on trial, none built
+from these signals explained the weeks better than persistence (each signal
+following its own last week); from 2009 every seed of replay 14 held
+persistence alone.
 POE's open problem 1 asks whether that is a verdict on the worldviews or on
 the vocabulary.
 
@@ -55,6 +62,20 @@ FRED, ... ──> POE ──observations──> abductive engine
   repo would be tidier, but it adds a moving part. It becomes worth it if a
   third consumer of the data appears.
 
+**Art is different** (ART-PLAN §§3, 9, 11–12). There is no hand-written
+vocabulary to compare against, so the reason for one-way flow does not
+apply:
+- **This engine fetches the press itself** (`press.py`: the Guardian Open
+  Platform and the NYT Archive API) and has it read (`read_press.py`).
+- **Its results go to POE as files.** `evals/export_concepts.py`,
+  `export_trends.py`, `export_trend_status.py` and `export_rewarded.py`
+  write the concepts, trends and what critics rewarded; POE ships them as
+  snapshots in its art domain (POE D29–D31) and shows them on its
+  dashboard.
+- **Some flows back.** `evals/run_case_engine.py` reads the artist records
+  POE's `evals/artist_records.py` builds.
+- This engine has no API; the dashboard sees art only through POE.
+
 ### The observation protocol
 
 Each observation is four fields:
@@ -90,6 +111,9 @@ POE's server.
 ## 3. Observations (what is given)
 
 *EPISTEMOLOGY.md §3.*
+
+For art the given is different: the claims critics made, as a model read
+them from the press (ART-PLAN §§2–3; EPISTEMOLOGY.md §9).
 
 For macro, the eight FRED series POE uses, read through the protocol. Each
 week (Friday), the engine apprehends the observations that became public
@@ -136,6 +160,8 @@ points it was built from, and the anomaly or principle that occasioned it
 
 ### Hidden concepts
 
+*Not built (step 5).*
+
 A hidden concept has no definition in observables. It is inferred from what
 it explains, and posited only under a category of relation:
 - **substance:** one series' persistent state, for example a regime that
@@ -148,9 +174,28 @@ and dropped (EPISTEMOLOGY.md §8).
 
 ### Status (modality)
 
+*Not built (step 6).*
+
 Every concept is **possible** (proposed), **actual** (has earned credit on
 observations after it was proposed), or **necessary** (actual, invariant
 across regimes, and held by every surviving scheme).
+
+### Concepts formed in art
+
+*ART-PLAN §§6, 8, 10, 15.7.* Art forms three kinds of concept, none of them
+over series:
+- **Concepts by meaning:** claims taken up in the order they were
+  published, each joining the nearest live concept or founding one
+  (`synthesis.py`; cosine at least 0.85, within 0.80 of the founding claim,
+  closed after 24 months unasserted; thresholds fixed by rule on a pilot).
+- **Trends:** concepts grouped by idea each year over the three before, and
+  followed across years (`trends.py`).
+- **Life blocks:** themes counted only on claims read as about a life.
+
+The table of forms is applied to *cases* (an artist, a concept, a trend):
+quantity is how many writers, quality is approval, disapproval or both
+(contested), relation is both papers or one, modality is a claim asserted
+as a prediction or a doubt, and age (ART-PLAN §8).
 
 ## 5. Levels of belief
 
@@ -170,7 +215,8 @@ From POE, as built:
 - **Rival whole structures,** compared by evidence. This is how a direction
   is settled when the evidence can settle it.
 
-From POE's specification, designed but never built, and needed here:
+From POE's specification, designed but never built, and needed here (still
+not built here either):
 - **Association links** (POE `FACTOR_LINK`): a dependence with no direction
   claimed.
 - **Hidden variables** (POE `Variable.hidden`).
@@ -226,7 +272,9 @@ week by week out of sample, and windowed with a half-life as in POE.
 it has no concept for is still predicted, if crudely, and counts against
 it.
 
-**The model.** Each scheme is a dynamic Bayesian network:
+**The model.** Each scheme is a dynamic Bayesian network (as built, links
+run from last week's concept states; the hidden concepts below are not yet
+built):
 - **Concepts:** discrete, defined or hidden.
 - **Observations:** continuous.
 - **Links:** each observed change is Gaussian given its parent concepts'
@@ -258,6 +306,17 @@ it.
 - **Nothing is scored as certain for free.** A link whose parent is unknown
   this week is averaged over that parent's distribution.
 
+**On cases (art; ART-PLAN §9, amended).** A scheme is a set of mechanisms,
+each a hypothesis about every case at once ("a case in this state this
+year tends to this outcome next year"). Every subset of a small pool is
+kept alive. Each scheme is a multinomial logistic model of a case's
+outcome from its own past and its mechanisms, fitted on earlier years
+only and scored on the next. The leader changes when a rival stands more
+than 3 nats ahead (Jeffreys' "strong"), on evidence decayed with a
+five-year half-life, and a combination leads only when it stands 3 nats
+ahead of each of its parts. Run in POE (`src/engine/services/cases.py`);
+this repo's `case_engine.py` still uses the earlier backoff tables.
+
 ## 7. Forming concepts
 
 *EPISTEMOLOGY.md §7.*
@@ -265,6 +324,13 @@ it.
 Every new concept has an occasion: an anomaly, or one of reason's
 regulative principles. The engine never proposes at random, and no language
 model takes part.
+
+*Status:* this section is the design; step 6 is not built. As built, macro
+proposes periodically: every four weeks, the link its recent surprises
+most support beyond a chance penalty (`population.py`, `scheme.py`). In
+art, concepts form from every claim in time order (section 4), an embedding
+model decides nearness, and a local model names trends and says whether a
+name fits its claims (ART-PLAN §§6, 11; EPISTEMOLOGY.md §9).
 
 ### Anomaly (reflecting judgment)
 
@@ -311,6 +377,10 @@ reverse) are structural variants within the programme, as in POE.
 A separate run replaces every occasioned proposal with a random one from the
 same table. It exists only to test whether occasioned concept formation does
 better than blind variation (question 5). It is not part of the engine.
+*Not built for macro.* Art's controls are claims dealt at random into
+concepts or trends of the same sizes, a feature dealt at random among the
+cases of the same year, and the features of the year after as a placebo
+(ART-PLAN §§7, 8, 10).
 
 ## 8. Baselines
 
@@ -330,6 +400,11 @@ Every scheme is scored on the same observations as these:
    replay 10's −3.35 nats a week.
 
 ## 9. The first replay
+
+*Not run: macro paused at step 4.* The art replay ran instead (ART-PLAN §7):
+its leader beat persistence by 0.55 nats a quarter, above every matched
+random grouping, but its links read as coincidences, which led to the
+cases method (ART-PLAN §8).
 
 Fixed before it runs:
 - **Data:** the same weeks as POE replay 10 (2003-04-04 to 2026-10-16), as
@@ -401,6 +476,9 @@ Each step has passing tests before the next starts, test first.
    it POE's vocabulary led. The leader changed 457 times, mostly between
    near-identical variants, since any lead however small takes over; that
    is a question for the replay plan, not a tuning to make now.
+*Status 2026-11-02: steps 0–4 as above; steps 5–7 not started. Work moved to
+art (ART-PLAN §7 build order, then §§8–16).*
+
 5. **Hidden concepts.** Exact filtering, and parameter learning with a
    half-life.
 6. **Concept formation.** Anomaly detection, the occasioned proposals,
@@ -408,16 +486,28 @@ Each step has passing tests before the next starts, test first.
 7. **Replay.** The run and the random control; written up with charts.
 
 Not in scope until the replay is written up:
-- **Live data, an API, the dashboard.**
-- **Art.** Its evidence is text, which is testimony, not observation
-  (EPISTEMOLOGY.md §9). A language model would read: it reports what each
-  text asserts. The engine would judge: it forms concepts from those
-  assertions under the same table and tests them. The model never proposes
-  what to believe.
+- **Live data, an API, the dashboard,** for macro.
+- **Art** was first listed here. It was built ahead of the macro replay
+  (ART-PLAN), and its results are live on POE's dashboard through POE's art
+  domain. Its evidence is text, which is testimony, not observation
+  (EPISTEMOLOGY.md §9): a language model reads what each text asserts, and
+  the engine judges.
 
 ## 11. Stack
 
-Python 3.12, uv, numpy, pytest. Possibly scipy.
+Python 3.12, uv, numpy, pytest. No scipy so far.
+
+Models, art only (none takes part in macro):
+- **Claude Haiku,** through Claude Code headless (`claude -p --model
+  haiku`, `reading.py`), reads the press into claims and reads each claim's
+  subject and whether it is about a life (`read_life.py`).
+- **Ollama, local:** `nomic-embed-text` for nearness (`embed.py`);
+  `qwen3.6:27b` names trends and checks the names (`evals/name_trends.py`,
+  `check_trend_names.py`). qwen was tried for the reading and was too slow
+  (ART-PLAN §6).
+- **In POE, on Fireworks:** DeepSeek v4p1 Flash writes the reports, reads
+  and edits the imagined artist's life; GLM-5.3 Flash is the second reader
+  (ART-PLAN 15.9–15.19).
 
 No pgmpy, which POE uses. Its strength is fixed discrete networks; this
 engine needs hidden states, continuous observations and online filtering,
@@ -425,7 +515,9 @@ all small enough to write directly. That also keeps every step of the
 inference readable.
 
 Like POE, everything is seeded and replayable: same data and seed, same
-result.
+result. The art reading is the exception: a model's reading is not
+deterministic, so the claims are kept and the engine reruns on them
+without reading again (ART-PLAN §6).
 
 ## 12. Open
 
@@ -439,4 +531,13 @@ result.
 - **Old prototype.** When it is back on this machine, read it for its
   concept-forming method before step 6.
 - **Art's boundary** between the model that reads and the engine that
-  judges. Settled in the art phase.
+  judges. *Settled* (ART-PLAN §2), amended with the user's approval to add
+  each claim's subject and whether it is about a life (15.2), and extended
+  to the writing of the imagined artist (15.9–15.19; EPISTEMOLOGY.md §9).
+- **MIN_CASES = 30** is scaled for weeks and too high for quarters
+  (ART-PLAN §7).
+- **Catch-all concepts** survive the founding-claim rule (ART-PLAN §8).
+- **This repo's case engine** (`cases.judge`, `case_engine.py`) and the
+  quarterly trends still use the backoff tables, not the additive engine
+  POE runs (ART-PLAN §9 amended).
+- **Source trust** (ART-PLAN §4) is planned, not built.
