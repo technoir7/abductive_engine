@@ -1,5 +1,7 @@
 # Abductive engine
 
+[![CI](https://github.com/technoir7/abductive_engine/actions/workflows/ci.yml/badge.svg)](https://github.com/technoir7/abductive_engine/actions/workflows/ci.yml)
+
 The reading half of a project about how beliefs should be formed and judged.
 Its sibling, the [Probabilistic Ontology Engine](https://github.com/technoir7/probabilistic_ontology_engine)
 (POE), is given its concepts and forms hypotheses about how they connect. This
